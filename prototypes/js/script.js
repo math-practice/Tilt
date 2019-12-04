@@ -3,6 +3,7 @@ var vid_width = vid.width;
 var vid_height = vid.height;
 var overlay = document.getElementById('overlay');
 var overlayCC = overlay.getContext('2d');
+var text = document.querySelector('.text');
 var fontIndex = 1;
 
 /*********** Setup of video/webcam and checking for webGL support *********/
@@ -108,7 +109,6 @@ function drawLoop() {
     indicator.style['left'] = eyeX / canvasX * 100 + "vw";
     indicator.style['top'] = eyeY / canvasY * 100 + "vh";
     //update the text vars
-    var text = document.querySelector('.text');
     text.style['font-variation-settings'] = "'HROT' " + hrot + ", 'VROT' " + vrot;
   }
 }
@@ -116,9 +116,18 @@ function drawLoop() {
 function changeFont(){
   var fonts = ["tilt-neon","tilt-prism","tilt-warp"];
   var font = fontIndex % fonts.length;
-  var text = document.querySelector('.text');
   text.style['font-family'] = fonts[font];
   fontIndex++;
+}
+
+function getQueryVariable(variable){
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    if(pair[0] == variable){return pair[1];}
+  }
+  return(false);
 }
 
 // start video
@@ -128,3 +137,8 @@ ctrack.start(vid);
 trackingStarted = true;
 // start loop to draw face
 drawLoop();
+
+//change string
+if (getQueryVariable("string")){
+  text.innerHTML = getQueryVariable("string");
+}
