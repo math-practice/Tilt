@@ -1,0 +1,64 @@
+@font-face {
+  font-family: tilt-neon;
+  src: url("fonts/Tilt-Neon.ttf");
+}
+@font-face {
+  font-family: tilt-prism;
+  src: url("fonts/Tilt-Prism.ttf");
+}
+@font-face {
+  font-family: tilt-warp;
+  src: url("fonts/Tilt-Warp.ttf");
+}
+body {
+  font-family: tilt-neon;
+  margin:0;
+}
+.container {
+  display: table;
+  width: 100vw;
+  height: 100vh;
+}
+.preview {
+  position: absolute;
+  left: 0;
+  top:0;
+}
+.dot {
+  position:fixed;
+  width: 30px;
+  height: 30px;
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -15px;
+  background: red;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: width 0.2s, height 0.2s, margin 0.2s;
+}
+.dot:hover {
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+}
+.text {
+  line-height: 0.9em;
+  display: table-cell;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 50vh;
+  margin:0;
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Opera and Firefox */
+}
+.line {
+  position:fixed;
+  pointer-events: none;
+}
