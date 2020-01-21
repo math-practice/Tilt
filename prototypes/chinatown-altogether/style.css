@@ -13,6 +13,7 @@
 body {
   font-family: tilt-neon;
   margin:0;
+  background-color: black;
 }
 .container {
   display: table;
@@ -56,6 +57,7 @@ body {
   font-size: 72px;
   overflow: hidden;
   padding: 20px;
+  background-color: white;
 }
 /* .box:hover {
   background-color: black;
