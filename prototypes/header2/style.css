@@ -16,12 +16,35 @@ body {
   color: #fff;
   /* background-color: #FF3C3C; */
 }
-.text {
+.container {
+  top:0;
+  height: 50vw;
+  border-bottom: 1px solid;
+  max-height: 900px;
+  overflow: hidden;
+}
+.cropped {
+  position:absolute;
+  top:0;
+  width:100%;
+  height: 50vw;
+  max-height: 900px;
+  overflow: hidden;
+  /* clip-path: inset(500px 0 0 0); */
+  z-index:999;
+}
+.text, .text2 {
+  clip-path: url(#clipping);
+  position:absolute;
+  width: 100%;
+  top:0;
   font-weight: normal;
   text-align: center;
   vertical-align: middle;
   font-size: 45vw;
-  line-height: 0.8em;
+  line-height: 1.2em;
+  height: 50vw;
+  max-height: 900px;
   padding: 0 0 0.1em 0;
   margin:0;
   cursor: pointer;
@@ -33,7 +56,10 @@ body {
       -ms-user-select: none; /* Internet Explorer/Edge */
           user-select: none; /* Non-prefixed version, currently
                                 supported by Chrome, Opera and Firefox */
-  border-bottom: 1px solid;
+}
+.text2 {
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;;
 }
 .char-0 {
   font-family: tilt-neon;
@@ -44,8 +70,15 @@ body {
 .char-2 {
   font-family: tilt-warp;
 }
-
+.bottom {
+  height:100vh;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+}
 nav {
+  position: absolute;
+  width: 100%;
   height: 48px;
   border-bottom: 1px solid;
   font-size: 18px;
@@ -95,21 +128,33 @@ nav ul li{
   left: 200px;
 }
 
-svg {
+svg.ui {
   position:absolute;
   top:0;
   left:0;
   pointer-events:none;
+  z-index:999999;
 }
-svg line {
+svg.ui line {
   stroke:#fff;
-  stroke-width:1;
+  stroke-width:2;
 }
-svg circle {
+svg.ui .line_2 {
+  stroke-dasharray: 2,4;
+}
+svg.ui circle {
   fill: #fff;
 }
-/* @media screen and (min-width: 1600px) {
-  .text {
+svg.mask {
+  position:absolute;
+  top:0;
+  pointer-events:none;
+}
+svg.mask rect {
+  fill: #000;
+}
+@media screen and (min-width: 1600px) {
+  .text, .text2 {
      font-size: 800px;
   }
-} */
+}

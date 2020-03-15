@@ -2,9 +2,10 @@ var text = document.querySelector('.text');
 var svg = document.querySelector('svg');
 var w = window.innerWidth;
 var h = window.innerHeight;
-
 var maxRotation = 45;
 var minRotation = -45;
+var bg = ["#FF3C3C", "#009D3F", "#00109D"];
+var bgCount = 0;
 
 setText();
 
@@ -12,6 +13,8 @@ document.addEventListener("mousemove", updateView, false);
 
 function setText() {
   text.innerHTML = randomChar(3);
+  document.querySelector('body').style.backgroundColor = bg[bgCount % bg.length];
+  bgCount ++;
 }
 
 function randomChar(num) {
@@ -59,27 +62,6 @@ function updateView(event) {
   // drawLine(x, y);
   drawLines(x, y);
   // changeColor(x, y);
-}
-
-function changeColor(x, y){
-  //fg hue travels according to x
-  var fg_hue = Math.round (x / w * 360);
-  //bg hue is the opposite of the color wheel
-  var bg_hue = fg_hue + 180;
-  
-  //bg sat travels according to y
-  var fg_sat = 100;
-  var bg_sat = 100;
-  // var bg_sat = 20 - Math.abs(Math.round (20 - y / h * 40)) + 60;
-  
-  //fg lgt travels according to y
-  var fg_lgt = Math.abs(20 - Math.round (y / h * 40)) + 50;
-  //bg lgt travels according to y
-  var bg_lgt = Math.round (y / h * 40 + 30);
-
-  // document.querySelector('.text').style.color = "hsl(" + fg_hue + ","+fg_sat+"%, "+fg_lgt+"%)";
-  // document.querySelector('.text').style.backgroundColor = "hsl(" + bg_hue + ","+bg_sat+"%, "+bg_lgt+"%)";
-  document.querySelector('.text').style.color = "hsl(" + bg_hue + ","+bg_sat+"%, "+bg_lgt+"%)";
 }
 
 function drawLine(x, y){
