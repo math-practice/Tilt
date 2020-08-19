@@ -1,0 +1,172 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: tilt-neon;
+  src: url("fonts/Tilt-Neon.woff2") format("woff2");
+}
+@font-face {
+  font-family: tilt-prism;
+  src: url("fonts/Tilt-Prism.woff2") format("woff2");
+}
+@font-face {
+  font-family: tilt-warp;
+  src: url("fonts/Tilt-Warp.woff2") format("woff2");
+}
+@keyframes hrot {
+  0% {
+    font-variation-settings: "HROT" 0;
+  }
+  25% {
+    font-variation-settings: "HROT" 45;
+  }
+  75% {
+    font-variation-settings: "HROT" -45;
+  }
+  100% {
+    font-variation-settings: "HROT" 0;
+  }
+}
+/* Variables ------------------------------------------- */
+/* Typographic defaults -------------------------------- */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: tilt-neon;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+a:hover {
+  border-bottom: 0;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h2 {
+  margin: 24px 0;
+  text-transform: uppercase;
+}
+
+p {
+  margin: 24px 0;
+}
+
+/* Layouts --------------------------------------------- */
+nav {
+  width: 100%;
+  position: fixed;
+  height: 48px;
+  border-bottom: 1px solid;
+  background: #fff;
+  text-align: center;
+  line-height: 48px;
+}
+nav h1 a {
+  display: inline-block;
+  width: 48px;
+}
+nav a {
+  border: 0;
+}
+nav a:hover {
+  animation: hrot 1.2s infinite;
+}
+nav ul {
+  line-height: 48px;
+}
+nav ul li {
+  display: inline-block;
+  margin: 0 8px;
+}
+nav ul li a {
+  display: block;
+  text-align: center;
+  width: 48px;
+}
+nav .primary {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  text-align: left;
+}
+nav .secondary {
+  position: absolute;
+  right: 16px;
+  top: 0;
+  text-align: right;
+}
+nav .secondary .google-fonts {
+  width: 112px;
+}
+nav .secondary .github {
+  width: 56px;
+}
+nav .secondary .camera {
+  width: 24px;
+}
+
+/*# sourceMappingURL=style.css.map */

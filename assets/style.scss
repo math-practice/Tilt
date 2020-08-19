@@ -1,0 +1,107 @@
+@import 'reset', 'fonts';
+@keyframes hrot {
+  0% {
+    font-variation-settings: 'HROT' 0;
+  }
+  25% {
+    font-variation-settings: 'HROT' 45;
+  }
+  75% {
+    font-variation-settings: 'HROT' -45;
+  }
+  100% {
+    font-variation-settings: 'HROT' 0;
+  }
+}
+
+/* Variables ------------------------------------------- */
+$unit: 8px;
+$black: #000;
+$duration: 0.2s;
+$font_size: 18px;
+$line_height: $unit * 3;
+
+/* Typographic defaults -------------------------------- */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+body {
+  font-family: tilt-neon;
+  font-size: 18px;
+  line-height: $line_height;
+}
+a {
+  color: $black;
+  text-decoration: none;
+  border-bottom: 1px solid;
+  &:hover {
+    border-bottom: 0;
+  }
+}
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+h2 {
+  margin: $line_height 0;
+  text-transform: uppercase;
+}
+p {
+  margin: $line_height 0;
+}
+
+/* Layouts --------------------------------------------- */
+nav {
+  width: 100%;
+  position: fixed;
+  height: $unit * 6;
+  border-bottom: 1px solid;
+  background: #fff;
+  text-align: center;
+  line-height: $unit * 6;
+  h1 a {
+    display: inline-block;
+    width: $unit * 6;
+  }
+  a {
+    border: 0;
+    &:hover {
+      animation: hrot $duration*6 infinite;
+    }
+  }
+  ul {
+    line-height: $unit * 6;
+    li {
+      display: inline-block;
+      margin: 0 $unit;
+      a {
+        display: block;
+        text-align: center;
+        width: $unit * 6; //default size
+      }
+    }
+  }
+  .primary {
+    position: absolute;
+    left: $unit * 2;
+    top: 0;
+    text-align: left;
+  }
+  .secondary {
+    position: absolute;
+    right: $unit * 2;
+    top: 0;
+    text-align: right;
+    .google-fonts {
+      width: $unit * 14;
+    }
+    .github {
+      width: $unit * 7;
+    }
+    .camera {
+      width: $unit * 3;
+    }
+  }
+}
