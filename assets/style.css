@@ -256,6 +256,9 @@ section.information .description {
   padding: 8px 16.6666666667vw 8px 32px;
   background: #fff;
 }
+section.information .description h2, section.information .description p {
+  max-width: 1024px;
+}
 section.information .highlight {
   float: left;
   width: 33.3333333333vw;
@@ -310,6 +313,83 @@ section.information .highlight .glyph {
   text-align: center;
   font-size: 33.3333333333vw;
   line-height: 33.3333333333vw;
+}
+
+section.tester .ibeam {
+  float: left;
+  width: 120px;
+  border-right: 1px solid;
+  height: 240px;
+  text-align: center;
+  padding-top: 32px;
+}
+section.tester .text {
+  float: left;
+}
+section.tester .text .slider-wrapper {
+  position: absolute;
+}
+section.tester .text .slider-wrapper span {
+  font-size: 14px;
+  margin-right: 8px;
+}
+section.tester .text .slider-wrapper.hrot {
+  margin: 8px 0 0 16px;
+}
+section.tester .text .slider-wrapper.hrot .slider {
+  width: 160px;
+}
+section.tester .text .slider-wrapper.vrot {
+  margin: 224px 0 0 8px;
+  transform: rotate(-90deg);
+  transform-origin: 0% 0%;
+}
+section.tester .text .slider-wrapper.vrot .slider {
+  width: 136px;
+}
+section.tester .text .slider-wrapper .slider {
+  position: absolute;
+  height: 16px;
+  margin: 4px 0;
+  background: transparent;
+  -webkit-appearance: none;
+}
+section.tester .text .slider-wrapper .slider:focus {
+  outline: none;
+}
+section.tester .text .slider-wrapper .slider::-webkit-slider-runnable-track, section.tester .text .slider-wrapper .slider::-webkit-slider-runnable-track {
+  background: #000;
+  height: 1px;
+}
+section.tester .text .slider-wrapper .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  background: #fff;
+  margin-top: -7px;
+  border: 1px solid;
+  border-radius: 50%;
+}
+section.tester .text .slider-wrapper .slider::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  background: #fff;
+  margin-top: -9px;
+  border: 1px solid;
+  border-radius: 50%;
+}
+section.tester .text .string {
+  border: 0;
+  overflow: scroll hidden;
+  width: calc(100vw - 120px);
+  height: 240px;
+  font-size: 216px;
+  line-height: 240px;
+  white-space: nowrap;
+  padding: 0 0 0 40px;
+}
+section.tester .text .string:focus {
+  outline: none;
 }
 
 div.separator {
