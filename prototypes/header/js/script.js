@@ -12,7 +12,9 @@ setText();
 document.addEventListener("mousemove", updateView, false);
 
 function setText() {
-  text.innerHTML = randomChar(3);
+  if (bgCount !== 0){
+    text.innerHTML = randomChar(3);
+  }
   document.querySelector('body').style.backgroundColor = bg[bgCount % bg.length];
   bgCount ++;
 }
@@ -52,7 +54,7 @@ function updateView(event) {
   var x = event.pageX;
   var y = event.pageY;
   var hrot = (x / w * maxRotation * 2 - maxRotation);
-  var vrot = (y / h * maxRotation * 2 - maxRotation);
+  var vrot = (y / text.clientHeight * maxRotation * 2 - maxRotation);
   //rotate text
   text.style['font-variation-settings'] = "'HROT' " + hrot + ", 'VROT' " + vrot;
   //write values

@@ -115,7 +115,25 @@ p {
   margin: 24px 0;
 }
 
+.neon {
+  font-family: tilt-neon;
+}
+
+.prism {
+  font-family: tilt-prism;
+}
+
+.warp {
+  font-family: tilt-warp;
+}
+
 /* Layouts --------------------------------------------- */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 nav {
   width: 100%;
   position: fixed;
@@ -167,6 +185,139 @@ nav .secondary .github {
 }
 nav .secondary .camera {
   width: 24px;
+}
+
+section {
+  border-bottom: 1px solid;
+}
+
+section.hero {
+  text-align: center;
+  font-size: 45vw;
+  line-height: 1em;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+     supported by Chrome, Opera and Firefox */
+  word-break: keep-all;
+}
+section.hero .hrot, section.hero .vrot {
+  position: absolute;
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: -36px;
+  left: 24px;
+}
+section.hero .vrot {
+  left: 200px;
+}
+section.hero svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+section.hero svg line {
+  stroke: #fff;
+  stroke-width: 1;
+}
+section.hero svg circle {
+  fill: #fff;
+}
+
+section.scroller {
+  font-size: 216px;
+  line-height: 240px;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 0 24px;
+}
+
+section.information {
+  background: linear-gradient(180deg, transparent calc(0% - 0.5px), #000 calc(0% + 0.5px), transparent calc(0% + 1.5px));
+  background-position: 0 33.3333333333vw;
+}
+section.information .description {
+  float: left;
+  width: 66.6666666667vw;
+  min-height: 33.3333333333vw;
+  border-right: 1px solid;
+  padding: 8px 16.6666666667vw 8px 32px;
+  background: #fff;
+}
+section.information .highlight {
+  float: left;
+  width: 33.3333333333vw;
+  height: 33.3333333333vw;
+  background: #fff;
+}
+section.information .highlight .hline {
+  position: absolute;
+  width: 25vw;
+  height: 1px;
+  margin: 16.6666666667vw 4.1666666667vw;
+  background-image: linear-gradient(90deg, #000, #000 25%, transparent 25%, transparent 100%);
+  background-size: 4px 1px;
+}
+section.information .highlight .vline {
+  position: absolute;
+  width: 1px;
+  height: 25vw;
+  margin: 4.1666666667vw 16.6666666667vw;
+  background-image: linear-gradient(0deg, #000, #000 25%, transparent 25%, transparent 100%);
+  background-size: 1px 4px;
+}
+section.information .highlight .legend {
+  position: absolute;
+  width: 48px;
+  height: 24px;
+}
+section.information .highlight .legend.hrot {
+  left: 83.3333333333vw;
+  margin: 8px 0 0 -24px;
+}
+section.information .highlight .legend.hmin {
+  left: 66.6666666667vw;
+  margin: 8px 0 0 8px;
+}
+section.information .highlight .legend.hmax {
+  left: 100vw;
+  margin: 8px 0 0 -56px;
+  text-align: right;
+}
+section.information .highlight .legend.vmax {
+  left: 66.6666666667vw;
+  margin: calc(33.33vw - 32px) 0 0 8px;
+}
+section.information .highlight .legend.vrot {
+  left: 66.6666666667vw;
+  margin: calc(16.67vw + 24px) 0 0 8px;
+  transform: rotate(-90deg);
+  transform-origin: 0% 0%;
+}
+section.information .highlight .glyph {
+  text-align: center;
+  font-size: 33.3333333333vw;
+  line-height: 33.3333333333vw;
+}
+
+div.separator {
+  height: 96px;
+  border-bottom: 1px solid;
+  background-image: radial-gradient(#000 12.5%, transparent 12.5%), radial-gradient(#000 12.5%, transparent 12.5%);
+  background-position: 2px 2px, 8px 8px;
+  background-size: 12px 12px;
 }
 
 /*# sourceMappingURL=style.css.map */
