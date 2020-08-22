@@ -23,6 +23,12 @@ $font_body: 18px;
 $font_caption: 14px;
 $col_width: 100vw / 6;
 
+@mixin polka_dot {
+  background-image: radial-gradient($black 12.5%, transparent 12.5%), radial-gradient($black 12.5%, transparent 12.5%);
+  background-position: $unit/4 $unit/4, $unit * 1.5 / 2 + $unit/4 $unit * 1.5 / 2 + $unit/4;
+  background-size: $unit * 1.5 $unit * 1.5;
+}
+
 /* Typographic defaults -------------------------------- */
 * {
   -webkit-font-smoothing: antialiased;
@@ -124,6 +130,7 @@ nav {
 }
 section {
   border-bottom: 1px solid;
+  background: #fff;
 }
 section.hero {
   text-align: center;
@@ -290,8 +297,8 @@ section.tester {
         }
         &::-webkit-slider-thumb {
           -webkit-appearance: none;
-          height: $unit * 2;
-          width: $unit * 2;
+          height: $unit * 2 - 1;
+          width: $unit * 2 - 1;
           background: #fff;
           margin-top: - ($unit - 1);
           border: 1px solid;
@@ -324,11 +331,57 @@ section.tester {
   }
 }
 
+section.footer {
+  .text {
+    float:left;
+    width: $col_width * 3;
+    padding: 0 0 $unit * 3 $unit * 4;
+    h2 {
+      font-size: 36px;
+      line-height: $line_height * 1.75;
+      text-transform: none;
+      margin:  $line_height * 1.75 0;
+    }
+  }
+  .credit {
+    float:right;
+    width: $col_width * 2;
+    .google {
+      float: left;
+      width: $col_width;
+      padding: $unit * 6 0;
+    }
+    .detail {
+      float: left;
+      width: $col_width;
+      ul {
+        padding: $unit * 6 0;
+        li {
+          margin: $line_height * 0.25 0;
+        }
+      }
+      .people {
+        font-size: $font_caption;
+        line-height: $line_height * 0.75;
+        margin-top:0;
+      }
+    }
+    .fineprint {
+      font-size: 12px;
+      line-height: 14px;
+      float: left;
+      width: $col_width * 2;
+      padding: $unit * 6 $unit * 4 $unit * 4 0;
+      p {
+        margin-top:0;
+      }
+    }
+  }
+}
+
 div.separator {
   //https://dev.to/clairecodes/how-to-create-a-polka-dot-background-with-css-23m0
   height: $unit * 12;
   border-bottom: 1px solid;
-  background-image: radial-gradient($black 12.5%, transparent 12.5%), radial-gradient($black 12.5%, transparent 12.5%);
-  background-position: $unit/4 $unit/4, $unit * 1.5 / 2 + $unit/4 $unit * 1.5 / 2 + $unit/4;
-  background-size: $unit * 1.5 $unit * 1.5;
+  @include polka_dot;
 }
