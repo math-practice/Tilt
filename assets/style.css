@@ -252,6 +252,7 @@ section.signs div {
 section.signs .sign {
   position: relative;
   overflow: hidden;
+  cursor: crosshair;
 }
 section.signs .sign .inner {
   position: absolute;
@@ -311,10 +312,13 @@ section.signs .nha-hang-tan-the-gioi .oval {
 }
 section.signs .nha-hang-tan-the-gioi .oval p {
   display: inline-block;
-  border: 0.075em solid;
+  border: 0.075em dotted;
   border-radius: 100%;
   margin: 0 auto;
   padding: 0.1em 0.3em;
+}
+section.signs .nha-hang-tan-the-gioi p.xs {
+  letter-spacing: 0.02em;
 }
 section.signs .new-york-boston {
   width: 25vw;
@@ -406,8 +410,7 @@ section.signs .hok-shan-building .circle p {
   display: inline-block;
   border: 0.08em solid;
   border-radius: 100%;
-  width: 1.6em;
-  height: 1.6em;
+  padding: 0 0.2em;
   line-height: calc(1.6em - 0.08em * 2);
   margin: 0 0.125em;
 }
@@ -462,8 +465,21 @@ section.signs .bowery-savings {
   height: 33.3333333333vw;
   border-right: 1px solid;
 }
-section.signs .bowery-savings p.save {
+section.signs .bowery-savings .inner p {
   line-height: 0.9em;
+  position: absolute;
+  width: 29vw;
+  margin: 2em 0 0 -14.5vw;
+  left: 50%;
+}
+section.signs .bowery-savings .inner svg {
+  margin: 0 auto;
+  width: 50vw;
+  height: 33.3333333333vw;
+  fill: transparent;
+}
+section.signs .bowery-savings .inner svg text {
+  fill: #000;
 }
 section.signs .nypl {
   width: 50vw;
@@ -495,6 +511,22 @@ section.signs .dont-block {
 }
 section.signs .dont-block .inner p {
   line-height: 1em;
+}
+section.signs .dont-block .inner svg {
+  display: block;
+  width: 33vw;
+  height: 15vw;
+  margin: 0.5em auto;
+  border: 0.2em solid;
+}
+section.signs .dont-block .inner svg rect {
+  fill: transparent;
+  stroke-width: 0.4em;
+  stroke: #000;
+}
+section.signs .dont-block .inner svg line {
+  stroke: #000;
+  stroke-width: 0.2em;
 }
 section.signs .holland-tunnel {
   width: 50vw;

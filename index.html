@@ -44,9 +44,9 @@
     <div class="col-half">
       <div class="nha-hang-tan-the-gioi sign">
         <div class="inner">
+          <div class="oval"><p class="xl">220</p></div>
           <p class="l">Nhà Hàng <br>Tân Thế Giới</p>
-          <div class="oval"><p class="l">220</p></div>
-          <p class="xs">ĐẶC BIỆT NHÂN HEO <br>SỮA VÀ HEO CÚNG LỄ</p>
+          <!-- <p class="xs">ĐẶC BIỆT NHÂN HEO <br>SỮA VÀ HEO CÚNG LỄ</p> -->
         </div>
       </div>
       <div class="col-half">
@@ -101,13 +101,13 @@
           <div class="four-choices sign">
             <span class="inner">
               <p class="xl dollar">$4</p>
-              <p class="xs">FOUR CHOICES WITH A SOUP</p>
+              <p class="xs">FOUR <br>CHOICES <br>WITH A <br>SOUP</p>
             </span>
           </div>
         </div>
         <div class="hok-shan-building sign">
           <span class="inner">
-            <p class="l">HOK SHAN <br>BUILDING</p>
+            <p class="l">Hok Shan <br>Building</p>
             <div class="circle">
               <p class="m">42</p>
               <p class="m">44</p>
@@ -187,7 +187,30 @@
       <div class="bowery-savings sign">
         <span class="inner">
           <!-- <p class="m">THE BOWERY SAVINGS BANK</p> -->
+          <!-- <svg width="720" height="480" viewBox="0 0 720 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="720" height="480" fill="white"/>
+            <path d="M92 367C92 295.922 120.236 227.755 170.495 177.495C220.755 127.236 288.922 99 360 99C431.078 99 499.245 127.236 549.505 177.495C599.764 227.755 628 295.922 628 367" stroke="black"/>
+            </svg> -->
+            
+            
+            
           <p class="m save">TO <br>SERVE <br>THOSE WHO <br>SAVE</p>
+          <svg viewBox="0 0 720 480">
+            <path id="path_bowery" d="M92 367C92 295.922 120.236 227.755 170.495 177.495C220.755 127.236 288.922 99 360 99C431.078 99 499.245 127.236 549.505 177.495C599.764 227.755 628 295.922 628 367"/>
+            <text font-size="4.44vw">
+              <textPath alignment-baseline="top" startOffset="50%" text-anchor="middle" xlink:href="#path_bowery">
+                THE BOWERY SAVINGS BANK
+              </textPath>
+            </text>
+          </svg>
+          <!-- <svg class="bowery" viewbox="0 0 100 50" preserveAspectRatio="none">
+            <path id="path_bowery" d="M100 50C100 22.3858 77.6142 0 50 0C22.3858 0 0 22.3858 0 50"/>              
+            <text font-size="4.44vw">
+              <textPath alignment-baseline="top" xlink:href="#path_bowery">
+                THE BOWERY SAVINGS BANK
+              </textPath>
+            </text>
+          </svg> -->
         </span>
       </div>
     </div>
@@ -257,8 +280,11 @@
     <div class="col-half">
       <div class="dont-block sign">
         <span class="inner">
-          <p class="l">DON'T BLOCK <br>THE BOX</p>
-          <div class="box"></div>
+          <p class="l">DON’T BLOCK <br>THE BOX</p>
+          <svg class="box">
+            <line x1="0" y1="0" x2="100%" y2="100%"/>
+            <line x1="0" y1="100%" x2="100%" y2="0"/>
+          </svg>
         </span>
       </div>
       <div class="holland-tunnel sign">
@@ -280,7 +306,7 @@
         </div>
       </div>
     </div>
-    <div class="col-max-veh sign">
+    <div class="col-max-veh">
       <div class="bus sign">
         <span class="inner">
           <p class="m">M101</p>
@@ -398,5 +424,10 @@
       </div>
     </div>
   </section>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="assets/script.js"></script>
 </body>
 </html>

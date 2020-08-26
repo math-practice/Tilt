@@ -186,6 +186,7 @@ section.signs {
   .sign {
     position: relative;
     overflow: hidden;
+    cursor: crosshair;
     .inner {
       position: absolute;
       top: 50%;
@@ -228,11 +229,14 @@ section.signs {
       margin: 0.5em 0 0.7em 0;
       p {
         display: inline-block;
-        border: 0.075em solid;
+        border: 0.075em dotted;
         border-radius: 100%;
         margin: 0 auto;
         padding: 0.1em 0.3em;
       }
+    }
+    p.xs {
+      letter-spacing: 0.02em;
     }
   }
   .new-york-boston {
@@ -324,8 +328,7 @@ section.signs {
         display: inline-block;
         border: 0.08em solid;
         border-radius: 100%;
-        width: 1.6em;
-        height: 1.6em;
+        padding: 0 0.2em;
         line-height: calc(1.6em - 0.08em * 2);
         margin: 0 0.125em;
       }
@@ -382,8 +385,25 @@ section.signs {
     width: $col_width * 3;
     height: $col_width * 2;
     border-right: 1px solid;
-    p.save {
-      line-height: 0.9em;
+    .inner {
+      p {
+        line-height: 0.9em;
+        position: absolute;
+        width: 29vw;
+        margin: 2em 0 0 -14.5vw;
+        left: 50%;
+      }
+      svg {
+        // display: block;
+        margin: 0 auto;
+        width: $col_width * 3;
+        height: $col_width * 2;
+        fill: transparent;
+        // position: absolute;
+        text {
+          fill: $black;
+        }
+      }
     }
   }
   .nypl {
@@ -414,8 +434,26 @@ section.signs {
     height: $col_width * 2.4;
     border-right: 1px solid;
     border-bottom: 1px solid;
-    .inner p {
-      line-height: 1em;
+    .inner {
+      p {
+        line-height: 1em;
+      }
+      svg {
+        display: block;
+        width: 33vw;
+        height: 15vw;
+        margin: 0.5em auto;
+        border: 0.2em solid;
+        rect {
+          fill: transparent; 
+          stroke-width: 0.4em;
+          stroke: $black;
+        }
+        line {
+          stroke:$black;
+          stroke-width: 0.2em;
+        }
+      }
     }
   }
   .holland-tunnel {
