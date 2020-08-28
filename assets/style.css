@@ -266,33 +266,33 @@ section.signs .sign .inner div {
   float: none;
   text-align: center;
 }
-section.signs .sign .inner p {
+section.signs .sign p {
   margin: 0;
   text-align: center;
   line-height: 105%;
 }
-section.signs .sign .inner p.xxs {
+section.signs .sign p.xxs {
   font-size: 2.5vw;
 }
-section.signs .sign .inner p.xs {
+section.signs .sign p.xs {
   font-size: 3.33vw;
 }
-section.signs .sign .inner p.s {
+section.signs .sign p.s {
   font-size: 4.44vw;
 }
-section.signs .sign .inner p.m {
+section.signs .sign p.m {
   font-size: 5vw;
 }
-section.signs .sign .inner p.l {
+section.signs .sign p.l {
   font-size: 6.67vw;
 }
-section.signs .sign .inner p.xl {
+section.signs .sign p.xl {
   font-size: 10vw;
 }
-section.signs .sign .inner p.xxl {
+section.signs .sign p.xxl {
   font-size: 11.11vw;
 }
-section.signs .sign .inner p.xxxl {
+section.signs .sign p.xxxl {
   font-size: 13vw;
 }
 section.signs .col-half {
@@ -465,21 +465,116 @@ section.signs .bowery-savings {
   height: 33.3333333333vw;
   border-right: 1px solid;
 }
-section.signs .bowery-savings .inner p {
-  line-height: 0.9em;
+section.signs .bowery-savings .arc p.bowery span {
   position: absolute;
-  width: 29vw;
-  margin: 2em 0 0 -14.5vw;
-  left: 50%;
+  display: flex;
+  align-items: center;
+  line-height: 100%;
+  transform-origin: 0% 0%;
 }
-section.signs .bowery-savings .inner svg {
-  margin: 0 auto;
-  width: 50vw;
-  height: 33.3333333333vw;
-  fill: transparent;
+section.signs .bowery-savings .arc p.bowery .arc-1 {
+  left: 6.94%;
+  top: 71.97%;
+  transform: rotate(-86.24deg);
 }
-section.signs .bowery-savings .inner svg text {
-  fill: #000;
+section.signs .bowery-savings .arc p.bowery .arc-2 {
+  left: 7.34%;
+  top: 63.28%;
+  transform: rotate(-77.67deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-3 {
+  left: 8.95%;
+  top: 52.93%;
+  transform: rotate(-69deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-4 {
+  left: 12.2%;
+  top: 41.51%;
+  transform: rotate(-57.74deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-5 {
+  left: 15.51%;
+  top: 33.77%;
+  transform: rotate(-49.16deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-6 {
+  left: 20.08%;
+  top: 25.83%;
+  transform: rotate(-38.54deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-7 {
+  left: 27.17%;
+  top: 17.73%;
+  transform: rotate(-28.67deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-8 {
+  left: 32.26%;
+  top: 13.63%;
+  transform: rotate(-20.78deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-9 {
+  left: 37.84%;
+  top: 10.51%;
+  transform: rotate(-12.55deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-10 {
+  left: 46.4%;
+  top: 8.16%;
+  transform: rotate(-1.55deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-11 {
+  left: 51.99%;
+  top: 7.98%;
+  transform: rotate(6.18deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-12 {
+  left: 57.94%;
+  top: 8.99%;
+  transform: rotate(14.51deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-13 {
+  left: 64.15%;
+  top: 11.59%;
+  transform: rotate(21.21deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-14 {
+  left: 67.54%;
+  top: 13.46%;
+  transform: rotate(28.25deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-15 {
+  left: 73.75%;
+  top: 18.58%;
+  transform: rotate(37.71deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-16 {
+  left: 79.19%;
+  top: 25.07%;
+  transform: rotate(46.04deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-17 {
+  left: 84.64%;
+  top: 34.17%;
+  transform: rotate(57.11deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-18 {
+  left: 87.99%;
+  top: 42.02%;
+  transform: rotate(66deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-19 {
+  left: 90.8%;
+  top: 51.74%;
+  transform: rotate(75.49deg);
+}
+section.signs .bowery-savings .arc p.bowery .arc-20 {
+  left: 92.5%;
+  top: 62.11%;
+  transform: rotate(84.7deg);
+}
+section.signs .bowery-savings .inner p.save {
+  line-height: 0.9em;
+  margin-top: 1.4em;
 }
 section.signs .nypl {
   width: 50vw;
