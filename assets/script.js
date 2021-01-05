@@ -19,7 +19,29 @@ $(".sign").mousemove(function(event){
     // lineHeight: 105 * transformH + "%"
   });
   $(this).find(".arc p span").each(function(){
+    // rotation angle of this letter
     var r = getRotationDegrees($(this));
+    // console.log($(this).attr('class') + ":" + r);
+    // console.log ("x: " + x + " y: " + y + " HROT: " + hrot + " VROT: " + vrot);
+    
+    //r * pi / 180 to return sine wave, then shift the r 90 degrees to get the wave to start from 1 (not 0)
+    //https://docs.google.com/spreadsheets/d/1L3u8t-3eQaisRTdMZ-T2UWpbDCKLc8AIePK4wCZYsFE/edit#gid=0
+
+    var sinShift = Math.sin( r * Math.PI / 180);
+    var sin = Math.sin( (r + 90) % 360 * Math.PI / 180);
+
+    //calc initial rotations
+    var newHrot = sin * hrot + sinShift * vrot;
+    var newVrot = sin * vrot + sinShift * hrot;
+
+    if ($(this).attr('class') == 'arc-1') {
+      console.log ("HROT: " + hrot + " VROT: " + vrot + " NEW HROT:" + newHrot);
+    }
+
+    //hrot to look at vrot, vice versa
+    // newHrot = newHrot + 45 - newVrot;
+    // newVrot = newVrot + 45 - newHrot;
+    
     $(this).css({
       fontVariationSettings: "'HROT' " + hrot + ", 'VROT' " + vrot,
     });

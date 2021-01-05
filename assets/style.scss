@@ -226,10 +226,10 @@ section.signs {
     border-bottom: 1px solid;
     border-right: 1px solid;
     .oval {
-      margin: 0.5em 0 0.7em 0;
+      margin: 0.7em 0 0.7em 0;
       p {
         display: inline-block;
-        border: 0.075em dotted;
+        border: 0.075em solid;
         border-radius: 100%;
         margin: 0 auto;
         padding: 0.1em 0.3em;
@@ -287,11 +287,8 @@ section.signs {
     height: $col-width * 2.8;
     margin-top: $col_width * 0.8;
     p.l {
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      line-height: 10.55vw;
-      letter-spacing: -0.3em;
-      margin-top: -0.2em;
+      word-break: break-all;
+      line-height: 95%;
     }
   }
   .col-hok-shan {
@@ -544,7 +541,6 @@ section.signs {
         width: 33vw;
         height: 15vw;
         margin: 0.5em auto;
-        border: 0.2em solid;
         rect {
           fill: transparent; 
           stroke-width: 0.4em;
@@ -618,7 +614,7 @@ section.signs {
       border: 0.1em solid;
       border-radius: 0.2em;
       p {
-        padding: 0 0.1em;
+        padding: 0.1em 0.2em;
       }
     }
   }
@@ -639,6 +635,8 @@ section.signs {
         background: $black;
         color: #fff;
         padding: 0.1em 0.3em;
+        border-radius: 4px;
+        letter-spacing: 0.01em;
       }
     }
   }
