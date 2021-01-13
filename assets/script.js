@@ -22,6 +22,12 @@ $(".sign").mousemove(function(event){
     fontVariationSettings: "'HROT' " + hrot + ", 'VROT' " + vrot,
     // lineHeight: 105 * transformH + "%"
   });
+
+  $(this).find(".reactive").css({
+    width: 100-Math.abs(hrot) + "%",
+    // height: 100-Math.abs(vrot) + "%",
+  })
+
   $(this).find(".arc p span").each(function(){
     // rotation angle of this letter
     var r = getRotationDegrees($(this));
@@ -64,6 +70,11 @@ $(".sign").mouseleave(function(event){
     width: "",
     height: ""
   });
+  $(this).find(".reactive").css({
+    width: "100%",
+    // height: "100%"
+  });
+  
 });
 
 function svgTransform(svg, svgWidth){
