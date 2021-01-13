@@ -64,6 +64,9 @@ table {
   100% {
     font-variation-settings: 'HROT' 0; } }
 /* Variables ------------------------------------------- */
+html {
+  scroll-behavior: smooth; }
+
 /* Typographic defaults -------------------------------- */
 * {
   -webkit-font-smoothing: antialiased;
@@ -200,6 +203,9 @@ section.scroller {
   white-space: nowrap;
   padding: 0 24px; }
 
+section.signs .anchor {
+  position: absolute;
+  margin-top: -47px; }
 section.signs div {
   float: left; }
 section.signs .sign {
@@ -622,6 +628,7 @@ section.information {
       line-height: 33.3333333333vw; }
 
 section.glyphs-table {
+  display: none;
   font-size: 0;
   border-bottom: none; }
   section.glyphs-table ul:nth-of-type(even) li:last-of-type {
@@ -659,7 +666,7 @@ section.glyphs-table {
         section.glyphs-table ul li.download a:hover p {
           background-color: #000;
           color: #fff; }
-    @media (max-width: 599px) {
+    @media (max-width: 899px) {
       section.glyphs-table ul li {
         width: 12.5vw;
         height: 12.5vw;

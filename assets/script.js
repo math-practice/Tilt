@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------
+  Mouse control > variable axes
+------------------------------------------------------------ */
+
 var w = window.innerWidth;
 var h = window.innerHeight;
 var maxRotation = 45;
@@ -86,3 +90,11 @@ function getRotationDegrees(obj) {
   } else { var angle = 0; }
   return (angle < 0) ? angle + 360 : angle;
 }
+
+/* ------------------------------------------------------------
+  Other stuff
+------------------------------------------------------------ */
+$('.open-glyphs-table').click(function(event){
+  event.preventDefault();
+  $(this).closest('section').next(".glyphs-table").slideToggle();
+});

@@ -44,6 +44,10 @@ $col_width: 100vw / 6;
   background-size: $unit * 1.5 $unit * 1.5;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Typographic defaults -------------------------------- */
 * {
   -webkit-font-smoothing: antialiased;
@@ -195,6 +199,12 @@ section.scroller {
   padding: 0 $unit * 3;
 }
 section.signs {
+  .anchor {
+    position: absolute;
+    // width: 100px;
+    // border-bottom: 1px solid red;
+    margin-top: -$unit * 6 + 1;
+  }
   div {
     float:left;
   }
@@ -736,6 +746,7 @@ section.information {
   }
 }
 section.glyphs-table {
+  display:none;
   font-size:0;
   border-bottom: none;
   ul{
@@ -793,7 +804,8 @@ section.glyphs-table {
           }
         }
       }
-      @include for-phone-only {
+      //"for-phone-only" or "for-tablet-below"
+      @include for-tablet-below {
         width: $mobile;
         height: $mobile;
         font-size: $mobile / 7;
