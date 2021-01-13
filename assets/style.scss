@@ -301,6 +301,9 @@ section.signs {
     border-right: 1px solid;
     border-bottom: 1px solid;
     background: #fff;
+    p {
+      line-height: 0.6em;
+    }
   }
   .col-hopkee {
     width: $col_width * 0.63;

@@ -291,6 +291,8 @@ section.signs .prosperity {
   border-right: 1px solid;
   border-bottom: 1px solid;
   background: #fff; }
+  section.signs .prosperity p {
+    line-height: 0.6em; }
 section.signs .col-hopkee {
   width: 10.5vw;
   border-right: 1px solid;
