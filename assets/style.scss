@@ -23,6 +23,21 @@ $font_body: 18px;
 $font_caption: 14px;
 $col_width: 100vw / 6;
 
+//600, 900, 1200, 1800
+//https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-below {
+  @media (max-width: 899px) { @content; }
+}
+@mixin for-laptop-below {
+  @media (max-width: 1199px) { @content; }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) { @content; }
+}
+
 @mixin polka_dot {
   background-image: radial-gradient($black 12.5%, transparent 12.5%), radial-gradient($black 12.5%, transparent 12.5%);
   background-position: $unit/4 $unit/4, $unit * 1.5 / 2 + $unit/4 $unit * 1.5 / 2 + $unit/4;
@@ -717,6 +732,92 @@ section.information {
       text-align: center;
       font-size: $col_width * 2;
       line-height: $col_width * 2;
+    }
+  }
+}
+section.glyphs-table {
+  font-size:0;
+  border-bottom: none;
+  ul{
+    // display: inline-block;
+    &:nth-of-type(even) {
+      li:last-of-type {
+        border-right: 0;
+      }
+    }
+    @include for-phone-only {
+      &:nth-of-type(odd) {
+        li:last-of-type {
+          border-right: 0;
+        }
+      }
+    }
+    li {
+      $regular: 6.25vw; //16 items per row
+      $mobile: 12.5vw; //8 items per row
+      list-style-type: none;
+      // display: inline-block;
+      float:left;
+      border-right: 1px solid;
+      border-bottom: 1px solid;
+      text-align: center;
+      width: $regular;
+      height: $regular;
+      font-size: $regular / 7;
+      line-height: $regular / 7;
+      p {
+       margin: $regular / 12 0;
+      }
+      .glyph {
+        font-size: $regular / 2;
+        line-height: $regular / 2;
+        margin: $regular / 6 0 $regular / 8 0;
+      }
+      &.download {
+        overflow: hidden;
+        width: $regular * 2;
+        a {
+          border: 0;
+          p {
+            margin: 0;
+            font-size: $regular / 5;
+            line-height: $regular / 4;
+            height: $regular;
+            padding: $regular / 5 0;
+          }
+          &:hover {
+            p {
+              background-color: $black;
+              color: #fff;
+            }
+          }
+        }
+      }
+      @include for-phone-only {
+        width: $mobile;
+        height: $mobile;
+        font-size: $mobile / 7;
+        line-height: $mobile / 7;
+        p {
+          margin: $mobile / 12 0;
+        }
+        .glyph {
+          font-size: $mobile / 2;
+          line-height: $mobile / 2;
+          margin: $mobile / 6 0 $mobile / 8 0;
+        }
+        &.download {
+          width: $mobile * 2;
+          a {
+            p {
+              font-size: $mobile / 5;
+              line-height: $mobile / 4;
+              height: $mobile;
+              padding: $mobile / 5 0;
+            }
+          }
+        }
+      }
     }
   }
 }

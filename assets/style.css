@@ -621,6 +621,64 @@ section.information {
       font-size: 33.3333333333vw;
       line-height: 33.3333333333vw; }
 
+section.glyphs-table {
+  font-size: 0;
+  border-bottom: none; }
+  section.glyphs-table ul:nth-of-type(even) li:last-of-type {
+    border-right: 0; }
+  @media (max-width: 599px) {
+    section.glyphs-table ul:nth-of-type(odd) li:last-of-type {
+      border-right: 0; } }
+  section.glyphs-table ul li {
+    list-style-type: none;
+    float: left;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    text-align: center;
+    width: 6.25vw;
+    height: 6.25vw;
+    font-size: 0.8928571429vw;
+    line-height: 0.8928571429vw; }
+    section.glyphs-table ul li p {
+      margin: 0.5208333333vw 0; }
+    section.glyphs-table ul li .glyph {
+      font-size: 3.125vw;
+      line-height: 3.125vw;
+      margin: 1.0416666667vw 0 0.78125vw 0; }
+    section.glyphs-table ul li.download {
+      overflow: hidden;
+      width: 12.5vw; }
+      section.glyphs-table ul li.download a {
+        border: 0; }
+        section.glyphs-table ul li.download a p {
+          margin: 0;
+          font-size: 1.25vw;
+          line-height: 1.5625vw;
+          height: 6.25vw;
+          padding: 1.25vw 0; }
+        section.glyphs-table ul li.download a:hover p {
+          background-color: #000;
+          color: #fff; }
+    @media (max-width: 599px) {
+      section.glyphs-table ul li {
+        width: 12.5vw;
+        height: 12.5vw;
+        font-size: 1.7857142857vw;
+        line-height: 1.7857142857vw; }
+        section.glyphs-table ul li p {
+          margin: 1.0416666667vw 0; }
+        section.glyphs-table ul li .glyph {
+          font-size: 6.25vw;
+          line-height: 6.25vw;
+          margin: 2.0833333333vw 0 1.5625vw 0; }
+        section.glyphs-table ul li.download {
+          width: 25vw; }
+          section.glyphs-table ul li.download a p {
+            font-size: 2.5vw;
+            line-height: 3.125vw;
+            height: 12.5vw;
+            padding: 2.5vw 0; } }
+
 section.tester .ibeam {
   float: left;
   width: 120px;
