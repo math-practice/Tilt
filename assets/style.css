@@ -293,84 +293,78 @@ section.signs .prosperity {
   background: #fff; }
   section.signs .prosperity .inner {
     width: 100%;
-    height: 100%;
-    background: yellow; }
-    section.signs .prosperity .inner .xs span {
+    height: 100%; }
+    section.signs .prosperity .inner .xs {
       position: absolute;
-      text-align: center;
-      transform-origin: 0% 0%; }
-    section.signs .prosperity .inner .xs .arc-1 {
-      left: 23.125%;
-      top: 21.515625%;
-      transform: rotate(-15.75deg); }
-    section.signs .prosperity .inner .xs .arc-2 {
-      left: 29.0395833333%;
-      top: 17.9270833333%;
-      transform: rotate(-10.44deg); }
-    section.signs .prosperity .inner .xs .arc-3 {
-      left: 35.4604166667%;
-      top: 14.9635416667%;
-      transform: rotate(-5.9deg); }
-    section.signs .prosperity .inner .xs .arc-4 {
-      left: 43.0333333333%;
-      top: 13.0989583333%;
-      transform: rotate(-2.37deg); }
-    section.signs .prosperity .inner .xs .arc-5 {
-      left: 48.9916666667%;
-      top: 12.5%;
-      transform: rotate(0.56deg); }
-    section.signs .prosperity .inner .xs .arc-6 {
-      left: 54.8604166667%;
-      top: 12.65625%;
-      transform: rotate(3.43deg); }
-    section.signs .prosperity .inner .xs .arc-7 {
-      left: 60.5729166667%;
-      top: 13.4947916667%;
-      transform: rotate(6.73deg); }
-    section.signs .prosperity .inner .xs .arc-8 {
-      left: 66.675%;
-      top: 15.390625%;
-      transform: rotate(9.59deg); }
-    section.signs .prosperity .inner .xs .arc-9 {
-      left: 69.7145833333%;
-      top: 16.6041666667%;
-      transform: rotate(12.7deg); }
-    section.signs .prosperity .inner .xs .arc-10 {
-      left: 75.0791666667%;
-      top: 19.5625%;
-      transform: rotate(18.56deg); }
-    section.signs .prosperity .inner .xs .arc-11 {
-      left: 26.4979166667%;
-      top: 54.4166666667%;
-      transform: rotate(14.79deg); }
-    section.signs .prosperity .inner .xs .arc-12 {
-      left: 32.9958333333%;
-      top: 58.671875%;
-      transform: rotate(8.77deg); }
-    section.signs .prosperity .inner .xs .arc-13 {
-      left: 39.86875%;
-      top: 61.3541666667%;
-      transform: rotate(3.93deg); }
-    section.signs .prosperity .inner .xs .arc-14 {
-      left: 48.4645833333%;
-      top: 62.6666666667%;
-      transform: rotate(-0.07deg); }
-    section.signs .prosperity .inner .xs .arc-15 {
-      left: 54.275%;
-      top: 62.625%;
-      transform: rotate(-3.15deg); }
-    section.signs .prosperity .inner .xs .arc-16 {
-      left: 59.95625%;
-      top: 61.75%;
-      transform: rotate(-5.68deg); }
-    section.signs .prosperity .inner .xs .arc-17 {
-      left: 62.6479166667%;
-      top: 61.2552083333%;
-      transform: rotate(-9.1deg); }
-    section.signs .prosperity .inner .xs .arc-18 {
-      left: 69.55%;
-      top: 58.5677083333%;
-      transform: rotate(-15.31deg); }
+      width: 100%;
+      height: 100%; }
+      section.signs .prosperity .inner .xs span {
+        position: relative;
+        display: inline-block;
+        letter-spacing: 0.05em;
+        transform-origin: 0% 0%; }
+      section.signs .prosperity .inner .xs .path-1 {
+        top: 21.515625%;
+        transform: rotate(-15.75deg); }
+      section.signs .prosperity .inner .xs .path-2 {
+        top: 17.9270833333%;
+        transform: rotate(-10.44deg); }
+      section.signs .prosperity .inner .xs .path-3 {
+        top: 14.9635416667%;
+        transform: rotate(-5.9deg); }
+      section.signs .prosperity .inner .xs .path-4 {
+        top: 13.0989583333%;
+        transform: rotate(-2.37deg); }
+      section.signs .prosperity .inner .xs .path-5 {
+        top: 12.5%;
+        transform: rotate(0.56deg); }
+      section.signs .prosperity .inner .xs .path-6 {
+        top: 12.65625%;
+        transform: rotate(3.43deg); }
+      section.signs .prosperity .inner .xs .path-7 {
+        top: 13.4947916667%;
+        transform: rotate(6.73deg); }
+      section.signs .prosperity .inner .xs .path-8 {
+        top: 15.390625%;
+        transform: rotate(9.59deg); }
+      section.signs .prosperity .inner .xs .path-9 {
+        top: 16.6041666667%;
+        transform: rotate(12.7deg); }
+      section.signs .prosperity .inner .xs .path-10 {
+        top: 19.5625%;
+        transform: rotate(18.56deg); }
+      section.signs .prosperity .inner .xs .path-11 {
+        top: 54.4166666667%;
+        transform: rotate(14.79deg); }
+      section.signs .prosperity .inner .xs .path-12 {
+        top: 58.671875%;
+        transform: rotate(8.77deg); }
+      section.signs .prosperity .inner .xs .path-13 {
+        top: 61.3541666667%;
+        transform: rotate(3.93deg); }
+      section.signs .prosperity .inner .xs .path-14 {
+        top: 62.6666666667%;
+        transform: rotate(-0.07deg); }
+      section.signs .prosperity .inner .xs .path-15 {
+        top: 62.625%;
+        transform: rotate(-3.15deg); }
+      section.signs .prosperity .inner .xs .path-16 {
+        top: 61.75%;
+        transform: rotate(-5.68deg); }
+      section.signs .prosperity .inner .xs .path-17 {
+        top: 61.2552083333%;
+        transform: rotate(-9.1deg); }
+      section.signs .prosperity .inner .xs .path-18 {
+        top: 58.5677083333%;
+        transform: rotate(-15.31deg); }
+      section.signs .prosperity .inner .xs .symbols {
+        top: 37.5%; }
+      section.signs .prosperity .inner .xs .line {
+        overflow-y: hidden;
+        height: 0.1em;
+        border-radius: 0.1em;
+        top: 27.6041666667%;
+        box-shadow: 0 0.1em 0 0 #000; }
 section.signs .col-hopkee {
   width: 10.5vw;
   border-right: 1px solid;
