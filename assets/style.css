@@ -745,7 +745,7 @@ section.glyphs-table {
         section.glyphs-table ul li.download a:hover p {
           background-color: #000;
           color: #fff; }
-    @media (max-width: 899px) {
+    @media (max-width: 599px) {
       section.glyphs-table ul li {
         width: 12.5vw;
         height: 12.5vw;

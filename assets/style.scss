@@ -889,7 +889,7 @@ section.glyphs-table {
         }
       }
       //"for-phone-only" or "for-tablet-below"
-      @include for-tablet-below {
+      @include for-phone-only {
         width: $mobile;
         height: $mobile;
         font-size: $mobile / 7;
