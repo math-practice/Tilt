@@ -89,12 +89,22 @@ p {
 }
 
 /* Layouts --------------------------------------------- */
+.small-only {
+  display: none;
+}
+@include for-phone-only {
+  .large-only {
+    display: none;
+  }
+  .small-only {
+    display: block;
+  }
+}
 .clearfix::after {
   content: "";
   clear: both;
   display: table;
 }
-
 nav {
   width: 100%;
   position: fixed;
@@ -104,9 +114,12 @@ nav {
   background: #fff;
   text-align: center;
   line-height: $unit * 6;
-  h1 a {
-    display: inline-block;
-    width: $unit * 6;
+  h1 { 
+    a {
+      display: inline-block;
+      width: $unit * 6;
+    }
+
   }
   a {
     border: 0;
@@ -263,6 +276,15 @@ section.signs {
     p.xs {
       letter-spacing: 0.02em;
     }
+    @include for-phone-only {
+      width: $col_width * 6;
+      height: $col_width * 4.8;
+      border-right: none;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2, -50% * 2) scale(2);
+      }
+    }
   }
   .new-york-boston {
     width: $col_width * 1.5;
@@ -279,6 +301,15 @@ section.signs {
       border-radius: 0.2em;
       padding: 0.1em 0.2em;
     }
+    @include for-phone-only {
+      width: $col_width * 3;
+      height: $col_width * 2.7;
+      border-right: none;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
+      }
+    }
   }
   .back-rub {
     width: $col_width * 1.5;
@@ -290,6 +321,17 @@ section.signs {
         position: relative;
         top: -0.5em;
         padding: 0 0.125em;
+      }
+    }
+    @include for-phone-only {
+      width: $col_width * 6;
+      height: $col_width * 2.4;
+      border-right: none;
+      border-bottom: 1px solid;
+      .inner {
+        // background: yellow;
+        transform-origin: 0 0;
+        transform: translate(-50% * 4, -50% * 4) scale(4);
       }
     }
   }
@@ -403,6 +445,17 @@ section.signs {
         }
       }
     }
+    @include for-phone-only {
+      position:relative;
+      width: $col_width * 6;
+      height: $col_width * 2.4;
+      border-right: none;
+      border-right: none;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 3, -50% * 3) scale(3);
+      }
+    }
   }
   .col-hopkee {
     width: $col_width * 0.63;
@@ -435,12 +488,34 @@ section.signs {
     margin-top: $col_width * 0.8;
     height: $col_width;
     border-right: 1px solid;
+    @include for-phone-only {
+      margin-top: 0;
+      width: $col_width * 3;
+      height: $col_width * 2.7;
+      border-right: none;
+      border-bottom: 1px solid;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2, -50% * 2) scale(2);
+      }
+    }
   }
   .four-choices {
     width: $col_width;
     height: $col_width * 1.8;
     p.dollar {
       margin: 0 0 0.125em 0;
+    }
+    @include for-phone-only {
+      width: $col_width * 3;
+      height: $col_width * 5.4;
+      border-right: 1px solid;
+      border-bottom: 1px solid;
+      .inner {
+        // background: yellow;
+        transform-origin: 0 0;
+        transform: translate(-50% * 3, -50% * 3) scale(3);
+      }
     }
   }
   .hok-shan-building {
@@ -467,6 +542,21 @@ section.signs {
     p {
       letter-spacing: 0.15em;
     }
+    @include for-phone-only {
+      width: $col_width * 6;
+      height: $col_width * 3.6;
+      border-right: none;
+      border-bottom: 1px solid;
+      p {
+        line-height: 95%;
+        letter-spacing: 0.05em;
+      }
+      .inner {
+        // background: yellow;
+        transform-origin: 0 0;
+        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
+      }
+    }
   }
   .thirty {
     width: $col_width * 1.5;
@@ -478,6 +568,16 @@ section.signs {
     p.num {
       line-height: 0.9em;
     }
+    @include for-phone-only {
+      width: $col_width * 3;
+      height: $col_width * 3;
+      border-right: 1px solid;
+      border-bottom: 1px solid;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
+      }
+    }
   }
   .pershing {
     width: $col_width * 6;
@@ -485,6 +585,19 @@ section.signs {
     border-bottom: 1px solid;
     p {
       letter-spacing: 0.2em;
+    }
+    @include for-phone-only {
+      width: $col_width * 6;
+      height: $col_width * 3;
+      border-right: none;
+      border-bottom: none;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
+      }
+      p {
+        letter-spacing: 0.05em;
+      }
     }
   }
   .time {
@@ -612,6 +725,16 @@ section.signs {
         margin-top: 2.2em;
       }
     }
+    @include for-phone-only {
+      width: $col_width * 6;
+      height: $col_width * 5;
+      border-right: none;
+      border-bottom: 1px solid;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
+      }
+    }
   }
   .nypl {
     width: $col_width * 3;
@@ -625,15 +748,45 @@ section.signs {
     width: $col_width * 3;
     height: $col_width * 0.6;
     border-bottom: 1px solid;
+    @include for-phone-only {
+      width: $col_width * 6;
+      height: $col_width * 1.5;
+      border-right: none;
+      border-bottom: 1px solid;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2.75, -50% * 2.75) scale(2.75);
+      }
+    }
   }
   .fourty-second {
     width: $col_width * 1.5;
     height: $col_width * 0.8;
     border-right: 1px solid;
+    @include for-phone-only {
+      width: $col_width * 3;
+      height: $col_width * 1.5;
+      border-right: none;
+      border-bottom: 1px solid;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
+      }
+    }
   }
   .east {
     width: $col_width * 1.5;
     height: $col_width * 0.8;
+    @include for-phone-only {
+      width: $col_width * 3;
+      height: $col_width * 1.5;
+      border-right: none;
+      border-bottom: 1px solid;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
+      }
+    }
   }
   // warp ------------------------------------------------
   .dont-block {
@@ -661,6 +814,19 @@ section.signs {
         }
       }
     }
+    @include for-phone-only {
+      width: $col_width * 6;
+      height: $col_width * 7;
+      border-right: none;
+      border-bottom: 1px solid;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 3, -50% * 3) scale(3);
+        svg {
+          height: 12.5vw;
+        }
+      }
+    }
   }
   .holland-tunnel {
     width: $col_width * 3;
@@ -670,6 +836,19 @@ section.signs {
     .inner p {
       line-height: 1em;
       letter-spacing: 0.2em;
+    }
+    @include for-phone-only {
+      width: $col_width * 6;
+      height: $col_width * 2.4;
+      border-right: none;
+      border-bottom: 1px solid;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
+        p {
+          letter-spacing: 0.05em;
+        }
+      }
     }
   }
   .parking-tax {
@@ -703,6 +882,16 @@ section.signs {
     height: $col_width * 0.6;
     border-right: 1px solid;
     border-bottom: 1px solid;
+    @include for-phone-only {
+      width: $col_width * 3;
+      height: $col_width * 1.5;
+      border-right: 1px solid;
+      border-bottom: 1px solid;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 3, -50% * 3) scale(3);
+      }
+    }
   }
   .fraction {
     width: $col_width * 1;
@@ -726,6 +915,16 @@ section.signs {
         padding: 0.1em 0.2em;
       }
     }
+    @include for-phone-only {
+      width: $col_width * 3;
+      height: $col_width * 1.5;
+      border-right: none;
+      border-bottom: 1px solid;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 3, -50% * 3) scale(3);
+      }
+    }
   }
   .col-early-bird {
     width: $col_width * 2;
@@ -744,8 +943,18 @@ section.signs {
         background: $black;
         color: #fff;
         padding: 0.1em 0.3em;
-        border-radius: 4px;
+        border-radius: 0.05em;
         letter-spacing: 0.01em;
+      }
+    }
+    @include for-phone-only {
+      width: $col_width * 6;
+      height: $col_width * 6;
+      border-right: none;
+      border-bottom: none;
+      .inner {
+        transform-origin: 0 0;
+        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
       }
     }
   }
@@ -1051,4 +1260,4 @@ div.separator {
   height: $unit * 12;
   border-bottom: 1px solid;
   @include polka_dot;
-}
+} 
