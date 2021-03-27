@@ -211,6 +211,10 @@ section.scroller {
   overflow-y: hidden;
   white-space: nowrap;
   padding: 0 24px; }
+  @media (max-width: 599px) {
+    section.scroller {
+      font-size: 120px;
+      line-height: 128px; } }
 
 section.signs .anchor {
   position: absolute;
@@ -273,11 +277,11 @@ section.signs .nha-hang-tan-the-gioi {
   @media (max-width: 599px) {
     section.signs .nha-hang-tan-the-gioi {
       width: 100vw;
-      height: 80vw;
+      height: 90vw;
       border-right: none; }
       section.signs .nha-hang-tan-the-gioi .inner {
         transform-origin: 0 0;
-        transform: translate(-100%, -100%) scale(2); } }
+        transform: translate(-125%, -125%) scale(2.5); } }
 section.signs .new-york-boston {
   width: 25vw;
   height: 20vw;
@@ -316,6 +320,7 @@ section.signs .back-rub {
       border-right: none;
       border-bottom: 1px solid; }
       section.signs .back-rub .inner {
+        height: 6.6666666667vw;
         transform-origin: 0 0;
         transform: translate(-200%, -200%) scale(4); } }
 section.signs .prosperity {
@@ -840,11 +845,21 @@ section.information {
     background: #fff; }
     section.information .description h2, section.information .description p {
       max-width: 1024px; }
+    @media (max-width: 599px) {
+      section.information .description {
+        width: 100vw;
+        border-right: none;
+        border-bottom: 1px solid;
+        padding: 0 24px; } }
   section.information .highlight {
     float: left;
     width: 33.3333333333vw;
     height: 33.3333333333vw;
     background: #fff; }
+    @media (max-width: 599px) {
+      section.information .highlight {
+        width: 100vw;
+        height: 100vw; } }
     section.information .highlight .hline {
       position: absolute;
       width: 25vw;
@@ -852,6 +867,10 @@ section.information {
       margin: 16.6666666667vw 4.1666666667vw;
       background-image: linear-gradient(90deg, #000, #000 25%, transparent 25%, transparent 100%);
       background-size: 4px 1px; }
+      @media (max-width: 599px) {
+        section.information .highlight .hline {
+          width: 75vw;
+          margin: 50vw 12.5vw; } }
     section.information .highlight .vline {
       position: absolute;
       width: 1px;
@@ -859,6 +878,10 @@ section.information {
       margin: 4.1666666667vw 16.6666666667vw;
       background-image: linear-gradient(0deg, #000, #000 25%, transparent 25%, transparent 100%);
       background-size: 1px 4px; }
+      @media (max-width: 599px) {
+        section.information .highlight .vline {
+          height: 75vw;
+          margin: 12.5vw 50vw; } }
     section.information .highlight .legend {
       position: absolute;
       width: 48px;
@@ -866,9 +889,15 @@ section.information {
       section.information .highlight .legend.hrot {
         left: 83.3333333333vw;
         margin: 8px 0 0 -24px; }
+        @media (max-width: 599px) {
+          section.information .highlight .legend.hrot {
+            left: 50vw; } }
       section.information .highlight .legend.hmin {
         left: 66.6666666667vw;
         margin: 8px 0 0 8px; }
+        @media (max-width: 599px) {
+          section.information .highlight .legend.hmin {
+            left: 8px; } }
       section.information .highlight .legend.hmax {
         left: 100vw;
         margin: 8px 0 0 -56px;
@@ -876,15 +905,27 @@ section.information {
       section.information .highlight .legend.vmax {
         left: 66.6666666667vw;
         margin: calc(33.33vw - 32px) 0 0 8px; }
+        @media (max-width: 599px) {
+          section.information .highlight .legend.vmax {
+            left: 8px;
+            margin-top: calc(100vw - 32px); } }
       section.information .highlight .legend.vrot {
         left: 66.6666666667vw;
         margin: calc(16.67vw + 24px) 0 0 8px;
         transform: rotate(-90deg);
         transform-origin: 0% 0%; }
+        @media (max-width: 599px) {
+          section.information .highlight .legend.vrot {
+            left: 8px;
+            margin-top: calc(50vw + 24px); } }
     section.information .highlight .glyph {
       text-align: center;
       font-size: 33.3333333333vw;
       line-height: 33.3333333333vw; }
+      @media (max-width: 599px) {
+        section.information .highlight .glyph {
+          font-size: 100vw;
+          line-height: 100vw; } }
 
 section.glyphs-table {
   display: none;
@@ -952,6 +993,9 @@ section.tester .ibeam {
   height: 240px;
   text-align: center;
   padding-top: 32px; }
+  @media (max-width: 599px) {
+    section.tester .ibeam {
+      display: none; } }
 section.tester .text {
   float: left; }
   section.tester .text .slider-wrapper {
@@ -1005,6 +1049,9 @@ section.tester .text {
     padding: 0 0 0 40px; }
     section.tester .text .string:focus {
       outline: none; }
+    @media (max-width: 599px) {
+      section.tester .text .string {
+        width: 100vw; } }
 
 section.footer .text {
   float: left;
@@ -1015,13 +1062,29 @@ section.footer .text {
     line-height: 42px;
     text-transform: none;
     margin: 42px 0; }
+    @media (max-width: 599px) {
+      section.footer .text h2 {
+        margin: 24px 0; } }
+  @media (max-width: 599px) {
+    section.footer .text {
+      width: 100vw;
+      padding: 0 24px; } }
 section.footer .credit {
   float: right;
   width: 33.3333333333vw; }
+  @media (max-width: 599px) {
+    section.footer .credit {
+      float: left;
+      width: 100vw;
+      border-top: 1px solid; } }
   section.footer .credit .google {
     float: left;
     width: 16.6666666667vw;
     padding: 56px 0; }
+    @media (max-width: 599px) {
+      section.footer .credit .google {
+        width: 50vw;
+        padding: 24px 0 0 24px; } }
   section.footer .credit .detail {
     float: left;
     width: 16.6666666667vw; }
@@ -1029,10 +1092,19 @@ section.footer .credit {
       padding: 48px 0; }
       section.footer .credit .detail ul li {
         margin: 6px 0; }
-    section.footer .credit .detail .people {
-      font-size: 14px;
-      line-height: 18px;
-      margin-top: 0; }
+    @media (max-width: 599px) {
+      section.footer .credit .detail {
+        width: 50vw;
+        padding: 0; }
+        section.footer .credit .detail ul {
+          padding: 16px; } }
+  section.footer .credit .people {
+    margin-top: 0; }
+    @media (max-width: 599px) {
+      section.footer .credit .people {
+        font-size: 14px;
+        line-height: 18px;
+        padding-left: 24px; } }
   section.footer .credit .fineprint {
     font-size: 12px;
     line-height: 14px;
@@ -1041,6 +1113,10 @@ section.footer .credit {
     padding: 48px 32px 32px 0; }
     section.footer .credit .fineprint p {
       margin: 0 0 14px 0; }
+    @media (max-width: 599px) {
+      section.footer .credit .fineprint {
+        width: 100vw;
+        padding: 16.6666666667vw 24px 0; } }
 
 div.separator {
   height: 96px;

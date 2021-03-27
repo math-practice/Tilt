@@ -206,10 +206,14 @@ section.hero {
 
 section.scroller {
   font-size: $unit * 27;
-  line-height:  $unit * 30;
+  line-height: $unit * 30;
   overflow-y: hidden;
   white-space: nowrap;
   padding: 0 $unit * 3;
+  @include for-phone-only {
+    font-size: $unit * 15;
+    line-height: $unit * 16;
+  }
 }
 section.signs {
   .anchor {
@@ -278,11 +282,11 @@ section.signs {
     }
     @include for-phone-only {
       width: $col_width * 6;
-      height: $col_width * 4.8;
+      height: $col_width * 5.4;
       border-right: none;
       .inner {
         transform-origin: 0 0;
-        transform: translate(-50% * 2, -50% * 2) scale(2);
+        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
       }
     }
   }
@@ -330,6 +334,7 @@ section.signs {
       border-bottom: 1px solid;
       .inner {
         // background: yellow;
+        height: $col_width * 0.4; //manual override
         transform-origin: 0 0;
         transform: translate(-50% * 4, -50% * 4) scale(4);
       }
@@ -981,12 +986,22 @@ section.information {
     h2, p {
       max-width: $unit * 128;
     }
+    @include for-phone-only {
+      width: $col_width * 6;
+      border-right: none;
+      border-bottom: 1px solid;
+      padding: 0 $unit * 3;
+    }
   }
   .highlight {
     float:left;
     width: $col_width * 2;
     height: $col_width * 2;
     background: #fff;
+    @include for-phone-only {
+      width: $col_width * 6;
+      height: $col_width * 6;
+    }
     .hline {
       position:absolute;
       width: $col_width * 1.5;
@@ -994,6 +1009,10 @@ section.information {
       margin: $col_width $col_width * 0.25;
       background-image: linear-gradient(90deg, $black, $black 25%, transparent 25%, transparent 100%);
       background-size: $unit / 2 1px;
+      @include for-phone-only {
+        width: $col_width * 4.5;
+        margin: $col_width * 3 $col_width * 0.75;
+      }
     }
     .vline {
       position:absolute;
@@ -1002,6 +1021,10 @@ section.information {
       margin: $col_width * 0.25 $col_width;
       background-image: linear-gradient(0deg, $black, $black 25%, transparent 25%, transparent 100%);
       background-size: 1px $unit / 2;
+      @include for-phone-only {
+        height: $col_width * 4.5;
+        margin: $col_width * 0.75 $col_width * 3;
+      }
     }
     .legend {
       position: absolute;
@@ -1010,10 +1033,16 @@ section.information {
       &.hrot {
         left: $col_width * 5;
         margin: $unit 0 0 (- $unit * 3);
+        @include for-phone-only {
+          left: $col_width * 3;
+        }
       }
       &.hmin {
         left: $col_width * 4;
         margin: $unit 0 0 $unit;
+        @include for-phone-only {
+          left: $unit;
+        }
       }
       &.hmax {
         left: $col_width * 6;
@@ -1023,18 +1052,30 @@ section.information {
       &.vmax {
         left: $col_width * 4;
         margin: calc(33.33vw - 32px) 0 0 $unit;
+        @include for-phone-only {
+          left: $unit;
+          margin-top: calc(100vw - 32px);
+        }
       }
       &.vrot {
         left: $col_width * 4;
         margin: calc(16.67vw + 24px) 0 0 $unit;
         transform: rotate(-90deg);
         transform-origin: 0% 0%;
+        @include for-phone-only {
+          left: $unit;
+          margin-top: calc(50vw + 24px);
+        }
       }
     }
     .glyph {
       text-align: center;
       font-size: $col_width * 2;
       line-height: $col_width * 2;
+      @include for-phone-only {
+        font-size: $col_width * 6;
+        line-height: $col_width * 6;
+      }
     }
   }
 }
@@ -1135,6 +1176,9 @@ section.tester {
     height: $unit * 30;
     text-align: center;
     padding-top: $unit * 4;
+    @include for-phone-only {
+      display: none;
+    }
   }
   .text {
     float:left;
@@ -1203,6 +1247,9 @@ section.tester {
       &:focus {
         outline: none;
       }
+      @include for-phone-only {
+        width: $col_width * 6;
+      }
     }
   }
 }
@@ -1217,15 +1264,31 @@ section.footer {
       line-height: $line_height * 1.75;
       text-transform: none;
       margin:  $line_height * 1.75 0;
+      @include for-phone-only { 
+        margin:  $line_height 0;
+      }
+    }
+    @include for-phone-only {
+      width: $col_width * 6;
+      padding: 0 $unit * 3;
     }
   }
   .credit {
     float:right;
     width: $col_width * 2;
+    @include for-phone-only {
+      float:left;
+      width: $col_width * 6;
+      border-top: 1px solid;
+    }
     .google {
       float: left;
       width: $col_width;
       padding: $unit * 7 0;
+      @include for-phone-only {
+        width: $col_width * 3;
+        padding: $unit * 3 0 0 $unit * 3;
+      }
     }
     .detail {
       float: left;
@@ -1236,10 +1299,22 @@ section.footer {
           margin: $line_height * 0.25 0;
         }
       }
-      .people {
+      @include for-phone-only {
+        width: $col_width * 3;
+        padding: 0;
+        ul {
+          padding: $unit * 2;
+        }
+      }
+    }
+    .people {
+      // font-size: $font_caption;
+      // line-height: $line_height * 0.75;
+      margin-top:0;
+      @include for-phone-only {
         font-size: $font_caption;
         line-height: $line_height * 0.75;
-        margin-top:0;
+        padding-left: $unit * 3;
       }
     }
     .fineprint {
@@ -1250,6 +1325,10 @@ section.footer {
       padding: $unit * 6 $unit * 4 $unit * 4 0;
       p {
         margin: 0 0 14px 0;
+      }
+      @include for-phone-only {
+        width: $col_width * 6;
+        padding: $col_width $unit * 3 0;
       }
     }
   }
