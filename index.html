@@ -13,16 +13,26 @@
       <li><a href="#prism">Prism</a></li>
       <li><a href="#warp">Warp</a></li>
     </ul>
-    <ul class="secondary">
+    <ul class="secondary large-only">
       <li><a href="https://fonts.google.com/" target="_blank" class="google-fonts">Google Fonts</a></li>
       <li><a href="https://github.com/andyclymer/Tilt-Typeface" target="_blank" class="github">GitHub</a></li>
+    </ul>
+    <ul class="tertiary">
       <li><a href="#" class="camera">☺</a></li>
     </ul>
   </nav>
+  <!-- <section class="subnav small-only">
+    <ul>
+      <li><a href="https://fonts.google.com/" target="_blank" class="google-fonts">Google Fonts</a></li>
+      <li><a href="https://github.com/andyclymer/Tilt-Typeface" target="_blank" class="github">GitHub</a></li>
+    </ul>
+  </section> -->
   <section class="hero">
-    <span class="char-0 neon">N</span><span class="char-1 prism">P</span><span class="char-2 warp">W</span>
-    <div class="hrot">Horizontal Rotation: <span class="hrot_val"></span></div>
-    <div class="vrot">Vertical Rotation: <span class="vrot_val"></span></div>
+    <span class="chars char-0 neon">N</span><span class="chars char-1 prism">P</span><span class="chars char-2 warp">W</span>
+    <div class="vars">
+      <span class="hrot"><span>Horizontal Rotation:</span> <span class="values hrot_val">00</span></span>
+      <span class="vrot"><span>Vertical Rotation:</span> <span class="values vrot_val">-00</span></span>
+    </div>
     <!-- <svg>
       <circle class="circle_1" cx="-50" cy="-50" r="8"></circle>
       <line class="line_1" x1="0" y1="0" x2="0" y2="0"></line>
@@ -39,15 +49,68 @@
   </section>
 
   <div class="separator"></div>
-  
-  <section class="signs neon clearfix">
+  <!-- mobile only -->
+  <section class="signs small-only neon clearfix">
+    <div class="anchor" id="neon-sm"></div>
+    <div class="nha-hang-tan-the-gioi sign">
+      <div class="inner">
+        <p class="l">Nhà Hàng <br>Tân Thế Giới</p>
+        <div class="oval"><p class="xl">220</p></div>
+      </div>
+    </div>
+    <div class="back-rub sign">
+      <span class="inner">
+        <p class="xs">BACK <br>RUB</p>
+        <p class="xs heart">♡</p>
+        <p class="xs">FOOT <br>RUB</p>
+      </span>
+    </div>
+    <div class="col-half">
+      <div class="four-choices sign">
+        <span class="inner">
+          <p class="xl dollar">$4</p>
+          <p class="xs">FOUR <br>CHOICES <br>WITH A <br>SOUP</p>
+        </span>
+      </div>
+    </div>
+    <div class="col-half">
+      <div class="twenty-four-hrs sign">
+        <span class="inner">
+          <p class="l">24/7</p>
+        </span>
+      </div>
+      <div class="key sign">
+        <span class="inner">
+          <p class="xxl">🔑</p>
+        </span>
+      </div>
+    </div>
+    <div class="prosperity sign">
+      <span class="inner">
+        <p class="xs">
+          <span class="path-1">P</span><span class="path-2">R</span><span class="path-3">O</span><span class="path-4">S</span><span class="path-5">P</span><span class="path-6">E</span><span class="path-7">R</span><span class="path-8">I</span><span class="path-9">T</span><span class="path-10">Y</span>
+        </p>
+        <p class="xs">
+          <span class="path-11">D</span><span class="path-12">U</span><span class="path-13">M</span><span class="path-14">P</span><span class="path-15">L</span><span class="path-16">I</span><span class="path-17">N</span><span class="path-18">G</span>
+        </p>
+        <p class="xs">
+          <span class="symbols">☆</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="symbols line">–—––</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="symbols">♡</span>
+        </p>
+      </span>
+    </div>
+  </section>
+  <!-- desktop only -->
+  <section class="signs large-only neon clearfix">
     <div class="anchor" id="neon"></div>
     <div class="col-half">
       <div class="nha-hang-tan-the-gioi sign">
         <div class="inner">
           <p class="l">Nhà Hàng <br>Tân Thế Giới</p>
           <div class="oval"><p class="xl">220</p></div>
-          <!-- <p class="xxs">ĐẶC BIỆT NHÂN HEO SỮA VÀ HEO CÚNG LỄ</p> -->
         </div>
       </div>
       <div class="col-half">
@@ -130,9 +193,10 @@
   </section>
   <section class="information neon clearfix">
     <div class="description">
-      <h2>Tilt — Neon</h2>
-      <p>Tilt is a family of type inspired by the dimensional lettering found in storefront signage, designed by Andy Clymer. It’s comprised of three separate subfamilies of type, drawn in styles that you might find in a storefront — All three are based around the same letter model of a sign painter’s geometric sans serif, similar to the typefaces Futura or Avant Garde, but with the kinds of details you might expect when the letter is built up with a brush.</p>
-      <p>The three styles are designed and built as variable fonts, however instead of using common axes such as “Weight” and “Width”, these typefaces will allow users to rotate the orientation of their glyphs with “Horizontal Rotation” and “Vertical Rotation” axes. The rotation is limited to ±45° so that the letterforms never rotate past a range of readibility.</p>
+      <h2>Tilt Neon</h2>
+      <p>Inspired by dimensional lettering found in storefront signage, the Tilt family of typefaces are built to rotate horizontally and vertically.</p>
+      <p>Not far from the bright lights of Times Square, the Tilt Neon typeface takes its inspiration from the ordinary neon signs that are so ubiquitous in New York City — the ones you would expect to see in the window of a laundromat, locksmith, dive bar, or a dollar slice shop. The Tilt family of type is designed to rotate, placing the focus on the distorted side-angle view of the sign.</p>
+      <p>Complete with a set of → arrows and fourteen dingbats for your hot fresh 🍕 pizza 🍷 bar 🎵 karaoke 🔑 locksmith storefront typesetting needs ☺</p>
       <p><span class="arrow-dn">↓</span> <a href="#" class="open-glyphs-table">Glyph highlights</a></p>
     </div>
     <div class="highlight">
@@ -287,7 +351,7 @@
   
   <div class="separator"></div>
 
-  <section class="signs prism clearfix">
+  <section class="signs large-only large prism clearfix">
     <div class="anchor" id="prism"></div>
     <div class="grand-central sign">
       <span class="inner">
@@ -354,11 +418,59 @@
       </div>
     </div>
   </section>
+  <section class="signs small-only large prism clearfix">
+    <div class="anchor" id="prism"></div>
+    <div class="grand-central sign">
+      <span class="inner">
+        <p class="l">GRAND<br>CENTRAL<br>TERMINAL</p>
+      </span>
+    </div>
+    <div class="col-half">
+      <div class="thirty sign">
+        <span class="inner">
+          <p class="l track">TRK</p>
+          <p class="xxl num">30</p>
+        </span>
+      </div>
+    </div>
+    <div class="col-half">
+      <div class="fourty-second sign">
+        <span class="inner">
+          <p class="l">42nd</p>
+        </span>
+      </div>
+      <div class="east sign">
+        <span class="inner">
+          <p class="l">East</p>
+        </span>
+      </div>
+    </div>
+    <div class="bowery-savings sign">
+      <span class="inner">
+        <p class="s bowery">
+          <span class="arc-1">T</span><span class="arc-2">H</span><span class="arc-3">E</span><span class="arc-4">B</span><span class="arc-5">O</span><span class="arc-6">W</span><span class="arc-7">E</span><span class="arc-8">R</span><span class="arc-9">Y</span><span class="arc-10">S</span><span class="arc-11">A</span><span class="arc-12">V</span><span class="arc-13">I</span><span class="arc-14">N</span><span class="arc-15">G</span><span class="arc-16">S</span><span class="arc-17">B</span><span class="arc-18">A</span><span class="arc-19">N</span><span class="arc-20">K</span>
+        </p> 
+      </span>
+      <span class="inner">
+        <p class="m save">TO <br>SERVE <br>THOSE WHO <br>SAVE</p>
+      </span>
+    </div>
+    <div class="restroom sign">
+      <span class="inner">
+        <p class="m">WOMEN&nbsp;·&nbsp;MEN</p>
+      </span>
+    </div>
+    <div class="pershing sign">
+      <span class="inner">
+        <p class="l">PERSHING<br>— Sq —</p>
+      </span>
+    </div>
+  </section>
   <section class="information neon clearfix">
     <div class="description">
-      <h2>Tilt — Prism</h2>
-      <p>Tilt is a family of type inspired by the dimensional lettering found in storefront signage, designed by Andy Clymer. It’s comprised of three separate subfamilies of type, drawn in styles that you might find in a storefront — All three are based around the same letter model of a sign painter’s geometric sans serif, similar to the typefaces Futura or Avant Garde, but with the kinds of details you might expect when the letter is built up with a brush.</p>
-      <p>The three styles are designed and built as variable fonts, however instead of using common axes such as “Weight” and “Width”, these typefaces will allow users to rotate the orientation of their glyphs with “Horizontal Rotation” and “Vertical Rotation” axes. The rotation is limited to ±45° so that the letterforms never rotate past a range of readibility.</p>
+      <h2>Tilt Prism</h2>
+      <p>Simulating the wireframe outline of letters cast in bronze or vacuum-formed in plastic, the basis for this style is easy enough to find anywhere from a bank entrance to an old theater marquee.</p>
+      <p>Sign-painters for generations have added a dimensional flair to their lettering by painting a simulated three-dimensional “prismatic” style on an otherwise flat storefront. This style is interpreted in Tilt Prism as a wireframe, so that the viewer might also be convinced that the letters are cut into a surface, rather than being cast separately and adhered to the face of a sign.</p>
       <p><span class="arrow-dn">↓</span> <a href="#" class="open-glyphs-table">Glyph highlights</a></p>
     </div>
     <div class="highlight">
@@ -512,8 +624,7 @@
   </section>
 
   <div class="separator"></div>
-
-  <section class="signs warp clearfix">
+  <section class="signs large-only warp clearfix">
     <div class="anchor" id="warp"></div>
     <div class="col-half">
       <div class="dont-block sign">
@@ -591,11 +702,51 @@
       </div>
     </div>
   </section>
+  <section class="signs small-only warp clearfix">
+    <div class="anchor" id="warp"></div>
+    <div class="dont-block sign">
+      <span class="inner">
+        <p class="l">DON’T<br>BLOCK<br>THE BOX</p>
+        <svg class="box">
+          <rect width="100%" height="100%"/>
+          <line x1="0" y1="0" x2="100%" y2="100%"/>
+          <line x1="0" y1="100%" x2="100%" y2="0"/>
+        </svg>
+      </span>
+    </div>
+    <div class="col-half">
+      <div class="bus sign">
+        <span class="inner">
+          <p class="m">M101</p>
+        </span>
+      </div>
+    </div>
+    <div class="col-half">
+      <div class="max-veh sign">
+        <span class="inner">
+          <p class="m">12'6"</p>
+        </span>
+      </div>
+    </div>
+    <div class="holland-tunnel sign">
+      <span class="inner">
+        <p class="l text">HOLLAND<br>TUNNEL</p>
+      </span>
+    </div>
+    <div class="thru-traffic sign">
+      <span class="inner">
+        <p class="l">THRU<br>TRAFFIC<br>Lower<br>Manhattan</p>
+        <div class="only">
+          <p class="l">ONLY</p>
+        </div>
+      </span>
+    </div>
+  </section>
   <section class="information neon clearfix">
     <div class="description">
-      <h2>Tilt — Warp</h2>
-      <p>Tilt is a family of type inspired by the dimensional lettering found in storefront signage, designed by Andy Clymer. It’s comprised of three separate subfamilies of type, drawn in styles that you might find in a storefront — All three are based around the same letter model of a sign painter’s geometric sans serif, similar to the typefaces Futura or Avant Garde, but with the kinds of details you might expect when the letter is built up with a brush.</p>
-      <p>The three styles are designed and built as variable fonts, however instead of using common axes such as “Weight” and “Width”, these typefaces will allow users to rotate the orientation of their glyphs with “Horizontal Rotation” and “Vertical Rotation” axes. The rotation is limited to ±45° so that the letterforms never rotate past a range of readibility.</p>
+      <h2>Tilt Warp</h2>
+      <p>All three styles in the Tilt family follow the same model of a sign-painter’s geometric sans-serif, similar to the typefaces Futura or Avant Garde, but with the kinds of details you might expect to see when a letter is built up with a brush. A sign-writer can block out this style of lettering in “one-shot” — when using a flat-edged brush the otherwise pointed apexes on the letters <em>A M N V W</em> end up flush with the cap-height and baseline.</p>
+      <p>As hand painting becomes less common, it's often replaced by cheap vinyl lettering, stuck to glass only to peel off long before a higher quality sign would disappear. Tilt Warp turns this modern reproduction technique into a three-dimensional form. Designed to rotate 45° in each direction, just like its two other companion styles, the flat letters show their depth as they peel off of the surface.</p>
       <p><span class="arrow-dn">↓</span> <a href="#" class="open-glyphs-table">Glyph highlights</a></p>
     </div>
     <div class="highlight">
@@ -751,9 +902,21 @@
 
   <section class="footer clearfix">
     <div class="text">
-      <h2>Tilt is comprised of three separate subfamilies of type, drawn in styles that you might find in a storefront.</h2>
-      <p>The three styles are designed and built as variable fonts, however instead of using common axes such as “Weight” and “Width”, these typefaces will allow users to rotate the orientation of their glyphs with “Horizontal Rotation” and “Vertical Rotation” axes. The rotation is limited to ±45° so that the letterforms never rotate past a range of readibility.</p>
-      <p>Tilt is a family of type inspired by the dimensional lettering found in storefront signage, designed by Andy Clymer. It’s comprised of three separate subfamilies of type, drawn in styles that you might find in a storefront — All three are based around the same letter model of a sign painter’s geometric sans serif, similar to the typefaces Futura or Avant Garde, but with the kinds of details you might expect when the letter is built up with a brush.</p>
+      <h2>Tilt is a family of three variable fonts, based on styles of dimensional lettering that you might find in a storefront. It was designed by Andy Clymer in 2019.</h2>
+      <p>Inspiration for the design came from one completely average neon sign, spotted in the front window of a laundromat in New York City. The sign revealed something that should have been completely obvious but that I hadn’t ever noticed.</p>
+      <p>Neon signs are of course built to be viewed straight-on, from this angle the shape of their characters and symbols match as closely as possible to the model that the sign-maker is following. We take it as a general understanding that when viewed off-center, the sign exposes the twisted path that the neon tubes had to take to form the intended image. A good sign-maker would try to minimize this distortion, ideally the sign would at least pass as being readable from any angle.</p>
+      <p>However, this particular sign, at 188 3rd Ave., seemed different. From the front it looked completely static, like any ordinary sans-serif. However, the side form of the digits looked fast and dynamic, and almost hand written. I saw something that looked like it was more than just distorted neon tubing, a new letterform that could have been made intentionally (even though it surely was not).</p>
+      <!-- img -->
+      <p>With variable fonts on the mind, I thought it was kind of amazing how the physical form of a common sans-serif could inadvertently blend into something that looked like graffiti lettering.</p>
+      <p>I sent a quick snap of the sign to a few friends, <i>“can your #varfont do this?”</i>, and kept moving, but I couldn’t ignore it — from a technological standpoint I had to figure out how exactly a variable font could do this. It took most of 2019, and along with a lot of custom tooling in RoboFont to be able to draw in the third dimension, I wound up with Tilt.</p>
+      <p>To design the typeface, I put myself in the shoes of the sign-maker and started by drawing the letter model of a geometric sans serif, with the intention that it would only be used as a guide to build up the neon letterforms. It’s a familiar style, and one that’s easy to find in lettering manuals — variations have been taught as part of the sign-making trade for decades. The actual neon sign that inspired the design looks like it may have started from Helvetica, but I wanted to imagine that the Neon style of Tilt was first brush-lettered as a reference for the final neon sign, and wasn’t related to any single typeface in particular.</p>
+      <!-- img -->
+      <p>Aside from the <em>Tilt Neon</em> style, now that I had drawn a full sans-serif to use as a guide, I ended up finding two more 3D forms that I could get out of the same model. Like the Neon, these two other styles are based on dimensional letters you might find on a storefront, but are styles that also show up in other places in type and lettering history.</p>
+      <p><em>Tilt Prism</em> references the lettering that you might find vacuum-formed in plastic on a theater marquee, or cast in bronze at the entrance to a bank. At the same time, it’s also related to the prismatic forms that were so common to find in 18th-century wood type and sign-painting manuals.</p>
+      <!-- img -->
+      <p><em>Tilt Warp</em> takes a different approach, now that the classic sign-making techniques of bending neon and hand lettering are disappearing from modern storefronts, being replaced by quick and cheap vinyl sticker lettering. While it’s intended to be a flat reproduction style, the peeling stickers take a three-dimensional form of their own. Once again, the lettering artists long before our own time envisioned this trend and had cut their own examples of warped letters.</p>
+      <!-- img -->
+      <p>With the advent of the variable font format, I like to think that a designer is freed from the traditional layout of a family of type. Tilt doesn’t give a designer variable control over the parameters you might expect — such as weight and width — but instead lets you dial in the “Horizontal Rotation” (HROT) and “Vertical Rotation” (VROT) of the tilting letterforms. In place of a range of weights, the Neon style has been drawn to function as a Regular style in text, and Tilt Warp is heavy enough to work as a companion Bold when necessary.</p>
     </div>
     <div class="credit">
       <div class="google">
@@ -764,15 +927,17 @@
           <li><a href="https://fonts.google.com/" target="_blank" class="google-fonts">Google Fonts</a> ↗</li>
           <li><a href="https://github.com/andyclymer/Tilt-Typeface" target="_blank" class="github">GitHub</a> ↗</li>
         </ul>
-        <p class="people">
+      </div>
+      <div class="people">
+        <p>
           Type Design by<br>
           Andy Clymer
         </p>
-        <p class="people">
+        <p>
           Anyone else to credit?<br>
           Someone Else
         </p>
-        <p class="people">
+        <p>
           Website by<br>
           Math Practice:<br>
           E Roon Kang, Wonyoung So
