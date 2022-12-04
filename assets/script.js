@@ -145,7 +145,7 @@ document.querySelectorAll('.scroller').forEach((section) => {
   function setLetters(mouse){
     for(let letter of letters){
       const left=letter.offsetLeft;
-      const rot=Math.round((mouse - left + scrolled) / w * 90);
+      const rot=mouse!==undefined?Math.round((mouse - left + scrolled) / w * 90):0;
       letter.style.fontVariationSettings=`"HROT" ${rot}, "VROT" 0`;
     }
   }
@@ -155,6 +155,10 @@ document.querySelectorAll('.scroller').forEach((section) => {
 
   section.addEventListener('mousemove',function(){
     setLetters(event.clientX);
+  })
+
+  section.addEventListener('mouseleave',function(){
+    setLetters();
   })
 
 });
