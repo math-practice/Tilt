@@ -313,6 +313,7 @@ section.hero svg circle {
 }
 
 section.scroller {
+  cursor: crosshair;
   --scroll:0;
   font-size: 216px;
   line-height: 240px;
@@ -325,11 +326,6 @@ section.scroller {
     font-size: 120px;
     line-height: 128px;
   }
-}
-
-section.scroller:hover span {
-  --h-rot:calc((var(--mouse) - var(--offset) + var(--scroll)) / var(--pagewidth) * 120 );
-  font-variation-settings: "HROT" var(--h-rot), "VROT" 0;
 }
 
 section.signs .anchor {
