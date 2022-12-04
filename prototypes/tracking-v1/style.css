@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -54,15 +54,15 @@ table {
 
 @font-face {
   font-family: tilt-neon;
-  src: url("fonts/Tilt-Neon.woff2") format("woff2");
+  src: url("../../assets/fonts/Tilt-Neon.woff2") format("woff2");
 }
 @font-face {
   font-family: tilt-prism;
-  src: url("fonts/Tilt-Prism.woff2") format("woff2");
+  src: url("../../assets/fonts/Tilt-Prism.woff2") format("woff2");
 }
 @font-face {
   font-family: tilt-warp;
-  src: url("fonts/Tilt-Warp.woff2") format("woff2");
+  src: url("../../assets/fonts/Tilt-Warp.woff2") format("woff2");
 }
 @keyframes hrot {
   0% {

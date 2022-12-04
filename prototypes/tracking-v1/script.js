@@ -2,7 +2,7 @@
   Mouse control > variable axes
 ------------------------------------------------------------ */
 
-let w = window.innerWidth;
+var w = window.innerWidth;
 var h = window.innerHeight;
 var maxRotation = 45;
 var minRotation = -45;
@@ -132,35 +132,26 @@ document.querySelectorAll('.tester').forEach((tester) => {
 document.querySelectorAll('.scroller').forEach((section) => {
   let str=section.innerText;
   section.innerText='';
-  let scrolled=0;
-
-  let letters=[]
   for(let i=0; i<str.length; i++){
     let letter=document.createElement('span');
     letter.innerText=str[i];
-    letters.push(letter);
     section.appendChild(letter);
+    letter.style.setProperty('--offset',letter.offsetLeft);
   }
-
-  function setLetters(mouse){
-    for(let letter of letters){
-      const left=letter.offsetLeft;
-      const rot=Math.round((mouse - left + scrolled) / w * 90);
-      letter.style.fontVariationSettings=`"HROT" ${rot}, "VROT" 0`;
-    }
-  }
+  // section.innerHTML=newHTML;
   section.addEventListener('scroll',function(){
-    scrolled=section.scrollLeft;
+    section.style.setProperty('--scroll',section.scrollLeft);
   })
 
   section.addEventListener('mousemove',function(){
-    setLetters(event.clientX);
+    section.style.setProperty('--mouse',event.clientX);
   })
 
 });
 
 function setPageWidth(){
-  w=window.innerWidth;
+  const w=window.innerWidth;
+  document.documentElement.style.setProperty('--pagewidth',w);
 }
 
 window.addEventListener('resize',setPageWidth)

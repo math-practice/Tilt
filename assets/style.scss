@@ -114,7 +114,7 @@ nav, section.subnav {
   background: #fff;
   text-align: center;
   line-height: $unit * 6;
-  h1 { 
+  h1 {
     a {
       display: inline-block;
       width: $unit * 6;
@@ -267,6 +267,8 @@ section.hero {
 }
 
 section.scroller {
+  cursor:crosshair;
+  --scroll:0;
   font-size: $unit * 27;
   line-height: $unit * 30;
   overflow-y: hidden;
@@ -277,6 +279,11 @@ section.scroller {
     line-height: $unit * 16;
   }
 }
+
+
+
+
+
 section.signs {
   .anchor {
     position: absolute;
@@ -871,7 +878,7 @@ section.signs {
         height: 15vw;
         margin: 0.5em auto;
         rect {
-          fill: transparent; 
+          fill: transparent;
           stroke-width: 0.4em;
           stroke: $black;
         }
@@ -940,7 +947,7 @@ section.signs {
       top: -0.2em;
     }
   }
-  
+
   .col-max-veh {
     width: $col_width * 1;
   }
@@ -970,7 +977,7 @@ section.signs {
     width: $col_width * 1;
     height: $col_width * 1.63;
     border-right: 1px solid;
-    
+
     p.max {
       line-height: 0.9em;
       margin-bottom: 0.2em;
@@ -1231,6 +1238,11 @@ section.glyphs-table {
 }
 
 section.tester {
+  --h-rot:0;
+  --v-rot:0;
+
+
+
   .ibeam {
     float:left;
     width: $unit * 15;
@@ -1298,6 +1310,8 @@ section.tester {
       }
     }
     .string {
+
+      font-variation-settings: "HROT" var(--h-rot), "VROT" var(--v-rot);
       border: 0;
       // background-color: yellow;
       overflow: scroll hidden;
@@ -1326,7 +1340,7 @@ section.footer {
       line-height: $line_height * 1.75;
       text-transform: none;
       margin:  $line_height * 1.75 0;
-      @include for-phone-only { 
+      @include for-phone-only {
         margin:  $line_height 0;
       }
     }
@@ -1401,4 +1415,4 @@ div.separator {
   height: $unit * 12;
   border-bottom: 1px solid;
   @include polka_dot;
-} 
+}
