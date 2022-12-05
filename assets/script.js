@@ -144,7 +144,7 @@ document.querySelectorAll('.scroller').forEach((section) => {
 
   function setLetters(mouse){
     for(let letter of letters){
-      const left=letter.offsetLeft;
+      const left=letter.offsetLeft + letter.offsetWidth/2;
       const rot=mouse!==undefined?Math.round((mouse - left + scrolled) / w * 90):0;
       letter.style.fontVariationSettings=`"HROT" ${rot}, "VROT" 0`;
     }
