@@ -122,6 +122,12 @@ document.querySelectorAll('.tester').forEach((tester) => {
   tester.querySelector('.vrot input').addEventListener('input',updateParam.bind({prop:'v-rot'}));
   tester.querySelector('.hrot input').addEventListener('input',updateParam.bind({prop:'h-rot'}));
 
+
+  tester.addEventListener('mousemove',function(){
+    tester.style.setProperty('--cursor-x',event.pageX+'px');
+    tester.style.setProperty('--cursor-y',event.pageY+'px');
+  })
+
   function updateParam(event){
     tester.style.setProperty('--'+this.prop,event.srcElement.value);
   }

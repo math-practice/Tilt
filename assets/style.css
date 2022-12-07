@@ -1337,6 +1337,9 @@ section.tester {
   --h-rot:0;
   --v-rot:0;
 }
+section.tester input[type=text] {
+  cursor: none;
+}
 section.tester .ibeam {
   float: left;
   width: 120px;
@@ -1349,6 +1352,9 @@ section.tester .ibeam {
   section.tester .ibeam {
     display: none;
   }
+}
+section.tester .ibeam img {
+  width: 50px;
 }
 section.tester .text {
   float: left;
@@ -1520,6 +1526,16 @@ div.separator {
   background-image: radial-gradient(#000 12.5%, transparent 12.5%), radial-gradient(#000 12.5%, transparent 12.5%);
   background-position: 2px 2px, 8px 8px;
   background-size: 12px 12px;
+}
+
+@media (hover: hover) {
+  section.tester:hover .ibeam img {
+    position: absolute;
+    top: var(--cursor-y);
+    left: var(--cursor-x);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

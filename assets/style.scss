@@ -1240,8 +1240,11 @@ section.glyphs-table {
 section.tester {
   --h-rot:0;
   --v-rot:0;
+  // position:relative;
 
-
+  input[type="text"]{
+    cursor:none;
+  }
 
   .ibeam {
     float:left;
@@ -1252,6 +1255,10 @@ section.tester {
     padding-top: $unit * 4;
     @include for-phone-only {
       display: none;
+    }
+
+    img{
+      width:50px;
     }
   }
   .text {
@@ -1415,4 +1422,16 @@ div.separator {
   height: $unit * 12;
   border-bottom: 1px solid;
   @include polka_dot;
+}
+
+
+@media(hover:hover){
+
+  section.tester:hover .ibeam img{
+    position: absolute;
+    top: var(--cursor-y);
+    left: var(--cursor-x);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
 }
