@@ -119,37 +119,44 @@ $('.open-glyphs-table').click(function(event){
 
 document.querySelectorAll('.tester').forEach((tester) => {
 
+  console.log(tester);
+
   tester.querySelector('.vrot input').addEventListener('input',updateParam.bind({prop:'v-rot'}));
   tester.querySelector('.hrot input').addEventListener('input',updateParam.bind({prop:'h-rot'}));
 
   let hovered=false;
+  let animationActive=false;
   let mousePos={x:0,y:0};
   let current={x:60,y:119};
+  let exactTrack=false;
 
   // $.on( "mouseenter mouseleave", handlerInOut );
 
-  tester.addEventListener('mouseenter',function(){
-    window.requestAnimationFrame(moveIbeam);
-    // if(!event.target.classList.contains('slider')) tester.classList.add('custom-hover');
+  tester.addEventListener('mouseenter',startHoverAnimate);
+
+  tester.addEventListener('mouseleave',function(){
+    hovered=false;
+    exactTrack=false;
   })
 
-  // tester.addEventListener('mouseleave',function(){
-  //   tester.classList.remove('custom-hover');
-  // })
+  function startHoverAnimate(){
+    if(!animationActive){
+      window.requestAnimationFrame(moveIbeam);
+      animationActive=true;
+    }
+    hovered=true;
+  }
 
   tester.addEventListener('mousemove',function(){
     if(!event.target.classList.contains('slider')){
-      tester.classList.add('custom-hover');
-      hovered=true;
+      startHoverAnimate();
     } else{
-      tester.classList.remove('custom-hover');
       hovered=false;
+      exactTrack=false;
     }
-    tester.style.setProperty('--cursor-x',event.pageX+'px');
-    tester.style.setProperty('--cursor-y',(event.pageY-tester.offsetTop)+'px');
     mousePos={
       x:event.pageX,
-      y:event.pageY-tester.offsetTop;
+      y:event.pageY-tester.offsetTop
     };
   })
 
@@ -161,17 +168,45 @@ document.querySelectorAll('.tester').forEach((tester) => {
 
 
   function moveIbeam(){
-    let incr=20;
-    // console.log('!');
+    const incr=30;
     const target=hovered?mousePos:{x:60,y:119};
-    // const current={x:ibeam.style.left,y:ibeam.style.top};
-    console.log(target,current);
-    if( Math.abs(current.x-target.x)>15) current.x=current.x + (target.x>current.x?incr:-1*incr);
-    if( Math.abs(current.y-target.y)>15) current.y=current.y + (target.y>current.y?incr:-1*incr);
+    const delta={
+      x:target.x - current.x,
+      y:target.y - current.y
+    };
+
+    if(!exactTrack){
+      const angle=Math.atan(delta.y/delta.x);
+      const shift={
+        x:Math.cos(angle) * incr,
+        y:Math.sin(angle) * incr
+      }
+
+      if(Math.sign(delta.x)!==Math.sign(shift.x)) shift.x *=-1;
+      if(Math.sign(delta.y)!==Math.sign(shift.y)) shift.y *=-1;
+
+      current.x+=Math.abs(delta.x)>Math.abs(shift.x)?shift.x:delta.x;
+      current.y+=Math.abs(delta.y)>Math.abs(shift.y)?shift.y:delta.y;
+    }else{
+      current.x=mousePos.x;
+      current.y=mousePos.y;
+    }
+
 
     ibeam.style.left=current.x+'px';
     ibeam.style.top=current.y+'px';
-    window.requestAnimationFrame(moveIbeam);
+
+    if((delta.x==0)&&(delta.y==0)&&hovered){
+      exactTrack=true;
+    }
+
+    if(!hovered&&(delta.x==0)&&(delta.y==0)){
+      animationActive=false;
+    }else{
+      window.requestAnimationFrame(moveIbeam);
+    }
+
+
   }
 
 

@@ -1255,8 +1255,8 @@ section.tester {
 
   .ibeam {
     position:relative;
-    cursor:none;
     float:left;
+    cursor:none;
     width: $unit * 15;
     border-right: 1px solid;
     height: $unit * 30;
@@ -1267,11 +1267,17 @@ section.tester {
     }
 
     img{
+      // cursor:none;
+      pointer-events: none;
       position:absolute;
       top:119px;
       left:60px;
       width:50px;
       transform: translate(-50%, -50%);
+    }
+
+    .static{
+      opacity:0.2;
     }
   }
   .text {
