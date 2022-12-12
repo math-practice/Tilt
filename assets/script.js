@@ -119,7 +119,6 @@ $('.open-glyphs-table').click(function(event){
 
 document.querySelectorAll('.tester').forEach((tester) => {
 
-  console.log(tester);
 
   tester.querySelector('.vrot input').addEventListener('input',updateParam.bind({prop:'v-rot'}));
   tester.querySelector('.hrot input').addEventListener('input',updateParam.bind({prop:'h-rot'}));
@@ -130,7 +129,6 @@ document.querySelectorAll('.tester').forEach((tester) => {
   let current={x:60,y:119};
   let exactTrack=false;
 
-  // $.on( "mouseenter mouseleave", handlerInOut );
 
   tester.addEventListener('mouseenter',startHoverAnimate);
 
@@ -170,7 +168,7 @@ document.querySelectorAll('.tester').forEach((tester) => {
 
 
   function moveIbeam(){
-    const incr=30;
+    const incr=40;
     const target=hovered?mousePos:{x:60,y:119};
     const delta={
       x:target.x - current.x,
@@ -264,6 +262,102 @@ document.querySelectorAll('.scroller').forEach((section) => {
 function setPageWidth(){
   w=window.innerWidth;
 }
+
+
+//from header protototype-------------------
+
+let herotext = document.querySelector('.hero-text');
+
+document.querySelector('.hero').addEventListener("mousemove", updateView, false);
+
+
+
+herotext.addEventListener('click',function(){
+  herotext.innerHTML = randomChar(3);
+})
+
+function randomChar(num) {
+  // var glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#$%&/@§©¼½¾¿æ£';
+  var glyphs = 'ABCDEFGHJKLMNOPQRSTUVWXYZ023456789#$%&@©¼½¾æ£';
+  var arr = glyphs.split("");
+  shuffle(arr);
+  var chars = "";
+  for (i = 0; i < num; i++) {
+    chars += "<span class='char-" + i + "'>" + arr[i] + "</span>";
+  }
+  return(chars);
+}
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+function updateView(event) {
+  var x = this.leave?w/2:event.pageX;
+  var y = this.leave?herotext.clientHeight/2:event.pageY;
+
+  var hrot = (x / w * maxRotation * 2 - maxRotation);
+  var vrot = (y / herotext.clientHeight * maxRotation * 2 - maxRotation);
+  //rotate text
+  herotext.style['font-variation-settings'] = "'HROT' " + hrot + ", 'VROT' " + vrot;
+  //write values
+  document.querySelector('.hrot_val').innerHTML = hrot.toFixed(2) + "°";
+  document.querySelector('.vrot_val').innerHTML = vrot.toFixed(2) + "°";
+  // console.log (hrot + ", " + vrot);
+  // drawLine(x, y);
+  drawLines(x, y);
+  // changeColor(x, y);
+}
+
+document.querySelector('.hero').addEventListener("mouseleave", updateView.bind({leave:true}), false);
+
+
+function drawLine(x, y){
+  var dot = document.querySelector('.circle_1');
+  dot.setAttribute('cx',x);
+  dot.setAttribute('cy',y);
+
+  var line = document.querySelector('.line_1');
+  line.setAttribute('x1','50vw');
+  line.setAttribute('y1',text.clientHeight/2);
+  line.setAttribute('x2',x);
+  line.setAttribute('y2',y);
+}
+
+function drawLines(x, y){
+  var dot = document.querySelector('.circle_1');
+  dot.setAttribute('cx',x);
+  dot.setAttribute('cy',y);
+
+  var lines = document.querySelectorAll('.line_1');
+  for (i = 0; i < lines.length; ++i) {
+    lines[i].setAttribute('x1','50vw');
+    lines[i].setAttribute('y1',herotext.clientHeight/2);
+    lines[i].setAttribute('x2',x);
+    lines[i].setAttribute('y2',y);
+  }
+}
+
+
+
+
+
+
 
 window.addEventListener('resize',setPageWidth)
 window.addEventListener('load',setPageWidth)

@@ -285,23 +285,61 @@ section.hero {
     letter-spacing: -0.03em;
   }
 }
-section.hero .vars {
-  font-size: 14px;
-  line-height: 18px;
-  text-align: left;
-  padding: 0 24px 12px 24px;
+section.hero .char-0 {
+  font-family: tilt-neon;
 }
-@media (max-width: 599px) {
-  section.hero .vars {
-    padding-top: 12px;
-  }
+section.hero .char-1 {
+  font-family: tilt-prism;
 }
-section.hero .vars .hrot, section.hero .vars .vrot {
+section.hero .char-2 {
+  font-family: tilt-warp;
+}
+section.hero nav {
+  height: 48px;
+  border-bottom: 1px solid;
+  font-size: 18px;
+  line-height: 48px;
+}
+section.hero nav h1 {
+  position: absolute;
+  width: 400px;
+  top: 0;
+  left: 50%;
+  margin: 0 0 0 -200px;
+  font-size: 18px;
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: 0.1em;
+  line-height: 48px;
+}
+section.hero nav ul {
+  margin: 0;
+  padding: 0;
+}
+section.hero nav ul.left {
+  position: absolute;
+  top: 0;
+  left: 16px;
+}
+section.hero nav ul.right {
+  position: absolute;
+  top: 0;
+  right: 16px;
+}
+section.hero nav ul li {
   display: inline-block;
+  list-style-type: none;
+  margin: 0 0.5em;
 }
-section.hero .vars .values {
-  display: inline-block;
-  width: 40px;
+section.hero .hrot, section.hero .vrot {
+  position: absolute;
+  font-size: 13px;
+  line-height: 32px;
+  margin-top: -32px;
+  left: 16px;
+}
+section.hero .vrot {
+  left: 200px;
 }
 section.hero svg {
   position: absolute;
@@ -310,11 +348,11 @@ section.hero svg {
   pointer-events: none;
 }
 section.hero svg line {
-  stroke: var(--bg);
+  stroke: #fff;
   stroke-width: 1;
 }
 section.hero svg circle {
-  fill: var(--bg);
+  fill: #fff;
 }
 
 section.scroller {
@@ -332,6 +370,10 @@ section.scroller {
     font-size: 120px;
     line-height: 128px;
   }
+}
+
+.hero-text {
+  white-space: nowrap;
 }
 
 section.signs .anchor {

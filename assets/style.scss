@@ -231,32 +231,67 @@ section.hero {
       letter-spacing: -0.03em;
     }
   }
-  .vars {
-    font-size: $font_caption;
-    line-height: $line_height * 0.75;
-    text-align: left;
-    padding: 0 $unit * 3 $line_height/2 $unit * 3;
-    @include for-phone-only {
-      padding-top: $line_height/2;
-    }
-    .hrot, .vrot {
-      display: inline-block;
-    }
-    .values {
-      display: inline-block;
-      width: $unit * 5;
-    }
+
+  .char-0 {
+    font-family: tilt-neon;
   }
-  // .hrot, .vrot{
-  //   position: absolute;
-  //   font-size: $font_caption;
-  //   line-height: $line_height;
-  //   margin-top: -$line_height * 1.5;
-  //   left: $unit * 3;
-  // }
-  // .vrot {
-  //   left: $unit * 25;
-  // }
+  .char-1 {
+    font-family: tilt-prism;
+  }
+  .char-2 {
+    font-family: tilt-warp;
+  }
+
+  nav {
+    height: 48px;
+    border-bottom: 1px solid;
+    font-size: 18px;
+    line-height: 48px;
+  }
+  nav h1 {
+    position: absolute;
+    width: 400px;
+    top:0;
+    left: 50%;
+    margin: 0 0 0 -200px;
+    font-size: 18px;
+    font-weight: normal;
+    text-align:center;
+    letter-spacing: 0.1em;
+    line-height: 48px;
+  }
+  nav ul {
+    margin: 0;
+    padding: 0;
+  }
+  nav ul.left {
+    position: absolute;
+    top:0;
+    left:16px;
+  }
+  nav ul.right {
+    position: absolute;
+    top:0;
+    right:16px;
+  }
+  nav ul li{
+    display: inline-block;
+    list-style-type: none;
+    margin: 0 0.5em;
+  }
+
+  .hrot, .vrot{
+    position: absolute;
+    font-size: 13px;
+    line-height: 32px;
+    margin-top: -32px;
+    left: 16px;
+  }
+
+  .vrot {
+    left: 200px;
+  }
+
   svg {
     position:absolute;
     top:0;
@@ -264,12 +299,57 @@ section.hero {
     pointer-events:none;
   }
   svg line {
-    stroke:var(--bg);
+    stroke:#fff;
     stroke-width:1;
   }
   svg circle {
-    fill: var(--bg);
+    fill: #fff;
   }
+
+
+
+
+
+
+  // .vars {
+  //   font-size: $font_caption;
+  //   line-height: $line_height * 0.75;
+  //   text-align: left;
+  //   padding: 0 $unit * 3 $line_height/2 $unit * 3;
+  //   @include for-phone-only {
+  //     padding-top: $line_height/2;
+  //   }
+  //   .hrot, .vrot {
+  //     display: inline-block;
+  //   }
+  //   .values {
+  //     display: inline-block;
+  //     width: $unit * 5;
+  //   }
+  // }
+  // // .hrot, .vrot{
+  // //   position: absolute;
+  // //   font-size: $font_caption;
+  // //   line-height: $line_height;
+  // //   margin-top: -$line_height * 1.5;
+  // //   left: $unit * 3;
+  // // }
+  // // .vrot {
+  // //   left: $unit * 25;
+  // // }
+  // svg {
+  //   position:absolute;
+  //   top:0;
+  //   left:0;
+  //   pointer-events:none;
+  // }
+  // svg line {
+  //   stroke:var(--bg);
+  //   stroke-width:1;
+  // }
+  // svg circle {
+  //   fill: var(--bg);
+  // }
 }
 
 section.scroller {
@@ -288,7 +368,9 @@ section.scroller {
 }
 
 
-
+.hero-text{
+  white-space: nowrap;
+}
 
 
 section.signs {
