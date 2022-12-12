@@ -79,6 +79,10 @@ table {
   }
 }
 /* Variables ------------------------------------------- */
+:root {
+  --bg:#efeeee;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -94,6 +98,7 @@ body {
   font-family: tilt-neon;
   font-size: 18px;
   line-height: 24px;
+  background-color: var(--bg);
 }
 
 a {
@@ -156,7 +161,7 @@ nav, section.subnav {
   z-index: 9999;
   height: 48px;
   border-bottom: 1px solid;
-  background: #fff;
+  background: var(--bg);
   text-align: center;
   line-height: 48px;
 }
@@ -234,7 +239,7 @@ nav .tertiary .camera, section.subnav .tertiary .camera {
 
 section {
   border-bottom: 1px solid;
-  background: #fff;
+  background: var(--bg);
 }
 
 section.subnav {
@@ -305,16 +310,17 @@ section.hero svg {
   pointer-events: none;
 }
 section.hero svg line {
-  stroke: #fff;
+  stroke: var(--bg);
   stroke-width: 1;
 }
 section.hero svg circle {
-  fill: #fff;
+  fill: var(--bg);
 }
 
 section.scroller {
   cursor: crosshair;
   --scroll:0;
+  --vrot:0;
   font-size: 216px;
   line-height: 240px;
   overflow-y: hidden;
@@ -476,7 +482,7 @@ section.signs .prosperity {
   height: 13.3333333333vw;
   border-right: 1px solid;
   border-bottom: 1px solid;
-  background: #fff;
+  background: var(--bg);
 }
 section.signs .prosperity .inner {
   width: 100%;
@@ -1107,7 +1113,7 @@ section.signs .thru-traffic .only {
 section.signs .thru-traffic .only p {
   display: inline-block;
   background: #000;
-  color: #fff;
+  color: var(--bg);
   padding: 0.1em 0.3em;
   border-radius: 0.05em;
   letter-spacing: 0.01em;
@@ -1142,7 +1148,7 @@ section.information .description {
   min-height: 33.3333333333vw;
   border-right: 1px solid;
   padding: 8px 16.6666666667vw 8px 32px;
-  background: #fff;
+  background: var(--bg);
 }
 section.information .description h2, section.information .description p {
   max-width: 1024px;
@@ -1159,7 +1165,7 @@ section.information .highlight {
   float: left;
   width: 33.3333333333vw;
   height: 33.3333333333vw;
-  background: #fff;
+  background: var(--bg);
 }
 @media (max-width: 599px) {
   section.information .highlight {
@@ -1305,7 +1311,7 @@ section.glyphs-table ul li.download a p {
 }
 section.glyphs-table ul li.download a:hover p {
   background-color: #000;
-  color: #fff;
+  color: var(--bg);
 }
 @media (max-width: 599px) {
   section.glyphs-table ul li {
@@ -1341,6 +1347,8 @@ section.tester input[type=text] {
   cursor: none;
 }
 section.tester .ibeam {
+  position: relative;
+  cursor: none;
   float: left;
   width: 120px;
   border-right: 1px solid;
@@ -1354,6 +1362,9 @@ section.tester .ibeam {
   }
 }
 section.tester .ibeam img {
+  position: absolute;
+  top: 32px;
+  left: 35px;
   width: 50px;
 }
 section.tester .text {
@@ -1398,7 +1409,7 @@ section.tester .text .slider-wrapper .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 15px;
   width: 15px;
-  background: #fff;
+  background: var(--bg);
   margin-top: -7px;
   border: 1px solid;
   border-radius: 50%;
@@ -1406,7 +1417,7 @@ section.tester .text .slider-wrapper .slider::-webkit-slider-thumb {
 section.tester .text .slider-wrapper .slider::-moz-range-thumb {
   height: 16px;
   width: 16px;
-  background: #fff;
+  background: var(--bg);
   margin-top: -9px;
   border: 1px solid;
   border-radius: 50%;
@@ -1428,6 +1439,14 @@ section.tester .text .string:focus {
   section.tester .text .string {
     width: 100vw;
   }
+}
+
+section.tester.custom-hover .ibeam .moving {
+  position: absolute;
+  top: var(--cursor-y);
+  left: var(--cursor-x);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
 }
 
 section.footer .text {
@@ -1526,16 +1545,6 @@ div.separator {
   background-image: radial-gradient(#000 12.5%, transparent 12.5%), radial-gradient(#000 12.5%, transparent 12.5%);
   background-position: 2px 2px, 8px 8px;
   background-size: 12px 12px;
-}
-
-@media (hover: hover) {
-  section.tester:hover .ibeam img {
-    position: absolute;
-    top: var(--cursor-y);
-    left: var(--cursor-x);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-  }
 }
 
 /*# sourceMappingURL=style.css.map */

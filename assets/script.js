@@ -123,16 +123,59 @@ document.querySelectorAll('.tester').forEach((tester) => {
   tester.querySelector('.hrot input').addEventListener('input',updateParam.bind({prop:'h-rot'}));
 
 
+  let hovered=false;
+  let mousePos={x:0,y:0};
+
+  // $.on( "mouseenter mouseleave", handlerInOut );
+
+  tester.addEventListener('mouseenter',function(){
+    if(!event.target.classList.contains('slider')) tester.classList.add('custom-hover');
+  })
+
+  tester.addEventListener('mouseleave',function(){
+    tester.classList.remove('custom-hover');
+  })
+
   tester.addEventListener('mousemove',function(){
+    if(!event.target.classList.contains('slider')){
+      tester.classList.add('custom-hover');
+      hovered=true;
+    } else{
+      tester.classList.remove('custom-hover');
+      hovered=false;
+    }
     tester.style.setProperty('--cursor-x',event.pageX+'px');
-    tester.style.setProperty('--cursor-y',event.pageY+'px');
+    tester.style.setProperty('--cursor-y',(event.pageY-tester.offsetTop)+'px');
+    mousePos={
+      x:event.pageX,
+      y:event.pageY-tester.offsetTop
+    };
   })
 
   function updateParam(event){
     tester.style.setProperty('--'+this.prop,event.srcElement.value);
   }
 
+  let ibeam=tester.querySelector('.moving');
+
+  function moveIbeam(){
+    const target=hovered?mousePos:{x:35,y:32};
+    const current={x:ibeam.style.left,y:ibeam.style.top};
+    ibeam.style.left=currentX + (targetX>currentX?1:-1)+'px';
+    ibeam.style.top=currentY + (targetY>currentY?1:-1)+'px';
+  }
+
+
+  function frameToTarget(targetX,targetY){
+    const currentX=ibeam.style.left;
+    const currentY=ibeam.style.top;
+    ibeam.style.left=currentX + (targetX>currentX?1:-1)+'px';
+    ibeam.style.top=currentY + (targetY>currentY?1:-1)+'px';
+  }
+
 });
+
+
 
 
 document.querySelectorAll('.scroller').forEach((section) => {
@@ -151,8 +194,8 @@ document.querySelectorAll('.scroller').forEach((section) => {
   function setLetters(mouse){
     for(let letter of letters){
       const left=letter.offsetLeft + letter.offsetWidth/2;
-      const rot=mouse!==undefined?Math.round((mouse - left + scrolled) / w * 90):0;
-      letter.style.fontVariationSettings=`"HROT" ${rot}, "VROT" 0`;
+      const rot=mouse!==undefined?Math.round((mouse - left + scrolled) / Math.min(w,1300) * 90):0;
+      letter.style.fontVariationSettings=`"HROT" ${rot}, "VROT" var(--vrot)`;
     }
   }
   section.addEventListener('scroll',function(){
@@ -161,6 +204,8 @@ document.querySelectorAll('.scroller').forEach((section) => {
 
   section.addEventListener('mousemove',function(){
     setLetters(event.clientX);
+    //mobile issue: 120 is half the height of the scroller on desktop
+    section.style.setProperty('--vrot',((event.pageY - section.offsetTop) - 120)/240 * 10);
   })
 
   section.addEventListener('mouseleave',function(){
