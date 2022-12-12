@@ -1393,7 +1393,7 @@ section.tester {
         &:focus{
           outline: none;
         }
-        &::-webkit-slider-runnable-track, &::-webkit-slider-runnable-track {
+        &::-webkit-slider-runnable-track, &::-webkit-slider-runnable-track,&::-moz-range-track {
           background: $black;
           height: 1px;
         }
@@ -1537,4 +1537,8 @@ div.separator {
   height: $unit * 12;
   border-bottom: 1px solid;
   @include polka_dot;
+}
+
+div.separator.half{
+  height: $unit * 6;
 }

@@ -327,18 +327,6 @@ function updateView(event) {
 document.querySelector('.hero').addEventListener("mouseleave", updateView.bind({leave:true}), false);
 
 
-function drawLine(x, y){
-  var dot = document.querySelector('.circle_1');
-  dot.setAttribute('cx',x);
-  dot.setAttribute('cy',y);
-
-  var line = document.querySelector('.line_1');
-  line.setAttribute('x1','50vw');
-  line.setAttribute('y1',text.clientHeight/2);
-  line.setAttribute('x2',x);
-  line.setAttribute('y2',y);
-}
-
 function drawLines(x, y){
   var dot = document.querySelector('.circle_1');
   dot.setAttribute('cx',x);
@@ -346,7 +334,7 @@ function drawLines(x, y){
 
   var lines = document.querySelectorAll('.line_1');
   for (i = 0; i < lines.length; ++i) {
-    lines[i].setAttribute('x1','50vw');
+    lines[i].setAttribute('x1',w/2);
     lines[i].setAttribute('y1',herotext.clientHeight/2);
     lines[i].setAttribute('x2',x);
     lines[i].setAttribute('y2',y);

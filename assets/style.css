@@ -1447,7 +1447,7 @@ section.tester .text .slider-wrapper .slider {
 section.tester .text .slider-wrapper .slider:focus {
   outline: none;
 }
-section.tester .text .slider-wrapper .slider::-webkit-slider-runnable-track, section.tester .text .slider-wrapper .slider::-webkit-slider-runnable-track {
+section.tester .text .slider-wrapper .slider::-webkit-slider-runnable-track, section.tester .text .slider-wrapper .slider::-webkit-slider-runnable-track, section.tester .text .slider-wrapper .slider::-moz-range-track {
   background: #000;
   height: 1px;
 }
@@ -1587,6 +1587,10 @@ div.separator {
   background-image: radial-gradient(#000 12.5%, transparent 12.5%), radial-gradient(#000 12.5%, transparent 12.5%);
   background-position: 2px 2px, 8px 8px;
   background-size: 12px 12px;
+}
+
+div.separator.half {
+  height: 48px;
 }
 
 /*# sourceMappingURL=style.css.map */
