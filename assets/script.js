@@ -137,6 +137,7 @@ document.querySelectorAll('.tester').forEach((tester) => {
   tester.addEventListener('mouseleave',function(){
     hovered=false;
     exactTrack=false;
+    tester.classList.remove('exact-track');
   })
 
   function startHoverAnimate(){
@@ -153,10 +154,11 @@ document.querySelectorAll('.tester').forEach((tester) => {
     } else{
       hovered=false;
       exactTrack=false;
+      tester.classList.remove('exact-track');
     }
     mousePos={
       x:event.pageX,
-      y:event.pageY-tester.offsetTop
+      y:event.offsetY
     };
   })
 
@@ -198,6 +200,7 @@ document.querySelectorAll('.tester').forEach((tester) => {
 
     if((delta.x==0)&&(delta.y==0)&&hovered){
       exactTrack=true;
+      tester.classList.add('exact-track');
     }
 
     if(!hovered&&(delta.x==0)&&(delta.y==0)){

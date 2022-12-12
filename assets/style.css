@@ -1344,12 +1344,11 @@ section.tester {
   --v-rot:0;
 }
 section.tester input[type=text] {
-  cursor: none;
+  cursor: default;
 }
 section.tester .ibeam {
   position: relative;
   float: left;
-  cursor: none;
   width: 120px;
   border-right: 1px solid;
   height: 240px;
@@ -1444,6 +1443,10 @@ section.tester .text .string:focus {
   section.tester .text .string {
     width: 100vw;
   }
+}
+
+section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
+  cursor: none;
 }
 
 section.footer .text {

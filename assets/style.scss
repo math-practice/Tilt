@@ -1250,13 +1250,13 @@ section.tester {
   // position:relative;
 
   input[type="text"]{
-    cursor:none;
+    cursor:default;
   }
+
 
   .ibeam {
     position:relative;
     float:left;
-    cursor:none;
     width: $unit * 15;
     border-right: 1px solid;
     height: $unit * 30;
@@ -1267,7 +1267,6 @@ section.tester {
     }
 
     img{
-      // cursor:none;
       pointer-events: none;
       position:absolute;
       top:119px;
@@ -1353,6 +1352,13 @@ section.tester {
         width: $col_width * 6;
       }
     }
+  }
+}
+
+
+section.tester.exact-track{
+  input[type="text"],.ibeam{
+    cursor:none;
   }
 }
 
