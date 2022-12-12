@@ -1363,9 +1363,10 @@ section.tester .ibeam {
 }
 section.tester .ibeam img {
   position: absolute;
-  top: 32px;
-  left: 35px;
+  top: 119px;
+  left: 60px;
   width: 50px;
+  transform: translate(-50%, -50%);
 }
 section.tester .text {
   float: left;
@@ -1439,14 +1440,6 @@ section.tester .text .string:focus {
   section.tester .text .string {
     width: 100vw;
   }
-}
-
-section.tester.custom-hover .ibeam .moving {
-  position: absolute;
-  top: var(--cursor-y);
-  left: var(--cursor-x);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
 }
 
 section.footer .text {

@@ -122,19 +122,20 @@ document.querySelectorAll('.tester').forEach((tester) => {
   tester.querySelector('.vrot input').addEventListener('input',updateParam.bind({prop:'v-rot'}));
   tester.querySelector('.hrot input').addEventListener('input',updateParam.bind({prop:'h-rot'}));
 
-
   let hovered=false;
   let mousePos={x:0,y:0};
+  let current={x:60,y:119};
 
   // $.on( "mouseenter mouseleave", handlerInOut );
 
   tester.addEventListener('mouseenter',function(){
-    if(!event.target.classList.contains('slider')) tester.classList.add('custom-hover');
+    window.requestAnimationFrame(moveIbeam);
+    // if(!event.target.classList.contains('slider')) tester.classList.add('custom-hover');
   })
 
-  tester.addEventListener('mouseleave',function(){
-    tester.classList.remove('custom-hover');
-  })
+  // tester.addEventListener('mouseleave',function(){
+  //   tester.classList.remove('custom-hover');
+  // })
 
   tester.addEventListener('mousemove',function(){
     if(!event.target.classList.contains('slider')){
@@ -148,7 +149,7 @@ document.querySelectorAll('.tester').forEach((tester) => {
     tester.style.setProperty('--cursor-y',(event.pageY-tester.offsetTop)+'px');
     mousePos={
       x:event.pageX,
-      y:event.pageY-tester.offsetTop
+      y:event.pageY-tester.offsetTop;
     };
   })
 
@@ -158,11 +159,19 @@ document.querySelectorAll('.tester').forEach((tester) => {
 
   let ibeam=tester.querySelector('.moving');
 
+
   function moveIbeam(){
-    const target=hovered?mousePos:{x:35,y:32};
-    const current={x:ibeam.style.left,y:ibeam.style.top};
-    ibeam.style.left=currentX + (targetX>currentX?1:-1)+'px';
-    ibeam.style.top=currentY + (targetY>currentY?1:-1)+'px';
+    let incr=20;
+    // console.log('!');
+    const target=hovered?mousePos:{x:60,y:119};
+    // const current={x:ibeam.style.left,y:ibeam.style.top};
+    console.log(target,current);
+    if( Math.abs(current.x-target.x)>15) current.x=current.x + (target.x>current.x?incr:-1*incr);
+    if( Math.abs(current.y-target.y)>15) current.y=current.y + (target.y>current.y?incr:-1*incr);
+
+    ibeam.style.left=current.x+'px';
+    ibeam.style.top=current.y+'px';
+    window.requestAnimationFrame(moveIbeam);
   }
 
 
