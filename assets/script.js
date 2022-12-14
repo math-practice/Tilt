@@ -130,7 +130,14 @@ document.querySelectorAll('.tester').forEach((tester) => {
   let exactTrack=false;
 
 
-  tester.addEventListener('mouseenter',startHoverAnimate);
+  tester.addEventListener('mouseenter',function(){
+    mousePos={
+      x:event.pageX,
+      y:event.offsetY
+    }
+    startHoverAnimate()
+  }
+  );
 
   tester.addEventListener('mouseleave',function(){
     hovered=false;
