@@ -1152,6 +1152,7 @@ section.information {
     }
   }
   .highlight {
+    cursor:crosshair;
     float:left;
     width: $col_width * 2;
     height: $col_width * 2;
@@ -1171,6 +1172,9 @@ section.information {
         width: $col_width * 4.5;
         margin: $col_width * 3 $col_width * 0.75;
       }
+    }
+    >*{
+      pointer-events: none;
     }
     .vline {
       position:absolute;

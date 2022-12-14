@@ -1204,6 +1204,7 @@ section.information .description h2, section.information .description p {
   }
 }
 section.information .highlight {
+  cursor: crosshair;
   float: left;
   width: 33.3333333333vw;
   height: 33.3333333333vw;
@@ -1228,6 +1229,9 @@ section.information .highlight .hline {
     width: 75vw;
     margin: 50vw 12.5vw;
   }
+}
+section.information .highlight > * {
+  pointer-events: none;
 }
 section.information .highlight .vline {
   position: absolute;

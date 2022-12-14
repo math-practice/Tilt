@@ -228,6 +228,29 @@ document.querySelectorAll('.tester').forEach((tester) => {
 });
 
 
+document.querySelectorAll('.highlight').forEach((highlight) => {
+  let box={
+    w:highlight.offsetWidth,
+    h: highlight.offsetHeight
+  }
+  // let boxWidth=;
+  // let boxHeight=highlight.offsetHeight;
+
+  let glyph=highlight.querySelector('.glyph');
+  highlight.addEventListener('mousemove',function(){
+    let coords={
+      x:event.offsetX - (box.w/2),
+      y:event.offsetY - (box.h/2)
+    }
+    console.log(box,coords);
+    glyph.style.fontVariationSettings=`"HROT" ${coords.x/box.w*90}, "VROT" ${coords.y/box.h*90}`;
+    // highlight.style.setProperty('--'+this.prop,event.srcElement.value);
+  })
+
+  highlight.addEventListener('mouseleave',function(){
+    glyph.style.fontVariationSettings=`"HROT" 0, "VROT" 0`;
+  })
+});
 
 
 document.querySelectorAll('.scroller').forEach((section) => {
