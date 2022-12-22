@@ -627,13 +627,18 @@ section.signs .prosperity .inner .xs .line {
   section.signs .prosperity {
     position: relative;
     width: 100vw;
-    height: 40vw;
+    height: 50vw;
     border-right: none;
     border-right: none;
   }
   section.signs .prosperity .inner {
     transform-origin: 0 0;
-    transform: translate(-150%, -150%) scale(3);
+  }
+  section.signs .prosperity .inner .xs {
+    font-size: 13vw;
+  }
+  section.signs .prosperity .inner .xs .symbols:not(.line) {
+    display: none;
   }
 }
 section.signs .col-hopkee {
@@ -934,9 +939,20 @@ section.signs .bowery-savings .inner p.save {
     border-right: none;
     border-bottom: 1px solid;
   }
+  section.signs .bowery-savings .break-mobile {
+    display: block;
+  }
+  section.signs .bowery-savings br.remove-mobile {
+    display: none;
+  }
+  section.signs .bowery-savings p.s, section.signs .bowery-savings p.m {
+    font-size: 12vw;
+  }
   section.signs .bowery-savings .inner {
     transform-origin: 0 0;
-    transform: translate(-125%, -125%) scale(2.5);
+  }
+  section.signs .bowery-savings .inner p.save {
+    margin-top: 2.5em;
   }
 }
 section.signs .nypl {
@@ -1494,6 +1510,11 @@ section.tester .text .string:focus {
 
 section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   cursor: none;
+}
+@media (max-width: 599px) {
+  section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
+    cursor: text;
+  }
 }
 
 section.footer .text {

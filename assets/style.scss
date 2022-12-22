@@ -609,14 +609,25 @@ section.signs {
       }
     }
     @include for-phone-only {
+
+
       position:relative;
       width: $col_width * 6;
-      height: $col_width * 2.4;
+      height: $col_width * 3;
       border-right: none;
       border-right: none;
       .inner {
+
         transform-origin: 0 0;
-        transform: translate(-50% * 3, -50% * 3) scale(3);
+        // transform: translate(-50% * 3, -50% * 3) scale(3);
+
+        .xs{
+          .symbols:not(.line){
+            display:none;
+          }
+
+          font-size: 13vw;
+        }
       }
     }
   }
@@ -804,6 +815,10 @@ section.signs {
       .arc-1 {
         left: 111.11px / $wrapperW * 100%; top: 62%;
         transform: rotate(-86.24deg);
+        @include for-phone-only{
+
+        }
+
       }
       .arc-2 {
         left: 76.38px / $wrapperW * 100%; top: 53.46%;
@@ -820,6 +835,8 @@ section.signs {
       .arc-5 {
         left: 18.55px / $wrapperW * 100%; top: 27.68%;
         transform: rotate(-49.16deg);
+
+
       }
       .arc-6 {
         left: 1.07px / $wrapperW * 100%; top: 20.54%;
@@ -889,13 +906,39 @@ section.signs {
       }
     }
     @include for-phone-only {
+
+      .break-mobile{
+        display:block;
+      }
+
+      br.remove-mobile{
+        display:none;
+      }
+
+      p.s{
+        // letter-spacing: -7px;
+      }
+
+      p.s,p.m{
+        font-size: 12vw;
+      }
+
+      // p.m{
+      //   font-size: 10vw;
+      // }
+
+
       width: $col_width * 6;
       height: $col_width * 5;
       border-right: none;
       border-bottom: 1px solid;
       .inner {
+
+        p.save{
+          margin-top: 2.5em;
+        }
         transform-origin: 0 0;
-        transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
+        // transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
       }
     }
   }
@@ -1442,13 +1485,21 @@ section.tester {
     }
   }
 }
-
-
 section.tester.exact-track{
   input[type="text"],.ibeam{
     cursor:none;
   }
+  @include for-phone-only{
+    input[type="text"],.ibeam{
+      cursor:text;
+    }
+  }
+
 }
+
+
+
+
 
 // section.tester.custom-hover .ibeam .moving{
 //   position: absolute;

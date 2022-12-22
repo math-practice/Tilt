@@ -202,8 +202,8 @@ document.querySelectorAll('.tester').forEach((tester) => {
 
     ibeam.style.left=current.x+'px';
     ibeam.style.top=current.y+'px';
-
-    if((delta.x==0)&&(delta.y==0)&&hovered){
+    // (delta.x==0)&&(delta.y==0)&&
+    if(hovered){
       exactTrack=true;
       tester.classList.add('exact-track');
     }
@@ -280,7 +280,7 @@ document.querySelectorAll('.scroller').forEach((section) => {
   section.addEventListener('mousemove',function(){
     setLetters(event.clientX);
     //mobile issue: 120 is half the height of the scroller on desktop
-    section.style.setProperty('--vrot',((event.pageY - section.offsetTop) - 120)/240 * 10);
+    section.style.setProperty('--vrot',((event.pageY - section.offsetTop) - 120)/240 * 30);
   })
 
   section.addEventListener('mouseleave',function(){
