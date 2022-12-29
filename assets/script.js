@@ -332,7 +332,7 @@ function initPage(){
         }
 
         control.style.left=pos.x*100+'%';
-        control.style.top=pos.y*100+'%';
+        control.style.top=event.touches[0].clientY+'px';
 
         hrot=(pos.x - 0.5)*90;
         vrot=(pos.y - 0.5)*90;
