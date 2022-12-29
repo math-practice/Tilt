@@ -7,7 +7,7 @@ var h = window.innerHeight;
 var maxRotation = 45;
 var minRotation = -45;
 var hrot, vrot, transformW, transformH;
-
+const isMobile=window.matchMedia('(hover:none)');
 
 $(".sign").mousemove(function(event){
   var x = event.pageX - $(this).offset().left;
@@ -19,21 +19,28 @@ $(".sign").mousemove(function(event){
   transformW = (100 - Math.abs(hrot)) / 100;
   transformH = (100 - Math.abs(vrot)) / 100;
   // console.log (hrot + ", " + vrot);
-  $(this).find(".inner p").css({
+
+  tiltSign(this)
+
+
+});
+
+
+function tiltSign(sign){
+
+  $(sign).find(".inner p").css({
     fontVariationSettings: "'HROT' " + hrot + ", 'VROT' " + vrot,
     // lineHeight: 105 * transformH + "%"
   });
 
-  $(this).find(".reactive").css({
+  $(sign).find(".reactive").css({
     width: 100-Math.abs(hrot) + "%",
     // height: 100-Math.abs(vrot) + "%",
   })
 
-  $(this).find(".arc p span").each(function(){
+  $(sign).find(".arc p span").each(function(){
     // rotation angle of this letter
-    var r = getRotationDegrees($(this));
-    // console.log($(this).attr('class') + ":" + r);
-    // console.log ("x: " + x + " y: " + y + " HROT: " + hrot + " VROT: " + vrot);
+    var r = getRotationDegrees($(sign));
 
     //r * pi / 180 to return sine wave, then shift the r 90 degrees to get the wave to start from 1 (not 0)
     //https://docs.google.com/spreadsheets/d/1L3u8t-3eQaisRTdMZ-T2UWpbDCKLc8AIePK4wCZYsFE/edit#gid=0
@@ -45,25 +52,19 @@ $(".sign").mousemove(function(event){
     var newHrot = sin * hrot + sinShift * vrot;
     var newVrot = sin * vrot + sinShift * hrot;
 
-    if ($(this).attr('class') == 'arc-1') {
+    if ($(sign).attr('class') == 'arc-1') {
       console.log ("HROT: " + hrot + " VROT: " + vrot + " NEW HROT:" + newHrot);
     }
 
-    //hrot to look at vrot, vice versa
-    // newHrot = newHrot + 45 - newVrot;
-    // newVrot = newVrot + 45 - newHrot;
-
-    $(this).css({
+    $(sign).css({
       fontVariationSettings: "'HROT' " + hrot + ", 'VROT' " + vrot,
     });
-    // fontVariationSettings: "'HROT' " + hrot + ", 'VROT' " + vrot,
   });
 
-
   //if box
-  svgTransform($(this).find(".box"), 33); //width in vw;
-  // svgTransform($(this).find(".bowery"), 40); //width in vw;
-});
+  svgTransform($(sign).find(".box"), 33);
+}
+
 
 $(".sign").mouseleave(function(event){
   $(this).find(".inner p, .arc p").css({
@@ -118,7 +119,6 @@ $('.open-glyphs-table').click(function(event){
 
 
 document.querySelectorAll('.tester').forEach((tester) => {
-
 
   tester.querySelector('.vrot input').addEventListener('input',updateParam.bind({prop:'v-rot'}));
   tester.querySelector('.hrot input').addEventListener('input',updateParam.bind({prop:'h-rot'}));
@@ -233,8 +233,6 @@ document.querySelectorAll('.highlight').forEach((highlight) => {
     w:highlight.offsetWidth,
     h: highlight.offsetHeight
   }
-  // let boxWidth=;
-  // let boxHeight=highlight.offsetHeight;
 
   let glyph=highlight.querySelector('.glyph');
   highlight.addEventListener('mousemove',function(){
@@ -243,14 +241,19 @@ document.querySelectorAll('.highlight').forEach((highlight) => {
       y:event.offsetY - (box.h/2)
     }
     console.log(box,coords);
-    glyph.style.fontVariationSettings=`"HROT" ${coords.x/box.w*90}, "VROT" ${coords.y/box.h*90}`;
-    // highlight.style.setProperty('--'+this.prop,event.srcElement.value);
+
+    tiltHighlight(glyph,coords.x/box.w*90,coords.y/box.h*90);
   })
 
   highlight.addEventListener('mouseleave',function(){
     glyph.style.fontVariationSettings=`"HROT" 0, "VROT" 0`;
   })
 });
+
+
+function tiltHighlight(glyph,hrot,vrot){
+  glyph.style.fontVariationSettings=`"HROT" ${hrot}, "VROT" ${vrot}`;
+}
 
 
 document.querySelectorAll('.scroller').forEach((section) => {
@@ -291,6 +294,67 @@ document.querySelectorAll('.scroller').forEach((section) => {
 
 function setPageWidth(){
   w=window.innerWidth;
+}
+
+function initPage(){
+  setPageWidth();
+
+  let dragging=false;
+
+  if(isMobile.matches){
+
+    const dimensions={
+      w:window.innerWidth,
+      h:window.innerHeight
+    }
+
+    document.querySelector('#tilt-control-wrapper').style.height=dimensions.h;
+
+    const control=document.querySelector('#tilt-control')
+
+
+
+
+    control.addEventListener('touchstart',function(){
+      dragging=true;
+    })
+    control.addEventListener('touchend',function(){
+      dragging=false;
+    })
+
+    document.body.addEventListener('touchmove',function(){
+
+      if(dragging){
+        // event.preventDefault();
+        let pos={
+          x:event.touches[0].clientX/dimensions.w,
+          y:event.touches[0].clientY/dimensions.h
+        }
+
+        control.style.left=pos.x*100+'%';
+        control.style.top=pos.y*100+'%';
+
+        hrot=(pos.x - 0.5)*90;
+        vrot=(pos.y - 0.5)*90;
+
+        document.querySelectorAll('.sign').forEach((sign) => {
+          tiltSign(sign);
+
+        });
+
+        document.querySelectorAll('.glyph').forEach((glyph) => {
+          tiltHighlight(glyph,hrot,vrot);
+        });
+
+        tiltHero(hrot,vrot,0,0);
+
+        // console.log(pos.x,pos.y);
+      }
+
+    })
+
+
+  }
 }
 
 
@@ -343,15 +407,17 @@ function updateView(event) {
 
   var hrot = (x / w * maxRotation * 2 - maxRotation);
   var vrot = (y / herotext.clientHeight * maxRotation * 2 - maxRotation);
-  //rotate text
+  tiltHero(hrot,vrot,x,y);
+}
+
+
+function tiltHero(hrot,vrot,x,y){
   herotext.style['font-variation-settings'] = "'HROT' " + hrot + ", 'VROT' " + vrot;
   //write values
   document.querySelector('.hrot_val').innerHTML = hrot.toFixed(2) + "°";
   document.querySelector('.vrot_val').innerHTML = vrot.toFixed(2) + "°";
-  // console.log (hrot + ", " + vrot);
-  // drawLine(x, y);
+
   drawLines(x, y);
-  // changeColor(x, y);
 }
 
 document.querySelector('.hero').addEventListener("mouseleave", updateView.bind({leave:true}), false);
@@ -377,5 +443,10 @@ function drawLines(x, y){
 
 
 
+
+
+
+
+
 window.addEventListener('resize',setPageWidth)
-window.addEventListener('load',setPageWidth)
+window.addEventListener('load',initPage)
