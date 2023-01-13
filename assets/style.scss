@@ -1635,6 +1635,12 @@ section.tester.exact-track{
 
 
 #control-svg-wrapper{
+  display:none;
+  @media(hover:none){
+    display:block;
+  }
+
+
   z-index:1000;
   pointer-events: none;
   position:fixed;
