@@ -7,6 +7,11 @@
   <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 <body>
+  <div id="facecam">
+    <video width="400" height="300"  preload="auto" loop playsinline autoplay></video>
+    <canvas width="400" height="300"></canvas>
+  </div>
+
   <nav>
     <h1><a href="#">Tilt</a></h1>
     <ul class="primary">
@@ -19,7 +24,7 @@
       <li><a href="https://github.com/andyclymer/Tilt-Typeface" target="_blank" class="github">GitHub</a></li>
     </ul>
     <ul class="tertiary">
-      <li><a href="#" class="camera">☺</a></li>
+      <li><button href="#" class="camera">☺</button></li>
     </ul>
   </nav>
   <div id="tilt-control-wrapper">
@@ -965,6 +970,10 @@
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
+  <script src="assets/utils.js"></script>
+  <script src="assets/clmtrackr.js"></script>
+  <script src="assets/face-track.js"></script>
   <script src="assets/script.js"></script>
+
 </body>
 </html>

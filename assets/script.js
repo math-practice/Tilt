@@ -4,11 +4,26 @@
 
 let w = window.innerWidth;
 var h = window.innerHeight;
+
+let client={
+  x:w/2,
+  y:h/2,
+}
+
+let pos={
+  x:client.x/w,
+  y:client.y/h
+}
+
+const control=document.querySelector('#tilt-control');
+
+
 var maxRotation = 45;
 var minRotation = -45;
 var hrot, vrot, transformW, transformH;
 const isMobile=window.matchMedia('(hover:none)');
 
+let trackingStarted = false;
 
 let scrollerHeight=window.matchMedia('(max-width:599px)').matches?129:240;
 let scrollerLetters=[];
@@ -27,6 +42,7 @@ $(".sign").mousemove(function(event){
   // console.log (hrot + ", " + vrot);
 
   tiltSign(this)
+
 
 
 });
@@ -246,13 +262,14 @@ document.querySelectorAll('.highlight').forEach((highlight) => {
       x:event.offsetX - (box.w/2),
       y:event.offsetY - (box.h/2)
     }
-    console.log(box,coords);
 
     tiltHighlight(glyph,coords.x/box.w*90,coords.y/box.h*90);
+
   })
 
   highlight.addEventListener('mouseleave',function(){
     glyph.style.fontVariationSettings=`"HROT" 0, "VROT" 0`;
+
   })
 });
 
@@ -286,6 +303,7 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
   section.addEventListener('mousemove',function(){
     let proportionY=(event.pageY - section.offsetTop)/scrollerHeight
     setScrollerLetters(event.clientX,proportionY,letters,section);
+
     //mobile issue: 120 is half the height of the scroller on desktop
 
 
@@ -293,6 +311,7 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
 
   section.addEventListener('mouseleave',function(){
     setScrollerLetters(undefined,0.5,letters,section);
+
   })
 
 });
@@ -309,59 +328,58 @@ function setScrollerLetters(clientX,proportionY,letters,section){
 }
 
 
-function setPageWidth(){
+function setPageSize(){
   w=window.innerWidth;
+  h=window.innerHeight
+}
+
+
+
+function trackElementsInView(){
+  let options = {
+    rootMargin: '0px',
+    threshold: 1.0
+  }
+
+
+  let observer = new IntersectionObserver(callback, {root:null,rootMargin: '0px'});
+
+  let query=document.querySelectorAll('.hero, .sign, .highlight .glyph, .scroller');
+
+  query.forEach((element) => {
+    observer.observe(element);
+  });
+
+  function callback(entries){
+    entries.forEach((entry) => {
+      entry.target.dataset.visible=entry.intersectionRatio>0?"true":"false";
+    });
+    if(isMobile.matches) setElementPositions();
+
+  }
 }
 
 function initPage(){
-  setPageWidth();
+  setPageSize();
+  trackElementsInView();
 
   let dragging=false;
 
   if(isMobile.matches){
 
 
-    let options = {
-      rootMargin: '0px',
-      threshold: 1.0
-    }
-
-
-    let observer = new IntersectionObserver(callback, {root:null,rootMargin: '0px'});
-
-    let query=document.querySelectorAll('.hero, .sign, .highlight .glyph, .scroller');
-
-    query.forEach((element) => {
-      observer.observe(element);
-    });
-
-    function callback(entries){
-      entries.forEach((entry) => {
-        entry.target.dataset.visible=entry.intersectionRatio>0?"true":"false";
-      });
-      setElementPositions();
-
-    }
-
 
     // console.log(query);
 
 
     const dimensions={
-      w:window.innerWidth,
-      h:window.innerHeight
+      w:w,
+      h:h
     }
 
-    let client={
-      x:dimensions.w/2,
-      y:dimensions.h/2,
-    }
 
 
     document.querySelector('#tilt-control-wrapper').style.height=dimensions.h;
-
-    const control=document.querySelector('#tilt-control')
-
 
 
 
@@ -372,42 +390,14 @@ function initPage(){
       dragging=false;
     })
 
-    function setElementPositions(){
-      let pos={
-        x:client.x/dimensions.w,
-        y:client.y/dimensions.h
-      }
-
-      control.style.left=pos.x*100+'%';
-      control.style.top=client.y+'px';
-
-      hrot=(pos.x - 0.5)*90;
-      vrot=(pos.y - 0.5)*90;
-
-      document.querySelectorAll('.sign[data-visible="true"]').forEach((sign) => {
-        tiltSign(sign);
-
-      });
-
-      document.querySelectorAll('.highlight .glyph[data-visible="true"]').forEach((glyph) => {
-        tiltHighlight(glyph,hrot,vrot);
-      });
-
-      document.querySelectorAll('.scroller[data-visible="true"]').forEach((section) => {
-        setScrollerLetters(client.x,pos.y,scrollerLetters[parseInt(section.dataset.ind)],section);
-        // tiltHighlight(glyph,hrot,vrot);
-      });
-
-      
-      tiltHero(hrot,vrot,0,0);
-    }
-
 
     document.body.addEventListener('touchmove',function(){
 
       if(dragging){
         client.x=event.touches[0].clientX;
         client.y=event.touches[0].clientY;
+        pos.x=client.x/w;
+        pos.y=client.y/h;
         setElementPositions();
       }
 
@@ -417,12 +407,44 @@ function initPage(){
   }
 }
 
+function setElementPositions(){
+
+  control.style.left=pos.x*100+'%';
+  control.style.top=client.y+'px';
+
+  hrot=(pos.x - 0.5)*90;
+  vrot=(pos.y - 0.5)*90;
+
+  document.querySelectorAll('.sign[data-visible="true"]').forEach((sign) => {
+    tiltSign(sign);
+
+  });
+
+  document.querySelectorAll('.highlight .glyph[data-visible="true"]').forEach((glyph) => {
+    tiltHighlight(glyph,hrot,vrot);
+  });
+
+  document.querySelectorAll('.scroller[data-visible="true"]').forEach((section) => {
+    setScrollerLetters(client.x,pos.y,scrollerLetters[parseInt(section.dataset.ind)],section);
+    // tiltHighlight(glyph,hrot,vrot);
+  });
+
+
+  tiltHero(hrot,vrot,0,0);
+}
+
+
+
 
 //from header protototype-------------------
 
 let herotext = document.querySelector('.hero-text');
 
-document.querySelector('.hero').addEventListener("mousemove", updateView, false);
+document.querySelector('.hero').addEventListener("mousemove", function(){
+  if(!trackingStarted){
+    updateView(event);
+  }
+}, false);
 
 
 
@@ -500,6 +522,10 @@ function drawLines(x, y){
 
 
 
+document.querySelector('.camera').addEventListener('click',function(){
+  window.scroll({top:0,left:0,behavior:'smooth'});
+  initFaceCam();
+});
 
 
 
@@ -507,6 +533,5 @@ function drawLines(x, y){
 
 
 
-
-window.addEventListener('resize',setPageWidth)
+window.addEventListener('resize',setPageSize)
 window.addEventListener('load',initPage)
