@@ -1687,6 +1687,25 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   }
 }
 
+#control-svg-wrapper {
+  z-index: 1000;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  mix-blend-mode: overlay;
+}
+#control-svg-wrapper svg line {
+  stroke-linecap: round;
+  stroke: white;
+  stroke-width: 3px;
+}
+#control-svg-wrapper svg circle {
+  fill: white;
+}
+
 @media (hover: none) {
   section.hero svg {
     display: none;
@@ -1703,8 +1722,6 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   height: 48px;
   border-radius: 50%;
   background-color: white;
-  border: 1px solid black;
-  box-shadow: 5px 5px 14px 0px rgba(0, 0, 0, 0.47);
 }
 
 h2.big {

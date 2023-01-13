@@ -430,7 +430,7 @@ function setElementPositions(){
   });
 
 
-  tiltHero(hrot,vrot,0,0);
+  tiltHero(hrot,vrot,client.x,client.y);
 }
 
 
@@ -510,10 +510,14 @@ function drawLines(x, y){
   dot.setAttribute('cx',x);
   dot.setAttribute('cy',y);
 
+  var dot2 = document.querySelector('.circle_2');
+  dot2.setAttribute('cx',w/2);
+  dot2.setAttribute('cy',isMobile.matches?h/2:herotext.clientHeight/2);
+
   var lines = document.querySelectorAll('.line_1');
   for (i = 0; i < lines.length; ++i) {
     lines[i].setAttribute('x1',w/2);
-    lines[i].setAttribute('y1',herotext.clientHeight/2);
+    lines[i].setAttribute('y1',isMobile.matches?h/2:herotext.clientHeight/2);
     lines[i].setAttribute('x2',x);
     lines[i].setAttribute('y2',y);
   }
