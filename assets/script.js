@@ -9,6 +9,12 @@ var minRotation = -45;
 var hrot, vrot, transformW, transformH;
 const isMobile=window.matchMedia('(hover:none)');
 
+
+let scrollerHeight=window.matchMedia('(max-width:599px)').matches?129:240;
+let scrollerLetters=[];
+
+
+
 $(".sign").mousemove(function(event){
   var x = event.pageX - $(this).offset().left;
   var y = event.pageY - $(this).offset().top;
@@ -256,12 +262,15 @@ function tiltHighlight(glyph,hrot,vrot){
 }
 
 
-document.querySelectorAll('.scroller').forEach((section) => {
+
+document.querySelectorAll('.scroller').forEach((section,i) => {
   let str=section.innerText;
   section.innerText='';
-  let scrolled=0;
+  section.dataset.scrolled=0;
+  section.dataset.ind=i;
 
-  let letters=[]
+  scrollerLetters.push([])
+  let letters=scrollerLetters[i];
   for(let i=0; i<str.length; i++){
     let letter=document.createElement('span');
     letter.innerText=str[i];
@@ -269,28 +278,36 @@ document.querySelectorAll('.scroller').forEach((section) => {
     section.appendChild(letter);
   }
 
-  function setLetters(mouse){
-    for(let letter of letters){
-      const left=letter.offsetLeft + letter.offsetWidth/2;
-      const rot=mouse!==undefined?Math.round((mouse - left + scrolled) / Math.min(w,1300) * 90):0;
-      letter.style.fontVariationSettings=`"HROT" ${rot}, "VROT" var(--vrot)`;
-    }
-  }
+
   section.addEventListener('scroll',function(){
-    scrolled=section.scrollLeft;
+    section.dataset.scrolled=section.scrollLeft;
   })
 
   section.addEventListener('mousemove',function(){
-    setLetters(event.clientX);
+    let proportionY=(event.pageY - section.offsetTop)/scrollerHeight
+    setScrollerLetters(event.clientX,proportionY,letters,section);
     //mobile issue: 120 is half the height of the scroller on desktop
-    section.style.setProperty('--vrot',((event.pageY - section.offsetTop) - 120)/240 * 30);
+
+
   })
 
   section.addEventListener('mouseleave',function(){
-    setLetters();
+    setScrollerLetters(undefined,0.5,letters,section);
   })
 
 });
+
+
+function setScrollerLetters(clientX,proportionY,letters,section){
+  for(let letter of letters){
+    const left=letter.offsetLeft + letter.offsetWidth/2;
+    const rot=clientX!==undefined?Math.round((clientX - left + parseInt(section.dataset.scrolled)) / Math.min(w,1300) * 90):0;
+    letter.style.fontVariationSettings=`"HROT" ${rot}, "VROT" var(--vrot)`;
+  }
+
+  section.style.setProperty('--vrot',(proportionY - 0.5) * 30);
+}
+
 
 function setPageWidth(){
   w=window.innerWidth;
@@ -303,10 +320,43 @@ function initPage(){
 
   if(isMobile.matches){
 
+
+    let options = {
+      rootMargin: '0px',
+      threshold: 1.0
+    }
+
+
+    let observer = new IntersectionObserver(callback, {root:null,rootMargin: '0px'});
+
+    let query=document.querySelectorAll('.hero, .sign, .highlight .glyph, .scroller');
+
+    query.forEach((element) => {
+      observer.observe(element);
+    });
+
+    function callback(entries){
+      entries.forEach((entry) => {
+        entry.target.dataset.visible=entry.intersectionRatio>0?"true":"false";
+      });
+      setElementPositions();
+
+    }
+
+
+    // console.log(query);
+
+
     const dimensions={
       w:window.innerWidth,
       h:window.innerHeight
     }
+
+    let client={
+      x:dimensions.w/2,
+      y:dimensions.h/2,
+    }
+
 
     document.querySelector('#tilt-control-wrapper').style.height=dimensions.h;
 
@@ -322,33 +372,43 @@ function initPage(){
       dragging=false;
     })
 
+    function setElementPositions(){
+      let pos={
+        x:client.x/dimensions.w,
+        y:client.y/dimensions.h
+      }
+
+      control.style.left=pos.x*100+'%';
+      control.style.top=client.y+'px';
+
+      hrot=(pos.x - 0.5)*90;
+      vrot=(pos.y - 0.5)*90;
+
+      document.querySelectorAll('.sign[data-visible="true"]').forEach((sign) => {
+        tiltSign(sign);
+
+      });
+
+      document.querySelectorAll('.highlight .glyph[data-visible="true"]').forEach((glyph) => {
+        tiltHighlight(glyph,hrot,vrot);
+      });
+
+      document.querySelectorAll('.scroller[data-visible="true"]').forEach((section) => {
+        setScrollerLetters(client.x,pos.y,scrollerLetters[parseInt(section.dataset.ind)],section);
+        // tiltHighlight(glyph,hrot,vrot);
+      });
+
+      
+      tiltHero(hrot,vrot,0,0);
+    }
+
+
     document.body.addEventListener('touchmove',function(){
 
       if(dragging){
-        // event.preventDefault();
-        let pos={
-          x:event.touches[0].clientX/dimensions.w,
-          y:event.touches[0].clientY/dimensions.h
-        }
-
-        control.style.left=pos.x*100+'%';
-        control.style.top=event.touches[0].clientY+'px';
-
-        hrot=(pos.x - 0.5)*90;
-        vrot=(pos.y - 0.5)*90;
-
-        document.querySelectorAll('.sign').forEach((sign) => {
-          tiltSign(sign);
-
-        });
-
-        document.querySelectorAll('.glyph').forEach((glyph) => {
-          tiltHighlight(glyph,hrot,vrot);
-        });
-
-        tiltHero(hrot,vrot,0,0);
-
-        // console.log(pos.x,pos.y);
+        client.x=event.touches[0].clientX;
+        client.y=event.touches[0].clientY;
+        setElementPositions();
       }
 
     })

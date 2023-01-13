@@ -118,7 +118,7 @@ p {
 nav, section.subnav {
   width: 100%;
   position: fixed;
-  z-index: 9999;
+  z-index: 999;
   height: $unit * 6;
   border-bottom: 1px solid;
   background: var(--bg);
@@ -1590,7 +1590,7 @@ section.tester.exact-track{
   width:100vw;
   height:100vh;
   display:none;
-  z-index:200;
+  z-index:1000;
   pointer-events:none;
 
   @media(hover:none){
@@ -1599,6 +1599,13 @@ section.tester.exact-track{
   }
 
 
+}
+
+
+@media(hover:none){
+  section.hero svg{
+    display:none;
+  }
 }
 
 #tilt-control{
@@ -1614,6 +1621,7 @@ section.tester.exact-track{
   background-color: white;
   border:1px solid black;
   box-shadow: 5px 5px 14px 0px rgba(0, 0, 0, 0.47);
+
 }
 
 
