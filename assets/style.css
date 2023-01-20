@@ -436,6 +436,7 @@ section.scroller {
   }
   section.scroller span {
     display: inline-block;
+    transition: font-variation-settings 0.3s;
   }
   section.scroller span:last-of-type {
     display: inline-block;
