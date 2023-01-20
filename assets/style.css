@@ -434,6 +434,9 @@ section.scroller {
     font-size: 120px;
     line-height: 128px;
   }
+  section.scroller span {
+    display: inline-block;
+  }
   section.scroller span:last-of-type {
     display: inline-block;
   }

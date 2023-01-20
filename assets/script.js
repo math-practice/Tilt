@@ -286,10 +286,63 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
   section.innerText='';
   section.dataset.scrolled=0;
   section.dataset.ind=i;
-  // section.style.overflow="hidden";
-  // console.log(section.querySelector('span'))
+  let sectionW=section.offsetWidth
 
-  // section.style.overflow="hidden";
+  let letterObserver=new IntersectionObserver(updateLetter,{
+    root:section,
+    rootMargin:`0px -${section.offsetWidth/2}px 0px ${section.scrollWidth*2}px`,
+    threshold: [0.0,1]
+  })
+
+  function updateLetter(entries){
+    for(let entry of entries){
+      console.log(entry.target.innerText)
+      // let box=entry.intersectionRect;
+      if(!entry.isIntersecting){
+        entry.target.style.fontVariationSettings=`"HROT" 45, "VROT" 0`;
+
+      }else if(entry.intersectionRect.width<entry.boundingClientRect.width){
+        entry.target.style.fontVariationSettings=`"HROT" 0, "VROT" 0`;
+      }else{
+        entry.target.style.fontVariationSettings=`"HROT" -45, "VROT" 0`;
+      }
+      // let xRatio=entry.intersectionRect.width/entry.boundingClientRect.width;
+      // if(xRatio>0&&xRatio<1&&entry.intersectionRect.x>0){
+      //   console.log(xRatio)
+      //   entry.target.style.fontVariationSettings=`"HROT" 0, "VROT" 0`;
+      // }else{
+      //
+      //   entry.target.style.fontVariationSettings=`"HROT" -45, "VROT" 0`;
+      // }
+
+
+      // if(entry.boundingClientRect.left<=section.offsetWidth/2){
+      //   entry.target.style.fontVariationSettings=`"HROT" -45, "VROT" 0`;
+      // }else{
+      //   console.log(entry);
+      //   entry.target.style.fontVariationSettings=`"HROT" 45, "VROT" 0`;
+      // }
+
+      // else if(entry.intersectionRect.x>0&&entry.intersectionRatio<1){
+      //   console.log(entry.intersectionRatio)
+      //   entry.target.style.fontVariationSettings=`"HROT" 0, "VROT" 0`;
+      // }else{
+      //   entry.target.style.fontVariationSettings=`"HROT" 45, "VROT" 0`;
+      // }
+
+
+
+      // if(entry.intersectionRect.x>0){
+      //   if(entry.intersectionRatio<1){
+      //
+      //   }
+      // }else{
+      //
+      // }
+
+    }
+  }
+
 
   scrollerLetters.push([])
   let letters=scrollerLetters[i];
@@ -298,16 +351,14 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
     letter.innerText=str[i];
     letters.push(letter);
     section.appendChild(letter);
+    if(isMobile.matches) letterObserver.observe(letter);
   }
   // console.log(section.querySelector('span'))
   section.dataset.scrolldist=section.scrollWidth/2;
-  if(isMobile.matches) section.style.fontVariationSettings=`"HROT" ${90 * ((section.dataset.scrolled)/section.dataset.scrolldist - 0.5)}, "VROT" 0`;
+
 
   section.addEventListener('scroll',function(){
     section.dataset.scrolled=section.scrollLeft;
-    if(isMobile.matches){
-      section.style.fontVariationSettings=`"HROT" ${90 * ((section.dataset.scrolled)/section.dataset.scrolldist - 0.5)}, "VROT" 0`;
-    }
   })
 
   if(!isMobile.matches){
@@ -324,8 +375,6 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
       setScrollerLetters(undefined,0.5,letters,section);
 
     })
-  }else{
-    //calc scroll width of container and set up movement
   }
 
 
