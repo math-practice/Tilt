@@ -7,11 +7,6 @@
   <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 <body>
-  <div id="facecam">
-    <video width="400" height="300"  preload="auto" loop playsinline autoplay></video>
-    <canvas width="400" height="300"></canvas>
-  </div>
-
   <nav>
     <h1><a href="#">Tilt</a></h1>
     <ul class="primary">
@@ -30,8 +25,8 @@
   <div id="control-svg-wrapper">
     <div class="svg-wrap">
       <svg height="100vh" width="100vw">
-        <circle class="circle_2" cx="0" cy="0" r="10"></circle>
         <line class="line_1" x1="0" y1="0" x2="0" y2="0"></line>
+        <circle class="circle_2" cx="0" cy="0" r="10"></circle>
       </svg>
     </div>
   </div>
@@ -43,15 +38,31 @@
   </div>
 
   <section class="hero step" data-type="hero">
+    <div id="facecam">
+      <video width="400" height="300"  preload="auto" loop playsinline autoplay></video>
+      <svg viewBox="0 0 400 300">
+        <polyline id="face_1" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+        <polyline id="face_2" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+        <polyline id="face_3" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+        <polyline id="face_4" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+        <polyline id="face_5" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+        <polyline id="face_6" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+        <polyline id="face_7" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+        <polyline id="face_8" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+        <polyline id="face_9" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+        <polyline id="face_10" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+        <polyline id="face_11" points="0,0 0,0" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
 
     <div class="hero-text">
       <span class="char-0">N</span><span class="char-1">P</span><span class="char-2">W</span>
     </div>
     <div class="hrot">Horizontal Rotation: <span class="hrot_val">0.00°</span></div>
     <div class="vrot">Vertical Rotation: <span class="vrot_val">0.00°</span></div>
-    <svg height="100vh" width="100vw">
-      <circle class="circle_1" cx="-50" cy="-50" r="8"></circle>
+    <svg height="100vh" width="100vw" id="needle">
       <line class="line_1" x1="0" y1="0" x2="0" y2="0"></line>
+      <circle class="circle_1" cx="-50" cy="-50" r="8"></circle>
     </svg>
 
     <!-- <span class="chars char-0 neon">N</span><span class="chars char-1 prism">P</span><span class="chars char-2 warp">W</span>

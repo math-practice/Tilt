@@ -90,26 +90,44 @@ button {
 }
 
 :root {
-  --bg:#efeeee;
+  --bg:white;
 }
 
 #facecam {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   pointer-events: none;
-  mix-blend-mode: multiply;
-  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+}
+#facecam svg {
+  opacity: 0;
+  position: absolute;
+  transform: scaleX(-1) translateY(-65%);
+  top: 50%;
+  left: 0;
+}
+#facecam svg polyline {
+  stroke: black;
+  fill: none;
+}
+#facecam video {
+  opacity: 0;
+}
+#facecam canvas {
+  width: 100%;
 }
 #facecam video, #facecam canvas {
+  transform: translate(-50%, -60%) scaleX(-1);
   position: absolute;
-  top: 50vh;
-  left: 50vw;
-  transform: translate(-50%, -50%) rotateY(180deg);
+  top: 50%;
+  left: 50%;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 48px;
 }
 
 /* Typographic defaults -------------------------------- */
@@ -288,6 +306,7 @@ section.subnav ul .github {
 }
 
 section.hero {
+  position: relative;
   padding-top: 48px;
   text-align: center;
   font-size: 45vw;
@@ -317,7 +336,7 @@ section.hero {
   section.hero .char-2 {
     display: block;
   }
-  section.hero svg {
+  section.hero > svg {
     display: none;
   }
 }
@@ -377,18 +396,25 @@ section.hero .hrot, section.hero .vrot {
 section.hero .vrot {
   left: 200px;
 }
-section.hero svg {
+section.hero > svg {
   position: absolute;
   top: 0;
   left: 0;
   pointer-events: none;
+  opacity: 0;
 }
 section.hero svg line {
-  stroke: #fff;
+  stroke: black;
   stroke-width: 1;
 }
 section.hero svg circle {
   fill: #fff;
+  stroke: black;
+  stroke-width: 1;
+}
+
+section.hero:hover svg {
+  opacity: 1;
 }
 
 section.scroller {
@@ -398,13 +424,23 @@ section.scroller {
   font-size: 216px;
   line-height: 240px;
   overflow-y: hidden;
+  overflow-x: scroll;
   white-space: nowrap;
   padding: 0 24px;
+  font-variation-settings: "HROT" 0, "VROT" 0;
 }
 @media (max-width: 599px) {
   section.scroller {
     font-size: 120px;
     line-height: 128px;
+  }
+  section.scroller span:last-of-type {
+    display: inline-block;
+  }
+  section.scroller span:last-of-type::after {
+    margin-left: 40px;
+    width: 100px;
+    display: inline-block;
   }
 }
 
@@ -1060,7 +1096,7 @@ section.signs .bowery-savings p.bowery .arc-16 {
 section.signs .bowery-savings p.bowery .arc-17 {
   left: -1.6763888889%;
   top: 34.44%;
-  transform: rotate(94.11deg);
+  transform: rotate(57.11deg);
 }
 section.signs .bowery-savings p.bowery .arc-18 {
   left: -3.0875%;
@@ -1688,6 +1724,8 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
 }
 
 #control-svg-wrapper {
+  display: none;
+  mix-blend-mode: multiply;
   z-index: 1000;
   pointer-events: none;
   position: fixed;
@@ -1695,15 +1733,22 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   left: 0;
   width: 100vw;
   height: 100vh;
-  mix-blend-mode: overlay;
+}
+@media (hover: none) {
+  #control-svg-wrapper {
+    display: block;
+  }
 }
 #control-svg-wrapper svg line {
   stroke-linecap: round;
-  stroke: white;
-  stroke-width: 3px;
+  stroke: black;
+  stroke-width: 1px;
 }
 #control-svg-wrapper svg circle {
+  display: none;
   fill: white;
+  stroke: black;
+  stroke: 1px;
 }
 
 @media (hover: none) {
@@ -1722,6 +1767,7 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   height: 48px;
   border-radius: 50%;
   background-color: white;
+  border: 1px solid black;
 }
 
 h2.big {

@@ -132,6 +132,7 @@ function getRotationDegrees(obj) {
 $('.open-glyphs-table').click(function(event){
   event.preventDefault();
   $(this).closest('section').next(".glyphs-table").slideToggle();
+  $(this).closest('section').next(".glyphs-table").get(0).scrollIntoView({behavior:'smooth'});
 });
 
 
@@ -285,6 +286,10 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
   section.innerText='';
   section.dataset.scrolled=0;
   section.dataset.ind=i;
+  // section.style.overflow="hidden";
+  // console.log(section.querySelector('span'))
+
+  // section.style.overflow="hidden";
 
   scrollerLetters.push([])
   let letters=scrollerLetters[i];
@@ -294,25 +299,36 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
     letters.push(letter);
     section.appendChild(letter);
   }
-
+  // console.log(section.querySelector('span'))
+  section.dataset.scrolldist=section.scrollWidth/2;
+  if(isMobile.matches) section.style.fontVariationSettings=`"HROT" ${90 * ((section.dataset.scrolled)/section.dataset.scrolldist - 0.5)}, "VROT" 0`;
 
   section.addEventListener('scroll',function(){
     section.dataset.scrolled=section.scrollLeft;
+    if(isMobile.matches){
+      section.style.fontVariationSettings=`"HROT" ${90 * ((section.dataset.scrolled)/section.dataset.scrolldist - 0.5)}, "VROT" 0`;
+    }
   })
 
-  section.addEventListener('mousemove',function(){
-    let proportionY=(event.pageY - section.offsetTop)/scrollerHeight
-    setScrollerLetters(event.clientX,proportionY,letters,section);
+  if(!isMobile.matches){
+    section.addEventListener('mousemove',function(){
+      let proportionY=(event.pageY - section.offsetTop)/scrollerHeight
+      setScrollerLetters(event.clientX,proportionY,letters,section);
 
-    //mobile issue: 120 is half the height of the scroller on desktop
+      //mobile issue: 120 is half the height of the scroller on desktop
 
 
-  })
+    })
 
-  section.addEventListener('mouseleave',function(){
-    setScrollerLetters(undefined,0.5,letters,section);
+    section.addEventListener('mouseleave',function(){
+      setScrollerLetters(undefined,0.5,letters,section);
 
-  })
+    })
+  }else{
+    //calc scroll width of container and set up movement
+  }
+
+
 
 });
 
@@ -321,10 +337,10 @@ function setScrollerLetters(clientX,proportionY,letters,section){
   for(let letter of letters){
     const left=letter.offsetLeft + letter.offsetWidth/2;
     const rot=clientX!==undefined?Math.round((clientX - left + parseInt(section.dataset.scrolled)) / Math.min(w,1300) * 90):0;
-    letter.style.fontVariationSettings=`"HROT" ${rot}, "VROT" var(--vrot)`;
+    letter.style.fontVariationSettings=`"HROT" ${rot}, "VROT" ${(proportionY - 0.5) * 30}`;
   }
 
-  section.style.setProperty('--vrot',(proportionY - 0.5) * 30);
+  // section.style.setProperty('--vrot',(proportionY - 0.5) * 30);
 }
 
 
@@ -354,7 +370,7 @@ function trackElementsInView(){
     entries.forEach((entry) => {
       entry.target.dataset.visible=entry.intersectionRatio>0?"true":"false";
     });
-    if(isMobile.matches) setElementPositions();
+    // if(isMobile.matches) setElementPositions();
 
   }
 }
@@ -398,7 +414,9 @@ function initPage(){
         client.y=event.touches[0].clientY;
         pos.x=client.x/w;
         pos.y=client.y/h;
-        setElementPositions();
+        control.style.left=pos.x*100+'%';
+        control.style.top=client.y+'px';
+        // setElementPositions();
       }
 
     })
@@ -409,8 +427,8 @@ function initPage(){
 
 function setElementPositions(){
 
-  control.style.left=pos.x*100+'%';
-  control.style.top=client.y+'px';
+  // control.style.left=pos.x*100+'%';
+  // control.style.top=client.y+'px';
 
   hrot=(pos.x - 0.5)*90;
   vrot=(pos.y - 0.5)*90;
@@ -528,6 +546,8 @@ function drawLines(x, y){
 
 document.querySelector('.camera').addEventListener('click',function(){
   window.scroll({top:0,left:0,behavior:'smooth'});
+  document.querySelector('#facecam svg').style.opacity=1;
+  document.querySelector('#needle').style.opacity=0;
   initFaceCam();
 });
 
