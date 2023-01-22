@@ -1456,8 +1456,14 @@ section.information {
     }
   }
 }
+
+.open-glyphs-table{
+  cursor:pointer;
+}
 section.glyphs-table {
-  display:none;
+  height:0;
+  overflow:hidden;
+  transition:height 0.5s;
   font-size:0;
   border-bottom: none;
   ul{
@@ -1542,6 +1548,14 @@ section.glyphs-table {
         }
       }
     }
+  }
+}
+
+
+section.glyphs-table.open{
+  height:37.5vw;
+  @include for-phone-only{
+    height:150vw;
   }
 }
 

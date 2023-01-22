@@ -1519,8 +1519,14 @@ section.information .highlight .glyph {
   }
 }
 
+.open-glyphs-table {
+  cursor: pointer;
+}
+
 section.glyphs-table {
-  display: none;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s;
   font-size: 0;
   border-bottom: none;
 }
@@ -1592,6 +1598,15 @@ section.glyphs-table ul li.download a:hover p {
     line-height: 3.125vw;
     height: 12.5vw;
     padding: 2.5vw 0;
+  }
+}
+
+section.glyphs-table.open {
+  height: 37.5vw;
+}
+@media (max-width: 599px) {
+  section.glyphs-table.open {
+    height: 150vw;
   }
 }
 
