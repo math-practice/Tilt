@@ -252,6 +252,16 @@ nav, section.subnav {
     }
   }
 }
+
+
+.camera.on{
+  background-color: red;
+  border-radius: 50%;
+  height: 24px;
+  line-height: 0;
+  color: white;
+}
+
 section {
   border-bottom: 1px solid;
   background: var(--bg);
@@ -431,6 +441,14 @@ section.hero {
   // }
 }
 
+
+section.hero.facecam #facecam svg{
+  opacity:1;
+}
+
+section.hero.facecam #needle{
+  opacity:0;
+}
 
 section.hero:hover svg{
   opacity:1;

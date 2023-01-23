@@ -7,16 +7,23 @@ let svg=document.querySelector('#facecam svg');
 // var text = document.querySelector('.text');
 var fontIndex = 1;
 
+let ctrack = new clm.tracker();
+ctrack.init();
 /*********** Setup of video/webcam and checking for webGL support *********/
 
+let drawFrame;
+
+
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
+
 function initFaceCam(){
-  let ctrack;
+
   requestVideoAccess();
 
 
   function requestVideoAccess(){
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-    window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
+
 
     // set up video
     if (navigator.mediaDevices) {
@@ -80,15 +87,14 @@ function initFaceCam(){
   // ---------------------------------------------
 
   function initTracking(){
-    ctrack = new clm.tracker();
-    ctrack.init();
     // start video
     vid.play();
     // start tracking
     ctrack.start(vid);
     trackingStarted = true;
     // start loop to draw face
-    drawLoop();
+    drawFrame=requestAnimFrame(drawLoop);
+    // drawLoop();
   }
 
 
@@ -100,7 +106,7 @@ function initFaceCam(){
 
 
   function drawLoop() {
-    requestAnimFrame(drawLoop);
+    drawFrame=requestAnimFrame(drawLoop);
 
     if (ctrack.getCurrentPosition()) {
 

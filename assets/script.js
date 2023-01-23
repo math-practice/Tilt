@@ -28,6 +28,9 @@ let transformH=0;
 const isMobile=window.matchMedia('(hover:none)');
 const phoneLayout=window.matchMedia('(max-width:599px)');
 
+
+let camMode=false;
+
 let trackingStarted = false;
 
 let scrollerHeight=window.matchMedia('(max-width:599px)').matches?129:240;
@@ -354,7 +357,7 @@ function trackElementsInView(){
   let options = {
     root:null,
     rootMargin: '0px',
-    threshold: [0.0,0.75,0.9,1]
+    threshold: [0.0,0.75,0.9]
   }
 
   let observer = new IntersectionObserver(callback, options);
@@ -371,19 +374,24 @@ function trackElementsInView(){
     entries.forEach((entry) => {
       if(entry.isIntersecting){
         entry.target.dataset.visible="true";
-        // if(entry.intersectionRatio==1){
-        //   entry.target.dataset.control="true";
-        // }else if(entry.intersectionRatio<=0.75){
-        //   entry.target.dataset.control="false"
-        // }
-        let controlRatio=entry.target.classList.contains('hero')?0.75:0.9;
+
+        let hero=entry.target.classList.contains('hero');
+
+        let controlRatio=hero?0.75:0.9;
         // console.log(controlRatio)
         entry.target.dataset.control=entry.intersectionRatio>=controlRatio?"true":"false";
         // if(entry.intersectionRatio==1) entry.target.dataset.control="true";
+        if(hero&&camMode&&entry.intersectionRatio>=0.9){
+          console.log('cam on')
+          toggleCam(true);
+        }else if(hero&&camMode){
+          toggleCam(false);
+        }
 
       }else{
         entry.target.dataset.visible="false";
-        // entry.target.dataset.control="false";
+        entry.target.dataset.control="false";
+
       }
 
     });
@@ -559,13 +567,41 @@ function drawLines(x, y){
 }
 
 //start facecam----------------------------
+let cam=document.querySelector('.camera');
 
-document.querySelector('.camera').addEventListener('click',function(){
-  window.scroll({top:0,left:0,behavior:'smooth'});
-  document.querySelector('#facecam svg').style.opacity=1;
-  document.querySelector('#needle').style.opacity=0;
-  initFaceCam();
+cam.addEventListener('click',function(){
+
+  let turnOn=!cam.classList.contains('on');
+  toggleCam(turnOn);
+  camMode=turnOn;
+  if(turnOn) window.scroll({top:0,left:0,behavior:'smooth'});
+
+
 });
+
+
+function toggleCam(on){
+  if(on){
+
+    document.querySelector('.hero').classList.add('facecam');
+    cam.classList.add('on')
+    ctrack.reset();
+    initFaceCam();
+
+  }else{
+    document.querySelector('.hero').classList.remove('facecam');
+    cam.classList.remove('on')
+    ctrack.stop();
+    trackingStarted=false;
+    vid.srcObject.getTracks()[0].stop();
+    vid.src="";
+    vid.pause();
+    window.cancelAnimationFrame(drawFrame);
+
+
+  }
+
+}
 
 
 //start set-up and resize------------------------
