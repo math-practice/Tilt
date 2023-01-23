@@ -41,6 +41,7 @@ function initFaceCam(){
     vid_width = Math.round(vid_height * proportion);
     vid.width = vid_width;
     svg.setAttribute('viewBox',`0 0 ${vid_width} 300`);
+    svg.style.height=`calc(100vw * ${1/proportion})`;
   }
 
   function gumSuccess( stream ) {
