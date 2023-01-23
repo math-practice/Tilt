@@ -354,7 +354,7 @@ function trackElementsInView(){
   let options = {
     root:null,
     rootMargin: '0px',
-    threshold: [0.0,0.75,1]
+    threshold: [0.0,0.75,0.9,1]
   }
 
   let observer = new IntersectionObserver(callback, options);
@@ -376,7 +376,7 @@ function trackElementsInView(){
         // }else if(entry.intersectionRatio<=0.75){
         //   entry.target.dataset.control="false"
         // }
-        let controlRatio=entry.target.classList.contains('hero')?0.75:1;
+        let controlRatio=entry.target.classList.contains('hero')?0.75:0.9;
         // console.log(controlRatio)
         entry.target.dataset.control=entry.intersectionRatio>=controlRatio?"true":"false";
         // if(entry.intersectionRatio==1) entry.target.dataset.control="true";
