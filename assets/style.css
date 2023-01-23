@@ -429,6 +429,11 @@ section.scroller {
   padding: 0 24px;
   font-variation-settings: "HROT" 0, "VROT" 0;
 }
+@media (hover: none) {
+  section.scroller span {
+    transition: font-variation-settings 0.3s;
+  }
+}
 @media (max-width: 599px) {
   section.scroller {
     font-size: 120px;
@@ -436,7 +441,6 @@ section.scroller {
   }
   section.scroller span {
     display: inline-block;
-    transition: font-variation-settings 0.3s;
   }
   section.scroller span:last-of-type {
     display: inline-block;

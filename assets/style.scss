@@ -448,12 +448,18 @@ section.scroller {
   padding: 0 $unit * 3;
 
   font-variation-settings: "HROT" 0, "VROT" 0;
+  @media(hover:none){
+    span{
+      transition: font-variation-settings 0.3s;
+    }
+  }
+
 
   @include for-phone-only {
     span{
       // line-height: 0;
       display: inline-block;
-      transition: font-variation-settings 0.3s;
+
       // height:40px;
     }
     span:last-of-type{

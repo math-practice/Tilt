@@ -17,10 +17,14 @@ let pos={
 
 const control=document.querySelector('#tilt-control');
 
+let updateFrame;
 
 var maxRotation = 45;
 var minRotation = -45;
-var hrot, vrot, transformW, transformH;
+let hrot=0;
+let vrot=0;
+let transformW=0;
+let transformH=0;
 const isMobile=window.matchMedia('(hover:none)');
 const phoneLayout=window.matchMedia('(max-width:599px)');
 
@@ -110,17 +114,11 @@ function getRotationDegrees(el) {
 
 }
 
-/* ------------------------------------------------------------
-  Other stuff
------------------------------------------------------------- */
+
+//toggle glyph tables -----------------------
 
 document.querySelectorAll('.open-glyphs-table').forEach((button) => {
   let table=document.querySelector(`.glyphs-table[data-id="${button.dataset.id}"]`);
-  // table.
-
-  // 37.5vw height on desktop
-  //150vw on mobile
-
 
   button.addEventListener('click',function(){
     table.classList.toggle('open');
@@ -131,8 +129,7 @@ document.querySelectorAll('.open-glyphs-table').forEach((button) => {
 
 
 
-// 2022 ----------------------------------------
-
+// tester sections -----------------------------
 
 document.querySelectorAll('.tester').forEach((tester) => {
 
@@ -243,6 +240,7 @@ document.querySelectorAll('.tester').forEach((tester) => {
 
 });
 
+// animate glyphs ---------------
 
 document.querySelectorAll('.highlight').forEach((highlight) => {
   let box={
@@ -273,6 +271,7 @@ function tiltHighlight(glyph,hrot,vrot){
 }
 
 
+// scroller sections ----------------------------
 
 document.querySelectorAll('.scroller').forEach((section,i) => {
   let str=section.innerText;
@@ -289,8 +288,6 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
 
   function updateLetter(entries){
     for(let entry of entries){
-      console.log(entry.target.innerText)
-      // let box=entry.intersectionRect;
       if(!entry.isIntersecting){
         entry.target.style.fontVariationSettings=`"HROT" 45, "VROT" 0`;
 
@@ -326,9 +323,6 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
       let proportionY=(event.pageY - section.offsetTop)/scrollerHeight
       setScrollerLetters(event.clientX,proportionY,letters,section);
 
-      //mobile issue: 120 is half the height of the scroller on desktop
-
-
     })
 
     section.addEventListener('mouseleave',function(){
@@ -337,10 +331,7 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
     })
   }
 
-
-
 });
-
 
 function setScrollerLetters(clientX,proportionY,letters,section){
   for(let letter of letters){
@@ -349,7 +340,6 @@ function setScrollerLetters(clientX,proportionY,letters,section){
     letter.style.fontVariationSettings=`"HROT" ${rot}, "VROT" ${(proportionY - 0.5) * 30}`;
   }
 
-  // section.style.setProperty('--vrot',(proportionY - 0.5) * 30);
 }
 
 
@@ -366,10 +356,9 @@ function trackElementsInView(){
     threshold: 1.0
   }
 
-
   let observer = new IntersectionObserver(callback, {root:null,rootMargin: '0px'});
 
-  let query=document.querySelectorAll('.hero, .sign, .highlight .glyph, .scroller');
+  let query=document.querySelectorAll('.hero, .sign, .highlight .glyph');
 
   query.forEach((element) => {
     observer.observe(element);
@@ -379,8 +368,35 @@ function trackElementsInView(){
     entries.forEach((entry) => {
       entry.target.dataset.visible=entry.intersectionRatio>0?"true":"false";
     });
+
+    if(isMobile.matches){
+      window.cancelAnimationFrame(updateFrame);
+      updateFrame=window.requestAnimationFrame(setAllVisible);
+
+    }
+
+
+
+
     // if(isMobile.matches) setElementPositions();
 
+  }
+}
+
+
+function setAllVisible(){
+  let allVisible=Array.from(document.querySelectorAll('div[data-visible="true"],section[data-visible="true"]'));
+  hrot=(pos.x - 0.5)*90;
+  vrot=(pos.y - 0.5)*90;
+  for(let el of allVisible){
+    if(el.classList.contains('sign')){
+
+      tiltSign(el)
+    }else if(el.classList.contains('glyph')){
+      tiltHighlight(el,hrot,vrot)
+    }else{
+      tiltHero(hrot,vrot,client.x,client.y);
+    }
   }
 }
 
@@ -388,82 +404,47 @@ function initPage(){
   setPageSize();
   trackElementsInView();
 
+  if(isMobile.matches) mobileSetUp();
+
+}
+
+
+function mobileSetUp(){
   let dragging=false;
 
-  if(isMobile.matches){
+  const dimensions={
+    w:w,
+    h:h
+  }
 
+  document.querySelector('#tilt-control-wrapper').style.height=dimensions.h;
 
+  control.addEventListener('touchstart',function(){
+    dragging=true;
+  })
+  control.addEventListener('touchend',function(){
+    dragging=false;
+  })
 
-    // console.log(query);
+  document.body.addEventListener('touchmove',function(){
 
+    if(dragging){
+      client.x=event.touches[0].clientX;
+      client.y=event.touches[0].clientY;
+      pos.x=client.x/w;
+      pos.y=client.y/h;
+      control.style.left=pos.x*100+'%';
+      control.style.top=client.y+'px';
 
-    const dimensions={
-      w:w,
-      h:h
+      window.cancelAnimationFrame(updateFrame);
+      updateFrame=window.requestAnimationFrame(setAllVisible);
     }
 
-
-
-    document.querySelector('#tilt-control-wrapper').style.height=dimensions.h;
-
-
-
-    control.addEventListener('touchstart',function(){
-      dragging=true;
-    })
-    control.addEventListener('touchend',function(){
-      dragging=false;
-    })
-
-
-    document.body.addEventListener('touchmove',function(){
-
-      if(dragging){
-        client.x=event.touches[0].clientX;
-        client.y=event.touches[0].clientY;
-        pos.x=client.x/w;
-        pos.y=client.y/h;
-        control.style.left=pos.x*100+'%';
-        control.style.top=client.y+'px';
-        // setElementPositions();
-      }
-
-    })
-
-
-  }
-}
-
-function setElementPositions(){
-
-  // control.style.left=pos.x*100+'%';
-  // control.style.top=client.y+'px';
-
-  hrot=(pos.x - 0.5)*90;
-  vrot=(pos.y - 0.5)*90;
-
-  document.querySelectorAll('.sign[data-visible="true"]').forEach((sign) => {
-    tiltSign(sign);
-
-  });
-
-  document.querySelectorAll('.highlight .glyph[data-visible="true"]').forEach((glyph) => {
-    tiltHighlight(glyph,hrot,vrot);
-  });
-
-  document.querySelectorAll('.scroller[data-visible="true"]').forEach((section) => {
-    setScrollerLetters(client.x,pos.y,scrollerLetters[parseInt(section.dataset.ind)],section);
-    // tiltHighlight(glyph,hrot,vrot);
-  });
-
-
-  tiltHero(hrot,vrot,client.x,client.y);
+  })
 }
 
 
-
-
-//from header protototype-------------------
+//header mouse tracking-------------------
 
 let herotext = document.querySelector('.hero-text');
 
@@ -519,7 +500,6 @@ function updateView(event) {
   tiltHero(hrot,vrot,x,y);
 }
 
-
 function tiltHero(hrot,vrot,x,y){
   herotext.style['font-variation-settings'] = "'HROT' " + hrot + ", 'VROT' " + vrot;
   //write values
@@ -530,7 +510,6 @@ function tiltHero(hrot,vrot,x,y){
 }
 
 document.querySelector('.hero').addEventListener("mouseleave", updateView.bind({leave:true}), false);
-
 
 function drawLines(x, y){
   var dot = document.querySelector('.circle_1');
@@ -550,8 +529,7 @@ function drawLines(x, y){
   }
 }
 
-
-
+//start facecam----------------------------
 
 document.querySelector('.camera').addEventListener('click',function(){
   window.scroll({top:0,left:0,behavior:'smooth'});
@@ -561,10 +539,7 @@ document.querySelector('.camera').addEventListener('click',function(){
 });
 
 
-
-
-
-
+//start set-up and resize------------------------
 
 window.addEventListener('resize',setPageSize)
 window.addEventListener('load',initPage)
