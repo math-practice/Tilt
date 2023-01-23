@@ -119,8 +119,15 @@ function initFaceCam(){
 
       let pointArray=currentPos.map(a=>a.join(','));
 
-      let face1=pointArray.slice(0,15).join(' ');
-      document.querySelector('#face_1').setAttribute('points',face1);
+      // let face1=pointArray.slice(0,15).join(' ');
+      // document.querySelector('#face_1').setAttribute('points',face1);
+
+      // console.log(curr)
+
+      // 62
+
+
+
       let face2=pointArray.slice(15,19).join(' ');
       document.querySelector('#face_2').setAttribute('points',face2);
       let face3=pointArray.slice(19,23).join(' ');
@@ -184,10 +191,20 @@ function initFaceCam(){
       // 13
       // console.log(currentPos);
 
-      let x=Math.abs(1-(currentPos[33][0])/vid_width);
-      let y=(currentPos[33][1])/vid_height;
+
+      let rawX=currentPos[33][0];
+      let rawY=currentPos[62][1] - (currentPos[62][1]-currentPos[33][1])/2;
+
+      let x=Math.abs(1-(rawX)/vid_width);
+      let y=(rawY)/vid_height;
       // console.log(eyeX,eyeY);
 
+
+      let radius=(currentPos[14][0] - currentPos[0][0])/1.5;
+      // console.log(radius)
+      document.querySelector('#bubble').setAttribute('cx',rawX)
+      document.querySelector('#bubble').setAttribute('cy',rawY)
+      document.querySelector('#bubble').setAttribute('r',radius);
 
 
       // console.log(ctrack.getCurrentPosition()[33][0])

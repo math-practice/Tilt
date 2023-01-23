@@ -112,6 +112,10 @@ button {
   stroke: black;
   fill: none;
 }
+#facecam svg circle {
+  stroke: black;
+  fill: white;
+}
 #facecam video {
   opacity: 0;
 }
