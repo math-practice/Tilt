@@ -1791,6 +1791,14 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   border-radius: 50%;
   background-color: white;
   border: 1px solid black;
+  opacity: 0;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s;
+}
+
+#tilt-control.visible {
+  opacity: 1;
+  box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.3);
 }
 
 h2.big {

@@ -352,11 +352,13 @@ function setPageSize(){
 
 function trackElementsInView(){
   let options = {
+    root:null,
     rootMargin: '0px',
-    threshold: 1.0
+    threshold: [0.0,0.75,1]
   }
 
-  let observer = new IntersectionObserver(callback, {root:null,rootMargin: '0px'});
+  let observer = new IntersectionObserver(callback, options);
+
 
   let query=document.querySelectorAll('.hero, .sign, .highlight .glyph');
 
@@ -365,9 +367,33 @@ function trackElementsInView(){
   });
 
   function callback(entries){
+
     entries.forEach((entry) => {
-      entry.target.dataset.visible=entry.intersectionRatio>0?"true":"false";
+      if(entry.isIntersecting){
+        entry.target.dataset.visible="true";
+        // if(entry.intersectionRatio==1){
+        //   entry.target.dataset.control="true";
+        // }else if(entry.intersectionRatio<=0.75){
+        //   entry.target.dataset.control="false"
+        // }
+        let controlRatio=entry.target.classList.contains('hero')?0.75:1;
+        // console.log(controlRatio)
+        entry.target.dataset.control=entry.intersectionRatio>=controlRatio?"true":"false";
+        // if(entry.intersectionRatio==1) entry.target.dataset.control="true";
+
+      }else{
+        entry.target.dataset.visible="false";
+        // entry.target.dataset.control="false";
+      }
+
     });
+
+    if(document.querySelectorAll('div[data-control="true"],section[data-control="true"]').length>0){
+      control.classList.add('visible');
+    }else{
+      control.classList.remove('visible');
+    }
+
 
     if(isMobile.matches){
       window.cancelAnimationFrame(updateFrame);
