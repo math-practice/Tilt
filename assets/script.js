@@ -517,8 +517,11 @@ function drawLines(x, y){
   dot.setAttribute('cy',y);
 
   var dot2 = document.querySelector('.circle_2');
-  dot2.setAttribute('cx',w/2);
-  dot2.setAttribute('cy',isMobile.matches?h/2:herotext.clientHeight/2);
+  if(dot2){
+    dot2.setAttribute('cx',w/2);
+    dot2.setAttribute('cy',isMobile.matches?h/2:herotext.clientHeight/2);
+  }
+
 
   var lines = document.querySelectorAll('.line_1');
   for (i = 0; i < lines.length; ++i) {
