@@ -1761,7 +1761,7 @@ section.tester.exact-track{
 
 
 @media(hover:none){
-  section.hero svg{
+  section.hero svg:not(#facecam svg){
     display:none;
   }
 }

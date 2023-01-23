@@ -575,7 +575,7 @@ cam.addEventListener('click',function(){
   toggleCam(turnOn);
   camMode=turnOn;
   if(turnOn) window.scroll({top:0,left:0,behavior:'smooth'});
-
+  if(!turnOn&&isMobile.matches) tiltHero(hrot,vrot,client.x,client.y);
 
 });
 
