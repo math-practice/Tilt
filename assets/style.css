@@ -1805,6 +1805,8 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   transform: translate(-50%, -50%);
   height: 48px;
   width: 98px;
+  opacity: 0;
+  transition: opacity 0.3s;
   display: flex;
   flex-flow: row nowrap;
   --lid:24px;

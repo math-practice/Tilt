@@ -1788,9 +1788,9 @@ section.tester.exact-track{
   // border-radius:50%;
   // background-color:white;
   // border:1px solid black;
-  // opacity:0;
+  opacity:0;
   // box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
-  // transition:opacity 0.3s;
+  transition:opacity 0.3s;
   display:flex;
   flex-flow:row nowrap;
 

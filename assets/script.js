@@ -19,7 +19,10 @@ let pos={
   y:client.y/h
 }
 
-
+let touchOffset={
+  x:0,
+  y:0
+}
 
 
 const control=document.querySelector('#tilt-control');
@@ -84,15 +87,6 @@ function tiltSign(sign){
     item.style.width= 100-Math.abs(hrot) + "%";
   });
 
-
-
-  // var r = getRotationDegrees(sign);
-  // //r * pi / 180 to return sine wave, then shift the r 90 degrees to get the wave to start from 1 (not 0)
-  // //https://docs.google.com/spreadsheets/d/1L3u8t-3eQaisRTdMZ-T2UWpbDCKLc8AIePK4wCZYsFE/edit#gid=0
-  // var sinShift = Math.sin( r * Math.PI / 180);
-  // var sin = Math.sin( (r + 90) % 360 * Math.PI / 180);
-  // var newHrot = sin * hrot + sinShift * vrot;
-  // var newVrot = sin * vrot + sinShift * hrot;
 
   sign.style.fontVariationSettings="'HROT' " + hrot + ", 'VROT' " + vrot;
 
@@ -289,26 +283,6 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
   section.dataset.scrolled=0;
   section.dataset.ind=i;
   let sectionW=section.offsetWidth
-
-  // let letterObserver=new IntersectionObserver(updateLetter,{
-  //   root:section,
-  //   rootMargin:`0px -${section.offsetWidth/2}px 0px ${section.scrollWidth*2}px`,
-  //   threshold: [0.0,1]
-  // })
-  //
-  // function updateLetter(entries){
-  //   for(let entry of entries){
-  //     if(!entry.isIntersecting){
-  //       entry.target.style.fontVariationSettings=`"HROT" 45, "VROT" 0`;
-  //
-  //     }else if(entry.intersectionRect.width<entry.boundingClientRect.width){
-  //       entry.target.style.fontVariationSettings=`"HROT" 0, "VROT" 0`;
-  //     }else{
-  //       entry.target.style.fontVariationSettings=`"HROT" -45, "VROT" 0`;
-  //     }
-  //
-  //   }
-  // }
 
 
   scrollerLetters.push([])
@@ -564,6 +538,11 @@ function mobileSetUp(){
   document.querySelector('#tilt-control-wrapper').style.height=dimensions.h;
 
   control.addEventListener('touchstart',function(){
+    console.log(event)
+    touchOffset={
+      x:event.touches[0].clientX - control.offsetLeft,
+      y:event.touches[0].clientY - control.offsetTop
+    }
     dragging=true;
   })
   control.addEventListener('touchend',function(){
@@ -574,8 +553,8 @@ function mobileSetUp(){
 
     if(dragging){
 
-      client.x=event.touches[0].clientX;
-      client.y=event.touches[0].clientY;
+      client.x=event.touches[0].clientX - touchOffset.x;
+      client.y=event.touches[0].clientY - touchOffset.y;
       pos.x=client.x/w;
       pos.y=client.y/h;
 
