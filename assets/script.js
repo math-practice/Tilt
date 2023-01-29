@@ -3,7 +3,11 @@
 ------------------------------------------------------------ */
 
 let w = window.innerWidth;
-var h = window.innerHeight;
+let h = window.innerHeight;
+let hypot=Math.hypot(w/2,h/2);
+let prevTime;
+let timeElapsed;
+let dragging=false;
 
 let client={
   x:w/2,
@@ -14,6 +18,9 @@ let pos={
   x:client.x/w,
   y:client.y/h
 }
+
+
+
 
 const control=document.querySelector('#tilt-control');
 
@@ -283,25 +290,25 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
   section.dataset.ind=i;
   let sectionW=section.offsetWidth
 
-  let letterObserver=new IntersectionObserver(updateLetter,{
-    root:section,
-    rootMargin:`0px -${section.offsetWidth/2}px 0px ${section.scrollWidth*2}px`,
-    threshold: [0.0,1]
-  })
-
-  function updateLetter(entries){
-    for(let entry of entries){
-      if(!entry.isIntersecting){
-        entry.target.style.fontVariationSettings=`"HROT" 45, "VROT" 0`;
-
-      }else if(entry.intersectionRect.width<entry.boundingClientRect.width){
-        entry.target.style.fontVariationSettings=`"HROT" 0, "VROT" 0`;
-      }else{
-        entry.target.style.fontVariationSettings=`"HROT" -45, "VROT" 0`;
-      }
-
-    }
-  }
+  // let letterObserver=new IntersectionObserver(updateLetter,{
+  //   root:section,
+  //   rootMargin:`0px -${section.offsetWidth/2}px 0px ${section.scrollWidth*2}px`,
+  //   threshold: [0.0,1]
+  // })
+  //
+  // function updateLetter(entries){
+  //   for(let entry of entries){
+  //     if(!entry.isIntersecting){
+  //       entry.target.style.fontVariationSettings=`"HROT" 45, "VROT" 0`;
+  //
+  //     }else if(entry.intersectionRect.width<entry.boundingClientRect.width){
+  //       entry.target.style.fontVariationSettings=`"HROT" 0, "VROT" 0`;
+  //     }else{
+  //       entry.target.style.fontVariationSettings=`"HROT" -45, "VROT" 0`;
+  //     }
+  //
+  //   }
+  // }
 
 
   scrollerLetters.push([])
@@ -311,7 +318,7 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
     letter.innerText=str[i];
     letters.push(letter);
     section.appendChild(letter);
-    if(isMobile.matches) letterObserver.observe(letter);
+    // if(isMobile.matches) letterObserver.observe(letter);
   }
   // console.log(section.querySelector('span'))
   section.dataset.scrolldist=section.scrollWidth/2;
@@ -348,7 +355,8 @@ function setScrollerLetters(clientX,proportionY,letters,section){
 
 function setPageSize(){
   w=window.innerWidth;
-  h=window.innerHeight
+  h=window.innerHeight;
+  hypot=Math.hypot(w/2,h/2);
 }
 
 
@@ -357,13 +365,13 @@ function trackElementsInView(){
   let options = {
     root:null,
     rootMargin: '0px',
-    threshold: [0.0,0.75,0.9]
+    threshold: [0.0,0.1,0.75,0.9]
   }
 
   let observer = new IntersectionObserver(callback, options);
 
 
-  let query=document.querySelectorAll('.hero, .sign, .highlight .glyph');
+  let query=document.querySelectorAll('.hero, .sign, .highlight .glyph,.scroller');
 
   query.forEach((element) => {
     observer.observe(element);
@@ -377,7 +385,7 @@ function trackElementsInView(){
 
         let hero=entry.target.classList.contains('hero');
 
-        let controlRatio=hero?0.75:0.9;
+        let controlRatio=0.1
         // console.log(controlRatio)
         entry.target.dataset.control=entry.intersectionRatio>=controlRatio?"true":"false";
         // if(entry.intersectionRatio==1) entry.target.dataset.control="true";
@@ -419,6 +427,28 @@ function trackElementsInView(){
 
 
 function setAllVisible(){
+
+
+  //this sets the positions of the eye pupils so they point toward the center
+  //we could also make the hrot/vrot of the letters correspond to this angle,
+  //rather than mapping it directly to position, which might make it feel more natural
+
+  let delta={
+    x:client.x - w/2,
+    y:client.y - h/2
+  }
+  let dist=Math.hypot(delta.x,delta.y)/hypot*50;
+
+  let angle=Math.atan2(delta.x,delta.y)+Math.PI/2;
+  let shift={
+    x:Math.cos(angle) * dist + 50,
+    y:Math.sin(angle) * dist * -1 + 50
+  }
+
+  control.style.setProperty("--pupilx",shift.x+'%');
+  control.style.setProperty("--pupily",shift.y+'%');
+
+
   let allVisible=Array.from(document.querySelectorAll('div[data-visible="true"],section[data-visible="true"]'));
   hrot=(pos.x - 0.5)*90;
   vrot=(pos.y - 0.5)*90;
@@ -428,6 +458,8 @@ function setAllVisible(){
       tiltSign(el)
     }else if(el.classList.contains('glyph')){
       tiltHighlight(el,hrot,vrot)
+    }else if(el.classList.contains('scroller')){
+      setScrollerLetters(client.x,pos.y,scrollerLetters[parseInt(el.dataset.ind)],el)
     }else{
       tiltHero(hrot,vrot,client.x,client.y);
     }
@@ -438,14 +470,92 @@ function initPage(){
   setPageSize();
   trackElementsInView();
 
-  if(isMobile.matches) mobileSetUp();
+  if(isMobile.matches){
+
+
+    window.requestAnimationFrame(spiralAnim);
+    // mobileSetUp();
+    // ^ now called from within animation frame, when animation finishes
+  }
+
+
+
 
 }
 
 
-function mobileSetUp(){
-  let dragging=false;
 
+function spiralAnim(time){
+  if(!prevTime) prevTime=time;
+  timeElapsed=time-prevTime;
+  prevTime=time;
+
+
+  let radius=Math.max(70 - prevTime/40,0);
+  let angle = prevTime/200 -2;
+  // console.log(angle,radius)
+
+
+  // console.log(radius);
+  // control.style.left='50%';
+  // control.style.top=50+radius+'%';
+  let x=50+Math.cos(angle)*radius;
+  let y=50+Math.sin(angle)*radius;
+
+  pos.x=x/100;
+  pos.y=y/100;
+  client.x=pos.x*w;
+  client.y=pos.y*h;
+  setAllVisible();
+
+
+
+  control.style.left=x+'%';
+  control.style.top=y+'%';
+
+
+
+  // console.log(timeElapsed);
+  if(radius>0){
+    window.requestAnimationFrame(spiralAnim);
+  }else{
+    mobileSetUp();
+
+
+    blink();
+
+
+
+
+    // window.setInterval(function(){
+    //
+    //   control.offsetHeight;
+    //   // document.querySelector('.eyelid.top').style.animation="";
+    //   // document.querySelector('.eyelid.bottom').style.animation="";
+    //   //
+    //   // document.querySelector('.eyelid.top').style.animation="0.5s forwards blinkdown ease";
+    //   // document.querySelector('.eyelid.bottom').style.animation="0.5s forwards blinkup ease";
+    //   control.classList.add('blink');
+    //   console.log('blink')
+    // },2000)
+  }
+
+
+}
+
+function blink(){
+  if(!dragging){
+    control.classList.remove('blink');
+    control.offsetHeight;
+    control.classList.add('blink');
+  }
+
+  let randomT=1000+Math.random() * 5000;
+  window.setTimeout(blink,randomT);
+}
+
+
+function mobileSetUp(){
   const dimensions={
     w:w,
     h:h
@@ -463,12 +573,15 @@ function mobileSetUp(){
   document.body.addEventListener('touchmove',function(){
 
     if(dragging){
+
       client.x=event.touches[0].clientX;
       client.y=event.touches[0].clientY;
       pos.x=client.x/w;
       pos.y=client.y/h;
+
       control.style.left=pos.x*100+'%';
       control.style.top=client.y+'px';
+
 
       window.cancelAnimationFrame(updateFrame);
       updateFrame=window.requestAnimationFrame(setAllVisible);
@@ -578,6 +691,9 @@ cam.addEventListener('click',function(){
   if(!turnOn&&isMobile.matches) tiltHero(hrot,vrot,client.x,client.y);
 
 });
+
+
+
 
 
 function toggleCam(on){
