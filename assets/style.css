@@ -94,25 +94,35 @@ button {
 }
 
 #facecam {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+  --w:400px;
+  --h:300px;
+}
+#facecam .svg-wrapper {
+  position: absolute;
+  width: var(--w);
+  height: var(--h);
+  transform: translate(50vw, 50vh);
 }
 #facecam svg {
+  height: 600px;
+  width: 800px;
   opacity: 0;
   position: absolute;
-  transform: scaleX(-1) translateY(-50%);
-  top: 50%;
-  left: 0;
+  transform: translate(-50%, -50%) scaleX(-1);
 }
 #facecam svg polyline {
   stroke: black;
   fill: none;
 }
 #facecam svg circle {
+  stroke-width: 2px;
   stroke: black;
   fill: white;
 }
@@ -425,11 +435,11 @@ section.hero svg circle {
   stroke-width: 1;
 }
 
-section.hero.facecam #facecam svg {
+.facecam #facecam svg {
   opacity: 1;
 }
 
-section.hero.facecam #needle {
+.facecam #needle {
   opacity: 0;
 }
 
@@ -1822,6 +1832,7 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   overflow: hidden;
   margin-right: 2px;
   box-sizing: border-box;
+  z-index: 10;
 }
 #tilt-control .eye .pupil {
   position: absolute;
@@ -1989,6 +2000,12 @@ div.separator {
   background-image: radial-gradient(#000 12.5%, transparent 12.5%), radial-gradient(#000 12.5%, transparent 12.5%);
   background-position: 2px 2px, 8px 8px;
   background-size: 12px 12px;
+}
+
+@media (max-width: 599px) {
+  div.separator.remove-mobile {
+    display: none;
+  }
 }
 
 div.separator.half {

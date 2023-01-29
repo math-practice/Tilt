@@ -363,12 +363,14 @@ function trackElementsInView(){
         // console.log(controlRatio)
         entry.target.dataset.control=entry.intersectionRatio>=controlRatio?"true":"false";
         // if(entry.intersectionRatio==1) entry.target.dataset.control="true";
-        if(hero&&camMode&&entry.intersectionRatio>=0.9){
-          console.log('cam on')
-          toggleCam(true);
-        }else if(hero&&camMode){
-          toggleCam(false);
-        }
+
+
+        // if(hero&&camMode&&entry.intersectionRatio>=0.9){
+        //   console.log('cam on')
+        //   toggleCam(true);
+        // }else if(hero&&camMode){
+        //   toggleCam(false);
+        // }
 
       }else{
         entry.target.dataset.visible="false";
@@ -407,20 +409,25 @@ function setAllVisible(){
   //we could also make the hrot/vrot of the letters correspond to this angle,
   //rather than mapping it directly to position, which might make it feel more natural
 
-  let delta={
-    x:client.x - w/2,
-    y:client.y - h/2
-  }
-  let dist=Math.hypot(delta.x,delta.y)/hypot*50;
+  if(isMobile.matches){
+    let delta={
+      x:client.x - w/2,
+      y:client.y - h/2
+    }
+    let dist=Math.hypot(delta.x,delta.y)/hypot*50;
 
-  let angle=Math.atan2(delta.x,delta.y)+Math.PI/2;
-  let shift={
-    x:Math.cos(angle) * dist + 50,
-    y:Math.sin(angle) * dist * -1 + 50
+    let angle=Math.atan2(delta.x,delta.y)+Math.PI/2;
+    let shift={
+      x:Math.cos(angle) * dist + 50,
+      y:Math.sin(angle) * dist * -1 + 50
+    }
+
+    control.style.setProperty("--pupilx",shift.x+'%');
+    control.style.setProperty("--pupily",shift.y+'%');
   }
 
-  control.style.setProperty("--pupilx",shift.x+'%');
-  control.style.setProperty("--pupily",shift.y+'%');
+
+  
 
 
   let allVisible=Array.from(document.querySelectorAll('div[data-visible="true"],section[data-visible="true"]'));
@@ -538,7 +545,6 @@ function mobileSetUp(){
   document.querySelector('#tilt-control-wrapper').style.height=dimensions.h;
 
   control.addEventListener('touchstart',function(){
-    console.log(event)
     touchOffset={
       x:event.touches[0].clientX - control.offsetLeft,
       y:event.touches[0].clientY - control.offsetTop
@@ -678,13 +684,13 @@ cam.addEventListener('click',function(){
 function toggleCam(on){
   if(on){
 
-    document.querySelector('.hero').classList.add('facecam');
+    document.body.classList.add('facecam');
     cam.classList.add('on')
     ctrack.reset();
     initFaceCam();
 
   }else{
-    document.querySelector('.hero').classList.remove('facecam');
+    document.body.classList.remove('facecam');
     cam.classList.remove('on')
     ctrack.stop();
     trackingStarted=false;

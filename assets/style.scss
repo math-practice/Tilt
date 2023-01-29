@@ -63,26 +63,41 @@ button{
 
 
 #facecam{
-  position:absolute;
+  position:fixed;
   top:0;
   left:0;
   pointer-events: none;
-  width:100%;
-  height:100%;
+  width:100vw;
+  height:100vh;
+  z-index:2000;
+
+  --w:400px;
+  --h:300px;
+
+  .svg-wrapper{
+    position:absolute;
+    width:var(--w);
+    height:var(--h);
+    // top:50%;
+    // left:50%;
+    transform:translate(50vw,50vh);
+  }
+
 
   svg{
+    // width:600px;
+    height:600px;
+    width:800px;
     opacity:0;
     position:absolute;
-    transform:scaleX(-1) translateY(-50%);
-    top:50%;
-    left:0;
-
+    transform:translate(-50%,-50%) scaleX(-1);
     polyline{
       stroke:black;
       fill:none;
     }
 
     circle{
+      stroke-width:2px;
       stroke:black;
       fill:white;
     }
@@ -447,11 +462,11 @@ section.hero {
 }
 
 
-section.hero.facecam #facecam svg{
+.facecam #facecam svg{
   opacity:1;
 }
 
-section.hero.facecam #needle{
+.facecam #needle{
   opacity:0;
 }
 
@@ -1809,7 +1824,7 @@ section.tester.exact-track{
     overflow:hidden;
     margin-right:2px;
     box-sizing: border-box;
-
+    z-index:10;
     .pupil{
       position:absolute;
       top:50%;
@@ -1994,6 +2009,12 @@ div.separator {
   height: $unit * 12;
   border-bottom: 1px solid;
   @include polka_dot;
+}
+
+div.separator.remove-mobile{
+  @include for-phone-only{
+    display:none;
+  }
 }
 
 div.separator.half{

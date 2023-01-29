@@ -3,6 +3,7 @@ var vid_width = vid.width;
 var vid_height = vid.height;
 
 let svg=document.querySelector('#facecam svg');
+let svgWrapper=document.querySelector('#facecam .svg-wrapper');
 
 // var text = document.querySelector('.text');
 var fontIndex = 1;
@@ -40,8 +41,14 @@ function initFaceCam(){
     var proportion = vid.videoWidth/vid.videoHeight;
     vid_width = Math.round(vid_height * proportion);
     vid.width = vid_width;
-    svg.setAttribute('viewBox',`0 0 ${vid_width} 300`);
-    svg.style.height=`calc(100vw * ${1/proportion})`;
+    // svg.setAttribute('viewBox',`0 0 ${vid_width} 1000`);
+    let svgWidth=800;
+    let svgHeight=svgWidth/proportion;
+    svg.setAttribute('height',svgHeight);
+    svg.setAttribute('viewBox',`-${svgWidth/4} -${svgHeight/4} ${svgWidth} ${svgHeight}`);
+
+    // svg.setAttribute('height',800*);
+    // svg.style.height=``;
   }
 
   function gumSuccess( stream ) {
@@ -207,18 +214,26 @@ function initFaceCam(){
       document.querySelector('#bubble').setAttribute('r',radius);
 
 
-      // console.log(ctrack.getCurrentPosition()[33][0])
-      // console.log("HROT: " + vrot + " VROT: " + hrot + " (eyeX:" + eyeX + ", eyeY:" + eyeY +")");
+      svgWrapper.style.transform=`translate(${x*100}vw,${y*100}vh)`;
 
 
-      // drawLines(eyeX * w, eyeY * herotext.clientHeight);
 
+
+      // CONTROL WHOLE PAGE -------------------
+      // pos.x=x;
+      // pos.y=y;
+      // client.x=pos.x*w;
+      // client.y=pos.y*h;
+      // setAllVisible();
+      // --------------------------------------
+
+      // CONTROL TOP ONLY ---------------------
       let hrot=(x - 0.5)*90*2;
       let vrot=(y - 0.5)*90*2;
       tiltHero(hrot,vrot,x*w,y*herotext.clientHeight);
+      // --------------------------------------
 
-      // console.log(client);
-      // setElementPositions();
+
 
 
     }
