@@ -432,10 +432,6 @@ function trackElementsInView(){
     }
 
 
-
-
-    // if(isMobile.matches) setElementPositions();
-
   }
 }
 
@@ -443,11 +439,10 @@ function trackElementsInView(){
 function setAllVisible(){
 
 
-  //this sets the positions of the eye pupils so they point toward the center
-  //we could also make the hrot/vrot of the letters correspond to this angle,
-  //rather than mapping it directly to position, which might make it feel more natural
-
   if(isMobile.matches){
+    //this sets the positions of the eye pupils so they point toward the center
+    //we could also make the hrot/vrot of the letters correspond to this angle,
+    //rather than mapping it directly to position, which might make it feel more natural
     let delta={
       x:client.x - w/2,
       y:client.y - h/2
@@ -471,9 +466,10 @@ function setAllVisible(){
   let allVisible=Array.from(document.querySelectorAll('div[data-visible="true"],section[data-visible="true"]'));
   hrot=(pos.x - 0.5)*90;
   vrot=(pos.y - 0.5)*90;
+  transformW = (80 - Math.abs(hrot)) / 100;
+  transformH = (80 - Math.abs(vrot)) / 100;
   for(let el of allVisible){
     if(el.classList.contains('sign')){
-
       tiltSign(el)
     }else if(el.classList.contains('glyph')){
       tiltHighlight(el,hrot,vrot)
