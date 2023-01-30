@@ -214,7 +214,7 @@ function initFaceCam(){
       document.querySelector('#bubble').setAttribute('r',radius);
 
 
-      svgWrapper.style.transform=`translate(${x*100}vw,${y*100}vh)`;
+      svgWrapper.style.transform=`translate(${x*100}vw,${y*facecamHeight}px)`;
 
 
 

@@ -94,26 +94,30 @@ button {
 }
 
 #facecam {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   pointer-events: none;
   width: 100vw;
-  height: 100vh;
-  z-index: 2000;
+  height: 100%;
   --w:400px;
   --h:300px;
 }
 #facecam .svg-wrapper {
   position: absolute;
+  top: 0;
+  left: 0;
   width: var(--w);
   height: var(--h);
   transform: translate(50vw, 50vh);
 }
 #facecam svg {
+  top: 0;
+  left: 0;
   height: 600px;
   width: 800px;
   opacity: 0;
+  transition: opacity 0.3s;
   position: absolute;
   transform: translate(-50%, -50%) scaleX(-1);
 }
@@ -304,8 +308,20 @@ nav .tertiary .camera, section.subnav .tertiary .camera {
   height: 24px;
   line-height: 0;
   color: white;
+  animation: 1s flashing forwards infinite;
 }
 
+@keyframes flashing {
+  0% {
+    background-color: rgba(255, 0, 0, 0.2);
+  }
+  50% {
+    background-color: rgb(255, 0, 0);
+  }
+  100% {
+    background-color: rgba(255, 0, 0, 0.2);
+  }
+}
 section {
   border-bottom: 1px solid;
   background: var(--bg);

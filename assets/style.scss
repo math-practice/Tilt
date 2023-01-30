@@ -63,19 +63,21 @@ button{
 
 
 #facecam{
-  position:fixed;
+  position:absolute;
   top:0;
   left:0;
   pointer-events: none;
   width:100vw;
-  height:100vh;
-  z-index:2000;
+  height:100%;
+  // z-index:2000;
 
   --w:400px;
   --h:300px;
 
   .svg-wrapper{
     position:absolute;
+    top:0;
+    left:0;
     width:var(--w);
     height:var(--h);
     // top:50%;
@@ -86,9 +88,12 @@ button{
 
   svg{
     // width:600px;
+    top:0;
+    left:0;
     height:600px;
     width:800px;
     opacity:0;
+    transition:opacity 0.3s;
     position:absolute;
     transform:translate(-50%,-50%) scaleX(-1);
     polyline{
@@ -280,7 +285,27 @@ nav, section.subnav {
   height: 24px;
   line-height: 0;
   color: white;
+  animation: 1s flashing forwards infinite;
 }
+
+@keyframes flashing {
+  0%{
+    // color: black;
+    background-color:rgba(255, 0, 0,0.2);
+  }
+
+  50%{
+    // color:white;
+    background-color: rgba(255, 0, 0,1);
+  }
+
+  100%{
+    // color:black;
+    background-color: rgba(255, 0, 0,0.2);
+  }
+}
+
+
 
 section {
   border-bottom: 1px solid;

@@ -4,6 +4,7 @@
 
 let w = window.innerWidth;
 let h = window.innerHeight;
+let facecamHeight=document.querySelector('#facecam').offsetHeight;
 let hypot=Math.hypot(w/2,h/2);
 let prevTime;
 let timeElapsed;
@@ -146,12 +147,16 @@ document.querySelectorAll('.tester').forEach((tester) => {
   let current={x:60,y:119};
   let exactTrack=false;
 
+  let animStartTime=0;
+
 
   tester.addEventListener('mouseenter',function(){
     mousePos={
       x:event.pageX,
       y:event.offsetY
     }
+    animStartTime=performance.now();
+    prevTime=animStartTime;
     startHoverAnimate()
   }
   );
@@ -159,6 +164,8 @@ document.querySelectorAll('.tester').forEach((tester) => {
   tester.addEventListener('mouseleave',function(){
     hovered=false;
     exactTrack=false;
+    animStartTime=performance.now();
+    prevTime=animStartTime;
     tester.classList.remove('exact-track');
   })
 
@@ -172,8 +179,16 @@ document.querySelectorAll('.tester').forEach((tester) => {
 
   tester.addEventListener('mousemove',function(){
     if(!event.target.classList.contains('slider')){
+      if(!hovered){
+        animStartTime=performance.now();
+        prevTime=animStartTime;
+      }
       startHoverAnimate();
     } else{
+      if(hovered){
+        animStartTime=performance.now();
+        prevTime=animStartTime;
+      }
       hovered=false;
       exactTrack=false;
       tester.classList.remove('exact-track');
@@ -191,8 +206,9 @@ document.querySelectorAll('.tester').forEach((tester) => {
   let ibeam=tester.querySelector('.moving');
 
 
-  function moveIbeam(){
-    const incr=40;
+  function moveIbeam(time){
+
+    let incr=40;
     const target=hovered?mousePos:{x:60,y:119};
     const delta={
       x:target.x - current.x,
@@ -200,6 +216,21 @@ document.querySelectorAll('.tester').forEach((tester) => {
     };
 
     if(!exactTrack){
+
+      let timeElapsed=time - animStartTime
+      let timeBetween=time-prevTime;
+      prevTime=time;
+      let remainingTime=Math.max(150-(timeElapsed),0);
+      let remainingDist=Math.hypot(delta.x,delta.y);
+
+      incr=remainingDist/remainingTime*timeBetween;
+      console.log('remaining time:',
+      remainingTime,
+      'remaining distance:',remainingDist,
+      'incr:',incr,
+      'time between:',timeBetween);
+
+
       const angle=Math.atan(delta.y/delta.x);
       const shift={
         x:Math.cos(angle) * incr,
@@ -211,16 +242,22 @@ document.querySelectorAll('.tester').forEach((tester) => {
 
       current.x+=Math.abs(delta.x)>Math.abs(shift.x)?shift.x:delta.x;
       current.y+=Math.abs(delta.y)>Math.abs(shift.y)?shift.y:delta.y;
+      // console.log(time - animStartTime);
     }else{
       current.x=mousePos.x;
       current.y=mousePos.y;
+
     }
 
 
     ibeam.style.left=current.x+'px';
     ibeam.style.top=current.y+'px';
-    // (delta.x==0)&&(delta.y==0)&&
-    if(hovered){
+
+
+
+    if((delta.x==0)&&(delta.y==0)&&hovered){
+      // to animate in, add this to conditional
+      // (delta.x==0)&&(delta.y==0)&&
       exactTrack=true;
       tester.classList.add('exact-track');
     }
@@ -330,6 +367,7 @@ function setScrollerLetters(clientX,proportionY,letters,section){
 function setPageSize(){
   w=window.innerWidth;
   h=window.innerHeight;
+  facecamHeight=document.querySelector('#facecam').offsetHeight;
   hypot=Math.hypot(w/2,h/2);
 }
 
@@ -365,12 +403,12 @@ function trackElementsInView(){
         // if(entry.intersectionRatio==1) entry.target.dataset.control="true";
 
 
-        // if(hero&&camMode&&entry.intersectionRatio>=0.9){
-        //   console.log('cam on')
-        //   toggleCam(true);
-        // }else if(hero&&camMode){
-        //   toggleCam(false);
-        // }
+        if(hero&&camMode&&entry.intersectionRatio>=0.9){
+          // console.log('cam on')
+          toggleCam(true);
+        }else if(hero&&camMode){
+          toggleCam(false);
+        }
 
       }else{
         entry.target.dataset.visible="false";
@@ -427,7 +465,7 @@ function setAllVisible(){
   }
 
 
-  
+
 
 
   let allVisible=Array.from(document.querySelectorAll('div[data-visible="true"],section[data-visible="true"]'));
@@ -496,29 +534,13 @@ function spiralAnim(time){
 
 
 
-  // console.log(timeElapsed);
   if(radius>0){
     window.requestAnimationFrame(spiralAnim);
   }else{
     mobileSetUp();
 
-
     blink();
 
-
-
-
-    // window.setInterval(function(){
-    //
-    //   control.offsetHeight;
-    //   // document.querySelector('.eyelid.top').style.animation="";
-    //   // document.querySelector('.eyelid.bottom').style.animation="";
-    //   //
-    //   // document.querySelector('.eyelid.top').style.animation="0.5s forwards blinkdown ease";
-    //   // document.querySelector('.eyelid.bottom').style.animation="0.5s forwards blinkup ease";
-    //   control.classList.add('blink');
-    //   console.log('blink')
-    // },2000)
   }
 
 
