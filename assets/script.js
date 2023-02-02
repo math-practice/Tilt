@@ -178,7 +178,7 @@ document.querySelectorAll('.tester').forEach((tester) => {
   }
 
   tester.addEventListener('mousemove',function(){
-    if(!event.target.classList.contains('slider')){
+    if(!event.target.classList.contains('slider')&&!event.target.classList.contains('slider-wrapper')){
       if(!hovered){
         animStartTime=performance.now();
         prevTime=animStartTime;
@@ -224,11 +224,7 @@ document.querySelectorAll('.tester').forEach((tester) => {
       let remainingDist=Math.hypot(delta.x,delta.y);
 
       incr=remainingDist/remainingTime*timeBetween;
-      console.log('remaining time:',
-      remainingTime,
-      'remaining distance:',remainingDist,
-      'incr:',incr,
-      'time between:',timeBetween);
+
 
 
       const angle=Math.atan(delta.y/delta.x);

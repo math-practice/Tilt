@@ -1804,6 +1804,10 @@ section.tester.exact-track{
   }
 }
 
+.no-pointer{
+  pointer-events: none;
+}
+
 
 @media(hover:none){
   section.hero svg:not(#facecam svg){
@@ -1930,7 +1934,9 @@ section.tester.exact-track{
 }
 
 
-
+.facecam #tilt-control.visible{
+  opacity:0;
+}
 
 
 

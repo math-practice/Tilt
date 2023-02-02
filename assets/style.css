@@ -1815,6 +1815,10 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   stroke: 1px;
 }
 
+.no-pointer {
+  pointer-events: none;
+}
+
 @media (hover: none) {
   section.hero svg:not(#facecam svg) {
     display: none;
@@ -1913,6 +1917,10 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
 }
 #tilt-control.visible {
   opacity: 1;
+}
+
+.facecam #tilt-control.visible {
+  opacity: 0;
 }
 
 h2.big {
