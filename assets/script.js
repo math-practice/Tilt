@@ -379,7 +379,8 @@ function trackElementsInView(){
   let observer = new IntersectionObserver(callback, options);
 
 
-  let query=document.querySelectorAll('.hero, .sign, .highlight .glyph,.scroller');
+  // let query=document.querySelectorAll('.hero, .sign, .highlight .glyph,.scroller');
+  let query=document.querySelectorAll('.hero, .sign, .highlight .glyph');
 
   query.forEach((element) => {
     observer.observe(element);
