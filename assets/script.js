@@ -342,10 +342,10 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
 
     })
 
-    section.addEventListener('mouseleave',function(){
-      setScrollerLetters(undefined,0.5,letters,section);
+    // section.addEventListener('mouseleave',function(){
+    //   setScrollerLetters(undefined,0.5,letters,section);
 
-    })
+    // })
   }
 
 });
@@ -440,20 +440,20 @@ function setAllVisible(){
     //this sets the positions of the eye pupils so they point toward the center
     //we could also make the hrot/vrot of the letters correspond to this angle,
     //rather than mapping it directly to position, which might make it feel more natural
-    let delta={
-      x:client.x - w/2,
-      y:client.y - h/2
-    }
-    let dist=Math.hypot(delta.x,delta.y)/hypot*50;
+    // let delta={
+    //   x:client.x - w/2,
+    //   y:client.y - h/2
+    // }
+    // let dist=Math.hypot(delta.x,delta.y)/hypot*50;
 
-    let angle=Math.atan2(delta.x,delta.y)+Math.PI/2;
-    let shift={
-      x:Math.cos(angle) * dist + 50,
-      y:Math.sin(angle) * dist * -1 + 50
-    }
+    // let angle=Math.atan2(delta.x,delta.y)+Math.PI/2;
+    // let shift={
+    //   x:Math.cos(angle) * dist + 50,
+    //   y:Math.sin(angle) * dist * -1 + 50
+    // }
 
-    control.style.setProperty("--pupilx",shift.x+'%');
-    control.style.setProperty("--pupily",shift.y+'%');
+    // control.style.setProperty("--pupilx",shift.x+'%');
+    // control.style.setProperty("--pupily",shift.y+'%');
   }
 
 
@@ -484,8 +484,9 @@ function initPage(){
 
   if(isMobile.matches){
 
-
-    window.requestAnimationFrame(spiralAnim);
+    mobileSetUp();
+    
+    // window.requestAnimationFrame(spiralAnim);
     // mobileSetUp();
     // ^ now called from within animation frame, when animation finishes
   }
@@ -539,15 +540,15 @@ function spiralAnim(time){
 
 }
 
-function blink(){
+function jiggle(){
   if(!dragging){
-    control.classList.remove('blink');
+    control.classList.remove('jiggle');
     control.offsetHeight;
-    control.classList.add('blink');
+    control.classList.add('jiggle');
   }
 
   let randomT=1000+Math.random() * 5000;
-  window.setTimeout(blink,randomT);
+  window.setTimeout(jiggle,randomT);
 }
 
 
@@ -588,6 +589,8 @@ function mobileSetUp(){
     }
 
   })
+
+  jiggle();
 }
 
 

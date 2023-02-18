@@ -84,6 +84,11 @@ button{
     transform:translate(50vw,50vh);
     mix-blend-mode: difference;
     --stroke-color:white;
+    @media(hover:none){
+      mix-blend-mode: normal;
+    --stroke-color:black;
+    }
+
   }
 
 
@@ -100,10 +105,10 @@ button{
     polyline{
       stroke:var(--stroke-color);
       fill:none;
-      stroke-dasharray: 0px 8px;
-      stroke-dashoffset: 2px;
-      stroke-width: 2.5px;
-      stroke-linecap: round;
+      // stroke-dasharray: 0px 8px;
+      // stroke-dashoffset: 2px;
+      // stroke-width: 2.5px;
+      // stroke-linecap: round;
     }
 
     circle{
@@ -430,6 +435,7 @@ section.hero {
     left:0;
     pointer-events:none;
     opacity:0;
+    transition:opacity 0.2s;
   }
   svg line {
     stroke:black;
@@ -1783,99 +1789,40 @@ section.tester.exact-track{
   touch-action: none;
   pointer-events:all;
   position:absolute;
-  --pupilx:50%;
-  --pupily:50%;
-  top:120%;
-  left:120%;
+
+  top:50%;
+  left:50%;
   transform:translate(-50%,-50%);
   height:48px;
-  width:98px;
+  width:48px;
+  background-color: white;
+  border-radius: 50%;
+  border:1px solid black;
 
-  // width:48px;
-  // height:48px;
-  // border-radius:50%;
-  // background-color:white;
-  // border:1px solid black;
   opacity:0;
-  // box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+
   transition:opacity 0.3s;
   display:flex;
   flex-flow:row nowrap;
-
-  --lid:24px;
-  filter: drop-shadow(rgba(0, 0, 0, 0.3) 46px 76px 9px);
-  // animation: blink 1s forward infinite;
-
-  .eye{
-    position:relative;
-    border:1px solid black;
-    background-color: white;
-    width:48px;
-    min-width:48px;
-    height:48px;
-    border-radius:50%;
-    overflow:hidden;
-    margin-right:2px;
-    box-sizing: border-box;
-    z-index:10;
-    .pupil{
-      position:absolute;
-      top:50%;
-      left:var(--pupilx);
-      top:var(--pupily);
-      // left:clamp(20%,calc(100% - var(--pupilx)),80%);
-      // top:clamp(20%,calc(100% - var(--pupily)),80%);
-      width:22px;
-      height:22px;
-      border-radius: 50%;
-      background-color: black;
-      transform:translate(-50%,-50%);
-      z-index:1;
-    }
-
-    .eyelid{
-      background-color: white;
-      width:100%;
-      height:50%;
-      position:absolute;
-      left:0;
-      z-index:2;
-    }
-    .eyelid.top{
-      top:0;
-      border-bottom:1px solid black;
-      transform:translateY(-24px);
-
-    }
-    .eyelid.bottom{
-      top:22px;
-      transform:translateY(24px);
-      height:26px;
-      border-top:1px solid black;
-    }
-  }
-
 }
 
-#tilt-control.blink{
-  .eyelid.top{
-    animation: 0.5s forwards blinkdown ease;
-  }
-  .eyelid.bottom{
-    animation: 0.5s forwards blinkup ease;
-  }
+#tilt-control.jiggle{
+  animation: 0.5s forwards jiggle ease;
 }
 
 
-@keyframes blinkdown {
+@keyframes jiggle {
   0%{
-    transform:translateY(-24px);
+    transform:translate(-50%,-50%) translateY(0px);
   }
-  50% {
-    transform:translateY(0px);
+  25% {
+    transform:translate(-50%,-50%) translateY(20px);
+  }
+  75%{
+    transform:translate(-50%,-50%) translateY(-20px);
   }
   100%{
-    transform:translateY(-24px);
+    transform:translate(-50%,-50%) translateY(0px);
   }
 }
 
