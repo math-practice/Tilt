@@ -40,8 +40,8 @@ function initFaceCam(){
     var proportion = vid.videoWidth/vid.videoHeight;
     vid_width = Math.round(vid_height * proportion);
     vid.width = vid_width;
-    let svgWidth=400;
-    let svgHeight=svgWidth/proportion;
+    let svgWidth=vid_width;
+    let svgHeight=vid_height;
     // svg.setAttribute('height',svgHeight);
     // svg.setAttribute('viewBox',`-${svgWidth/4} -${svgHeight/4} ${svgWidth} ${svgHeight}`);
     svg.setAttribute('viewBox',`0 0 ${svgWidth} ${svgHeight}`);
