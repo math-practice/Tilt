@@ -100,26 +100,6 @@ function tiltSign(sign){
 
 
 
-function getRotationDegrees(el) {
-  // https://stackoverflow.com/questions/19574171/how-to-get-css-transform-rotation-value-in-degrees-with-javascript/54492696#54492696
-
-  var st = window.getComputedStyle(el, null);
-  var tm = st.getPropertyValue("-webkit-transform") ||
-           st.getPropertyValue("-moz-transform") ||
-           st.getPropertyValue("-ms-transform") ||
-           st.getPropertyValue("-o-transform") ||
-           st.getPropertyValue("transform") ||
-           "none";
-  if (tm != "none") {
-    var values = tm.split('(')[1].split(')')[0].split(',');
-    var angle = Math.round(Math.atan2(values[1],values[0]) * (180/Math.PI));
-    return (angle < 0 ? angle + 360 : angle); //adding 360 degrees here when angle < 0 is equivalent to adding (2 * Math.PI) radians before
-  }
-  return 0;
-
-}
-
-
 //toggle glyph tables -----------------------
 
 document.querySelectorAll('.open-glyphs-table').forEach((button) => {
@@ -584,6 +564,7 @@ function mobileSetUp(){
       control.style.top=client.y+'px';
 
 
+
       window.cancelAnimationFrame(updateFrame);
       updateFrame=window.requestAnimationFrame(setAllVisible);
     }
@@ -673,7 +654,7 @@ function drawLines(x, y){
   }
 
 
-  var lines = document.querySelectorAll('.line_1');
+  var lines = document.querySelectorAll('#needle .line_1');
   for (i = 0; i < lines.length; ++i) {
     lines[i].setAttribute('x1',w/2);
     lines[i].setAttribute('y1',isMobile.matches?h/2:herotext.clientHeight/2);

@@ -105,29 +105,25 @@ button {
 }
 #facecam .svg-wrapper {
   position: absolute;
-  top: 0;
+  top: 40%;
   left: 0;
-  width: var(--w);
-  height: var(--h);
-  transform: translate(50vw, 50vh);
+  width: 100%;
   mix-blend-mode: difference;
   --stroke-color:white;
 }
-@media (hover: none) {
+@media (max-width: 599px) {
   #facecam .svg-wrapper {
-    mix-blend-mode: normal;
-    --stroke-color:black;
+    left: 50%;
   }
 }
 #facecam svg {
   top: 0;
   left: 0;
-  height: 1200px;
-  width: 1600px;
+  width: 100%;
   opacity: 0;
   transition: opacity 0.3s;
   position: absolute;
-  transform: translate(-50%, -50%) scaleX(-1);
+  transform: scaleX(-1) translateY(-50%);
 }
 #facecam svg polyline {
   stroke: var(--stroke-color);
@@ -137,6 +133,12 @@ button {
   stroke-width: 2px;
   stroke: black;
   fill: white;
+}
+@media (max-width: 599px) {
+  #facecam svg {
+    width: 180%;
+    transform: scaleX(-1) translate(50%, -50%);
+  }
 }
 #facecam video {
   opacity: 0;
@@ -1801,17 +1803,6 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   #control-svg-wrapper {
     display: block;
   }
-}
-#control-svg-wrapper svg line {
-  stroke-linecap: round;
-  stroke: black;
-  stroke-width: 1px;
-}
-#control-svg-wrapper svg circle {
-  display: none;
-  fill: white;
-  stroke: black;
-  stroke: 1px;
 }
 
 .no-pointer {

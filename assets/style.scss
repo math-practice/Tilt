@@ -75,18 +75,18 @@ button{
   --h:300px;
 
   .svg-wrapper{
+    // margin-top: 48px;
     position:absolute;
-    top:0;
+    top:40%;
     left:0;
-    width:var(--w);
-    height:var(--h);
- 
-    transform:translate(50vw,50vh);
+    // width:var(--w);
+    // height:var(--h);
+    width:100%;
+    // transform:translate(50vw,50vh);
     mix-blend-mode: difference;
     --stroke-color:white;
-    @media(hover:none){
-      mix-blend-mode: normal;
-    --stroke-color:black;
+    @include for-phone-only{
+      left:50%;
     }
 
   }
@@ -96,12 +96,14 @@ button{
     // width:600px;
     top:0;
     left:0;
-    height:1200px;
-    width:1600px;
+    // height:1200px;
+    // width:1600px;
+
+    width:100%;
     opacity:0;
     transition:opacity 0.3s;
     position:absolute;
-    transform:translate(-50%,-50%) scaleX(-1);
+    transform:scaleX(-1) translateY(-50%);
     polyline{
       stroke:var(--stroke-color);
       fill:none;
@@ -116,7 +118,14 @@ button{
       stroke:black;
       fill:white;
     }
+    @include for-phone-only{
+      width:180%;
+      transform:scaleX(-1) translate(50%,-50%);
+    }
+
   }
+
+  
 
   video{
     opacity:0;
@@ -1754,20 +1763,7 @@ section.tester.exact-track{
   left:0;
   width:100vw;
   height:100vh;
-  svg{
-    line{
-      stroke-linecap:round;
-      stroke:black;
-      stroke-width:1px;
-    }
-
-    circle{
-      display:none;
-      fill:white;
-      stroke:black;
-      stroke:1px;
-    }
-  }
+  
 }
 
 .no-pointer{

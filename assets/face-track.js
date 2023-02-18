@@ -42,7 +42,7 @@ function initFaceCam(){
     vid.width = vid_width;
     let svgWidth=400;
     let svgHeight=svgWidth/proportion;
-    svg.setAttribute('height',svgHeight);
+    // svg.setAttribute('height',svgHeight);
     // svg.setAttribute('viewBox',`-${svgWidth/4} -${svgHeight/4} ${svgWidth} ${svgHeight}`);
     svg.setAttribute('viewBox',`0 0 ${svgWidth} ${svgHeight}`);
 
@@ -179,7 +179,7 @@ function initFaceCam(){
 
 
 
-      svgWrapper.style.transform=`translate(${x*100}vw,${y*facecamHeight}px)`;
+      // svgWrapper.style.transform=`translate(${x*100}vw,${y*facecamHeight}px)`;
 
 
 
