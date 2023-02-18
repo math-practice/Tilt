@@ -110,20 +110,26 @@ button {
   width: var(--w);
   height: var(--h);
   transform: translate(50vw, 50vh);
+  mix-blend-mode: difference;
+  --stroke-color:white;
 }
 #facecam svg {
   top: 0;
   left: 0;
-  height: 600px;
-  width: 800px;
+  height: 1200px;
+  width: 1600px;
   opacity: 0;
   transition: opacity 0.3s;
   position: absolute;
   transform: translate(-50%, -50%) scaleX(-1);
 }
 #facecam svg polyline {
-  stroke: black;
+  stroke: var(--stroke-color);
   fill: none;
+  stroke-dasharray: 0px 8px;
+  stroke-dashoffset: 2px;
+  stroke-width: 2.5px;
+  stroke-linecap: round;
 }
 #facecam svg circle {
   stroke-width: 2px;
@@ -485,6 +491,7 @@ section.scroller {
 .hero-text {
   height: 100%;
   white-space: nowrap;
+  color: black;
 }
 
 section.signs .anchor {

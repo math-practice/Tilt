@@ -5,7 +5,6 @@ var vid_height = vid.height;
 let svg=document.querySelector('#facecam svg');
 let svgWrapper=document.querySelector('#facecam .svg-wrapper');
 
-// var text = document.querySelector('.text');
 var fontIndex = 1;
 
 let ctrack = new clm.tracker();
@@ -41,14 +40,12 @@ function initFaceCam(){
     var proportion = vid.videoWidth/vid.videoHeight;
     vid_width = Math.round(vid_height * proportion);
     vid.width = vid_width;
-    // svg.setAttribute('viewBox',`0 0 ${vid_width} 1000`);
-    let svgWidth=800;
+    let svgWidth=400;
     let svgHeight=svgWidth/proportion;
     svg.setAttribute('height',svgHeight);
-    svg.setAttribute('viewBox',`-${svgWidth/4} -${svgHeight/4} ${svgWidth} ${svgHeight}`);
+    // svg.setAttribute('viewBox',`-${svgWidth/4} -${svgHeight/4} ${svgWidth} ${svgHeight}`);
+    svg.setAttribute('viewBox',`0 0 ${svgWidth} ${svgHeight}`);
 
-    // svg.setAttribute('height',800*);
-    // svg.style.height=``;
   }
 
   function gumSuccess( stream ) {
@@ -85,13 +82,6 @@ function initFaceCam(){
 
 
 
-
-
-  // vid.addEventListener('canplay', function(){
-  //
-  // });
-
-
   // ---------------------------------------------
 
   function initTracking(){
@@ -126,12 +116,6 @@ function initFaceCam(){
 
       let pointArray=currentPos.map(a=>a.join(','));
 
-      // let face1=pointArray.slice(0,15).join(' ');
-      // document.querySelector('#face_1').setAttribute('points',face1);
-
-      // console.log(curr)
-
-      // 62
 
 
 
@@ -157,10 +141,8 @@ function initFaceCam(){
       let face7=[
         pointArray[33],
         pointArray[62],
-        // currentPos[37][0]+','+currentPos[42][1]
       ].join(' ');
 
-      // pointArray.slice(33,45)
       document.querySelector('#face_6').setAttribute('points',face6);
       document.querySelector('#face_7').setAttribute('points',face7);
 
@@ -185,18 +167,6 @@ function initFaceCam(){
       ].join(' ');
       document.querySelector('#face_10').setAttribute('points',face10);
 
-      // pointArray.length-1
-      // .join(' ');
-      // console.log(points);
-      // svg.querySelector('polyline').points=points;
-
-
-
-
-
-
-      // 13
-      // console.log(currentPos);
 
 
       let rawX=currentPos[33][0];
@@ -204,14 +174,9 @@ function initFaceCam(){
 
       let x=Math.abs(1-(rawX)/vid_width);
       let y=(rawY)/vid_height;
-      // console.log(eyeX,eyeY);
 
 
-      let radius=(currentPos[14][0] - currentPos[0][0])/1.5;
-      // console.log(radius)
-      document.querySelector('#bubble').setAttribute('cx',rawX)
-      document.querySelector('#bubble').setAttribute('cy',rawY)
-      document.querySelector('#bubble').setAttribute('r',radius);
+
 
 
       svgWrapper.style.transform=`translate(${x*100}vw,${y*facecamHeight}px)`;
