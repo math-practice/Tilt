@@ -2026,7 +2026,7 @@ div.separator {
   background-size: 12px 12px;
 }
 
-@media (max-width: 599px) {
+@media (hover: none) {
   div.separator.remove-mobile {
     display: none;
   }

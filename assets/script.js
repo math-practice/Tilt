@@ -656,7 +656,7 @@ function tiltHero(hrot,vrot,x,y){
   drawLines(x, y);
 }
 
-document.querySelector('.hero').addEventListener("mouseleave", updateView.bind({leave:true}), false);
+// document.querySelector('.hero').addEventListener("mouseleave", updateView.bind({leave:true}), false);
 
 function drawLines(x, y){
   var dot = document.querySelector('.circle_1');

@@ -2007,7 +2007,7 @@ div.separator {
 }
 
 div.separator.remove-mobile{
-  @include for-phone-only{
+  @media(hover:none){
     display:none;
   }
 }
