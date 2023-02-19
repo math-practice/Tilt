@@ -564,6 +564,9 @@ section.signs {
       &.xxxl { font-size: 13vw; } // 180px
     }
   }
+  .b1 {
+    border-bottom: 1px solid;
+  }
   .col-half {
     width: $col_width * 3;
   }
@@ -761,10 +764,10 @@ section.signs {
     }
     @include for-phone-only {
 
-
       position:relative;
       width: $col_width * 6;
       height: $col_width * 3;
+      border-top: 1px solid;
       border-right: none;
       border-bottom:none;
       .inner {
@@ -818,7 +821,7 @@ section.signs {
       width: $col_width * 3;
       height: $col_width * 2.7;
       border-right: none;
-      border-bottom: 1px solid;
+      // border-bottom: 1px solid;
       .inner {
         transform-origin: 0 0;
         transform: translate(-50% * 2, -50% * 2) scale(2);
@@ -835,7 +838,7 @@ section.signs {
       width: $col_width * 3;
       height: $col_width * 5.4;
       border-right: 1px solid;
-      border-bottom: 1px solid;
+      // border-bottom: 1px solid;
       .inner {
         // background: yellow;
         transform-origin: 0 0;
@@ -897,7 +900,7 @@ section.signs {
       width: $col_width * 3;
       height: $col_width * 3;
       border-right: 1px solid;
-      border-bottom: 1px solid;
+      border-bottom: 0;
       .inner {
         transform-origin: 0 0;
         transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
@@ -1123,30 +1126,18 @@ section.signs {
       }
     }
     @include for-phone-only {
-
       .break-mobile{
         display:block;
       }
-
       br.remove-mobile{
         display:none;
       }
-
-      p.s{
-        // letter-spacing: -7px;
-      }
-
       p.s,p.m{
         font-size: 12vw;
       }
-
-      // p.m{
-      //   font-size: 10vw;
-      // }
-
-
       width: $col_width * 6;
       height: $col_width * 5;
+      border-top: 1px solid;
       border-right: none;
       border-bottom: 1px solid;
       .inner {
@@ -1204,7 +1195,7 @@ section.signs {
       width: $col_width * 3;
       height: $col_width * 1.5;
       border-right: none;
-      border-bottom: 1px solid;
+      // border-bottom: 1px solid;
       .inner {
         transform-origin: 0 0;
         transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);

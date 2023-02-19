@@ -552,6 +552,9 @@ section.signs .sign p.xxl {
 section.signs .sign p.xxxl {
   font-size: 13vw;
 }
+section.signs .b1 {
+  border-bottom: 1px solid;
+}
 section.signs .col-half {
   width: 50vw;
 }
@@ -751,6 +754,7 @@ section.signs .prosperity .inner .xs .line {
     position: relative;
     width: 100vw;
     height: 50vw;
+    border-top: 1px solid;
     border-right: none;
     border-bottom: none;
   }
@@ -802,7 +806,6 @@ section.signs .key {
     width: 50vw;
     height: 45vw;
     border-right: none;
-    border-bottom: 1px solid;
   }
   section.signs .key .inner {
     transform-origin: 0 0;
@@ -821,7 +824,6 @@ section.signs .four-choices p.dollar {
     width: 50vw;
     height: 90vw;
     border-right: 1px solid;
-    border-bottom: 1px solid;
   }
   section.signs .four-choices .inner {
     transform-origin: 0 0;
@@ -884,7 +886,7 @@ section.signs .thirty p.num {
     width: 50vw;
     height: 50vw;
     border-right: 1px solid;
-    border-bottom: 1px solid;
+    border-bottom: 0;
   }
   section.signs .thirty .inner {
     transform-origin: 0 0;
@@ -1176,6 +1178,7 @@ section.signs .bowery-savings .inner p.save {
   section.signs .bowery-savings {
     width: 100vw;
     height: 83.3333333333vw;
+    border-top: 1px solid;
     border-right: none;
     border-bottom: 1px solid;
   }
@@ -1246,7 +1249,6 @@ section.signs .east {
     width: 50vw;
     height: 25vw;
     border-right: none;
-    border-bottom: 1px solid;
   }
   section.signs .east .inner {
     transform-origin: 0 0;
