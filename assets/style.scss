@@ -767,6 +767,7 @@ section.signs {
       position:relative;
       width: $col_width * 6;
       height: $col_width * 3;
+      padding: $unit * 2 0 ;
       border-top: 1px solid;
       border-right: none;
       border-bottom:none;
@@ -1136,14 +1137,13 @@ section.signs {
         font-size: 12vw;
       }
       width: $col_width * 6;
-      height: $col_width * 5;
+      height: $col_width * 5.25;
       border-top: 1px solid;
       border-right: none;
       border-bottom: 1px solid;
       .inner {
-
         p.save{
-          margin-top: 2.5em;
+          margin-top: 2.75em;
         }
         transform-origin: 0 0;
         // transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
@@ -1658,6 +1658,7 @@ section.tester {
       }
       .slider {
         position: absolute;
+        cursor: pointer;
         height: $unit * 2;
         margin: $unit / 2 0;
         background: transparent;
@@ -1677,8 +1678,18 @@ section.tester {
           width: $unit * 2 - 1;
           background: var(--bg);
           margin-top: - ($unit - 1);
-          border: 1px solid;
+          border: 1px solid #000;
           border-radius: 50%;
+          box-shadow: none;
+          filter: none;
+          &:hover {
+            background-color: #000;
+          }
+          @include for-phone-only {
+            height: $unit * 3 - 1;
+            width: $unit * 3 - 1;
+            margin-top: - ($unit * 1.5 - 1);
+          }
         }
         &::-moz-range-thumb {
           height: $unit * 2;
@@ -1854,6 +1865,7 @@ h2.big {
 }
 
 section.footer {
+  border-bottom: 0;
   .text {
     float:left;
     width: $col_width * 3;
