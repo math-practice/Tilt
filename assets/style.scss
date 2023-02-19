@@ -1556,7 +1556,11 @@ section.glyphs-table {
       p {
        margin: $regular / 12 $unit;
        white-space: nowrap;
-       overflow: hidden;
+       
+      }
+
+      p.glyph-name{
+        overflow: hidden;
        text-overflow: ellipsis;
       }
       .glyph {

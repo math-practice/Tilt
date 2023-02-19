@@ -1647,6 +1647,8 @@ section.glyphs-table ul li {
 section.glyphs-table ul li p {
   margin: 0.5208333333vw 8px;
   white-space: nowrap;
+}
+section.glyphs-table ul li p.glyph-name {
   overflow: hidden;
   text-overflow: ellipsis;
 }
