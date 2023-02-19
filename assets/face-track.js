@@ -201,6 +201,8 @@ function initFaceCam(){
 
 
 
+    }else{
+      console.log('nothing detected')
     }
   }
 
