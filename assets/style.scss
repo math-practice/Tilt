@@ -88,10 +88,27 @@ button{
     @include for-phone-only{
       left:50%;
     }
-
   }
-
-
+  .alert {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    color: #000;
+    border: 1px solid;
+    border-radius: $font_body;
+    font-size: $font_body;
+    line-height: $font_body;
+    padding: $unit $unit * 1.5 $unit $unit * 2;
+    
+    .dot-dot-dot {
+      text-align: left;
+      display: inline-block;
+      width: 0.9em;
+    }
+  }
+  
   svg{
     // width:600px;
     top:0;

@@ -116,6 +116,24 @@ button {
     left: 50%;
   }
 }
+#facecam .alert {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: #000;
+  border: 1px solid;
+  border-radius: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  padding: 8px 12px 8px 16px;
+}
+#facecam .alert .dot-dot-dot {
+  text-align: left;
+  display: inline-block;
+  width: 0.9em;
+}
 #facecam svg {
   top: 0;
   left: 0;
