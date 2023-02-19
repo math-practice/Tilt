@@ -1790,40 +1790,32 @@ section.tester.exact-track{
   pointer-events:all;
   position:absolute;
 
-  top:50%;
-  left:50%;
+  top: calc(min(140vw, 600px) - 20vw);
+  left:12.5%;
   transform:translate(-50%,-50%);
   height:48px;
   width:48px;
   background-color: white;
   border-radius: 50%;
   border:1px solid black;
-
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, .4);
   opacity:0;
-
   transition:opacity 0.3s;
-  display:flex;
-  flex-flow:row nowrap;
+  margin-top: 0px;
 }
-
 #tilt-control.jiggle{
-  animation: 0.5s forwards jiggle ease;
+  animation: 1s forwards jiggle ease-out;
 }
 
 
 @keyframes jiggle {
-  0%{
-    transform:translate(-50%,-50%) translateY(0px);
-  }
-  25% {
-    transform:translate(-50%,-50%) translateY(20px);
-  }
-  75%{
-    transform:translate(-50%,-50%) translateY(-20px);
-  }
-  100%{
-    transform:translate(-50%,-50%) translateY(0px);
-  }
+  0%   { transform:translate(-50%,-50%) translateY(0px); }
+  15%  { transform:translate(-50%,-50%) translateY(-30px); }
+  30%  { transform:translate(-50%,-50%) translateY(0px); }
+  45%  { transform:translate(-50%,-50%) translateY(-15px); }
+  60% { transform:translate(-50%,-50%) translateY(0px); }
+  75%  { transform:translate(-50%,-50%) translateY(-7px); }
+  90% { transform:translate(-50%,-50%) translateY(0px); }
 }
 
 @keyframes blinkup {

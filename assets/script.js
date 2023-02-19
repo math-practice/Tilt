@@ -527,8 +527,8 @@ function jiggle(){
     control.classList.add('jiggle');
   }
 
-  let randomT=1000+Math.random() * 5000;
-  window.setTimeout(jiggle,randomT);
+  // let randomT=1000+Math.random() * 5000;
+  window.setTimeout(jiggle,4000);
 }
 
 
