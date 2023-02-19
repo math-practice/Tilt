@@ -1596,7 +1596,10 @@ section.glyphs-table ul li {
   line-height: 0.8928571429vw;
 }
 section.glyphs-table ul li p {
-  margin: 0.5208333333vw 0;
+  margin: 0.5208333333vw 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 section.glyphs-table ul li .glyph {
   font-size: 3.125vw;

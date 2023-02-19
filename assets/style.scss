@@ -1539,7 +1539,10 @@ section.glyphs-table {
       font-size: $regular / 7;
       line-height: $regular / 7;
       p {
-       margin: $regular / 12 0;
+       margin: $regular / 12 $unit;
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
       }
       .glyph {
         font-size: $regular / 2;
