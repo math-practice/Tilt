@@ -527,8 +527,8 @@ function jiggle(){
     control.classList.add('jiggle');
   }
 
-  let randomT=1000+Math.random() * 5000;
-  window.setTimeout(jiggle,randomT);
+  // let randomT=1000+Math.random() * 5000;
+  window.setTimeout(jiggle,4000);
 }
 
 
@@ -684,13 +684,13 @@ function toggleCam(on){
   if(on){
 
     document.body.classList.add('facecam');
-    cam.classList.add('on')
+    cam.classList.add('on') 
     ctrack.reset();
     initFaceCam();
 
   }else{
     document.body.classList.remove('facecam');
-    cam.classList.remove('on')
+    cam.classList.remove('on');
     ctrack.stop();
     trackingStarted=false;
     vid.srcObject.getTracks()[0].stop();

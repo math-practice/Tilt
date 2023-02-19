@@ -88,10 +88,27 @@ button{
     @include for-phone-only{
       left:50%;
     }
-
   }
-
-
+  .alert {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    color: #000;
+    border: 1px solid;
+    border-radius: $font_body;
+    font-size: $font_body;
+    line-height: $font_body;
+    padding: $unit $unit * 1.5 $unit $unit * 2;
+    
+    .dot-dot-dot {
+      text-align: left;
+      display: inline-block;
+      width: 0.9em;
+    }
+  }
+  
   svg{
     // width:600px;
     top:0;
@@ -528,7 +545,8 @@ section.signs {
     position: absolute;
     // width: 100px;
     // border-bottom: 1px solid red;
-    margin-top: -$unit * 6 + 1;
+    // margin-top: -$unit * 6 + 1;
+    margin-top: 1px;
   }
   div {
     float:left;
@@ -562,6 +580,9 @@ section.signs {
       &.xxl { font-size: 11.11vw; } // 160px
       &.xxxl { font-size: 13vw; } // 180px
     }
+  }
+  .b1 {
+    border-bottom: 1px solid;
   }
   .col-half {
     width: $col_width * 3;
@@ -760,10 +781,11 @@ section.signs {
     }
     @include for-phone-only {
 
-
       position:relative;
       width: $col_width * 6;
       height: $col_width * 3;
+      padding: $unit * 2 0 ;
+      border-top: 1px solid;
       border-right: none;
       border-bottom:none;
       .inner {
@@ -817,7 +839,7 @@ section.signs {
       width: $col_width * 3;
       height: $col_width * 2.7;
       border-right: none;
-      border-bottom: 1px solid;
+      // border-bottom: 1px solid;
       .inner {
         transform-origin: 0 0;
         transform: translate(-50% * 2, -50% * 2) scale(2);
@@ -834,7 +856,7 @@ section.signs {
       width: $col_width * 3;
       height: $col_width * 5.4;
       border-right: 1px solid;
-      border-bottom: 1px solid;
+      // border-bottom: 1px solid;
       .inner {
         // background: yellow;
         transform-origin: 0 0;
@@ -896,7 +918,7 @@ section.signs {
       width: $col_width * 3;
       height: $col_width * 3;
       border-right: 1px solid;
-      border-bottom: 1px solid;
+      border-bottom: 0;
       .inner {
         transform-origin: 0 0;
         transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
@@ -1122,36 +1144,23 @@ section.signs {
       }
     }
     @include for-phone-only {
-
       .break-mobile{
         display:block;
       }
-
       br.remove-mobile{
         display:none;
       }
-
-      p.s{
-        // letter-spacing: -7px;
-      }
-
       p.s,p.m{
         font-size: 12vw;
       }
-
-      // p.m{
-      //   font-size: 10vw;
-      // }
-
-
       width: $col_width * 6;
-      height: $col_width * 5;
+      height: $col_width * 5.25;
+      border-top: 1px solid;
       border-right: none;
       border-bottom: 1px solid;
       .inner {
-
         p.save{
-          margin-top: 2.5em;
+          margin-top: 2.75em;
         }
         transform-origin: 0 0;
         // transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
@@ -1203,7 +1212,7 @@ section.signs {
       width: $col_width * 3;
       height: $col_width * 1.5;
       border-right: none;
-      border-bottom: 1px solid;
+      // border-bottom: 1px solid;
       .inner {
         transform-origin: 0 0;
         transform: translate(-50% * 2.5, -50% * 2.5) scale(2.5);
@@ -1538,7 +1547,10 @@ section.glyphs-table {
       font-size: $regular / 7;
       line-height: $regular / 7;
       p {
-       margin: $regular / 12 0;
+       margin: $regular / 12 $unit;
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
       }
       .glyph {
         font-size: $regular / 2;
@@ -1663,6 +1675,7 @@ section.tester {
       }
       .slider {
         position: absolute;
+        cursor: pointer;
         height: $unit * 2;
         margin: $unit / 2 0;
         background: transparent;
@@ -1682,8 +1695,18 @@ section.tester {
           width: $unit * 2 - 1;
           background: var(--bg);
           margin-top: - ($unit - 1);
-          border: 1px solid;
+          border: 1px solid #000;
           border-radius: 50%;
+          box-shadow: none;
+          filter: none;
+          &:hover {
+            background-color: #000;
+          }
+          @include for-phone-only {
+            height: $unit * 3 - 1;
+            width: $unit * 3 - 1;
+            margin-top: - ($unit * 1.5 - 1);
+          }
         }
         &::-moz-range-thumb {
           height: $unit * 2;
@@ -1786,40 +1809,32 @@ section.tester.exact-track{
   pointer-events:all;
   position:absolute;
 
-  top:50%;
-  left:50%;
+  top: calc(min(140vw, 600px) - 20vw);
+  left:12.5%;
   transform:translate(-50%,-50%);
   height:48px;
   width:48px;
   background-color: white;
   border-radius: 50%;
   border:1px solid black;
-
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, .4);
   opacity:0;
-
   transition:opacity 0.3s;
-  display:flex;
-  flex-flow:row nowrap;
+  margin-top: 0px;
 }
-
 #tilt-control.jiggle{
-  animation: 0.5s forwards jiggle ease;
+  animation: 1s forwards jiggle ease-out;
 }
 
 
 @keyframes jiggle {
-  0%{
-    transform:translate(-50%,-50%) translateY(0px);
-  }
-  25% {
-    transform:translate(-50%,-50%) translateY(20px);
-  }
-  75%{
-    transform:translate(-50%,-50%) translateY(-20px);
-  }
-  100%{
-    transform:translate(-50%,-50%) translateY(0px);
-  }
+  0%   { transform:translate(-50%,-50%) translateY(0px); }
+  15%  { transform:translate(-50%,-50%) translateY(-30px); }
+  30%  { transform:translate(-50%,-50%) translateY(0px); }
+  45%  { transform:translate(-50%,-50%) translateY(-15px); }
+  60% { transform:translate(-50%,-50%) translateY(0px); }
+  75%  { transform:translate(-50%,-50%) translateY(-7px); }
+  90% { transform:translate(-50%,-50%) translateY(0px); }
 }
 
 @keyframes blinkup {
@@ -1867,6 +1882,7 @@ h2.big {
 }
 
 section.footer {
+  border-bottom: 0;
   .text {
     float:left;
     width: $col_width * 3;

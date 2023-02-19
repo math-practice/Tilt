@@ -74,7 +74,7 @@ function initFaceCam(){
   }
 
   function gumFail(){
-    alert("Enable facecam access to use this feature");
+    alert("Please enable camera access to use this feature");
   }
 
 

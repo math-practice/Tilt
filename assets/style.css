@@ -116,6 +116,24 @@ button {
     left: 50%;
   }
 }
+#facecam .alert {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: #000;
+  border: 1px solid;
+  border-radius: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  padding: 8px 12px 8px 16px;
+}
+#facecam .alert .dot-dot-dot {
+  text-align: left;
+  display: inline-block;
+  width: 0.9em;
+}
 #facecam svg {
   top: 0;
   left: 0;
@@ -501,7 +519,7 @@ section.scroller {
 
 section.signs .anchor {
   position: absolute;
-  margin-top: -47px;
+  margin-top: 1px;
 }
 section.signs div {
   float: left;
@@ -551,6 +569,9 @@ section.signs .sign p.xxl {
 }
 section.signs .sign p.xxxl {
   font-size: 13vw;
+}
+section.signs .b1 {
+  border-bottom: 1px solid;
 }
 section.signs .col-half {
   width: 50vw;
@@ -751,6 +772,8 @@ section.signs .prosperity .inner .xs .line {
     position: relative;
     width: 100vw;
     height: 50vw;
+    padding: 16px 0;
+    border-top: 1px solid;
     border-right: none;
     border-bottom: none;
   }
@@ -802,7 +825,6 @@ section.signs .key {
     width: 50vw;
     height: 45vw;
     border-right: none;
-    border-bottom: 1px solid;
   }
   section.signs .key .inner {
     transform-origin: 0 0;
@@ -821,7 +843,6 @@ section.signs .four-choices p.dollar {
     width: 50vw;
     height: 90vw;
     border-right: 1px solid;
-    border-bottom: 1px solid;
   }
   section.signs .four-choices .inner {
     transform-origin: 0 0;
@@ -884,7 +905,7 @@ section.signs .thirty p.num {
     width: 50vw;
     height: 50vw;
     border-right: 1px solid;
-    border-bottom: 1px solid;
+    border-bottom: 0;
   }
   section.signs .thirty .inner {
     transform-origin: 0 0;
@@ -1175,7 +1196,8 @@ section.signs .bowery-savings .inner p.save {
 @media (max-width: 599px) {
   section.signs .bowery-savings {
     width: 100vw;
-    height: 83.3333333333vw;
+    height: 87.5vw;
+    border-top: 1px solid;
     border-right: none;
     border-bottom: 1px solid;
   }
@@ -1192,7 +1214,7 @@ section.signs .bowery-savings .inner p.save {
     transform-origin: 0 0;
   }
   section.signs .bowery-savings .inner p.save {
-    margin-top: 2.5em;
+    margin-top: 2.75em;
   }
 }
 section.signs .nypl {
@@ -1246,7 +1268,6 @@ section.signs .east {
     width: 50vw;
     height: 25vw;
     border-right: none;
-    border-bottom: 1px solid;
   }
   section.signs .east .inner {
     transform-origin: 0 0;
@@ -1596,7 +1617,10 @@ section.glyphs-table ul li {
   line-height: 0.8928571429vw;
 }
 section.glyphs-table ul li p {
-  margin: 0.5208333333vw 0;
+  margin: 0.5208333333vw 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 section.glyphs-table ul li .glyph {
   font-size: 3.125vw;
@@ -1715,6 +1739,7 @@ section.tester .text .slider-wrapper.vrot .slider {
 }
 section.tester .text .slider-wrapper .slider {
   position: absolute;
+  cursor: pointer;
   height: 16px;
   margin: 4px 0;
   background: transparent;
@@ -1733,8 +1758,20 @@ section.tester .text .slider-wrapper .slider::-webkit-slider-thumb {
   width: 15px;
   background: var(--bg);
   margin-top: -7px;
-  border: 1px solid;
+  border: 1px solid #000;
   border-radius: 50%;
+  box-shadow: none;
+  filter: none;
+}
+section.tester .text .slider-wrapper .slider::-webkit-slider-thumb:hover {
+  background-color: #000;
+}
+@media (max-width: 599px) {
+  section.tester .text .slider-wrapper .slider::-webkit-slider-thumb {
+    height: 23px;
+    width: 23px;
+    margin-top: -11px;
+  }
 }
 section.tester .text .slider-wrapper .slider::-moz-range-thumb {
   height: 16px;
@@ -1821,35 +1858,44 @@ section.tester.exact-track input[type=text], section.tester.exact-track .ibeam {
   touch-action: none;
   pointer-events: all;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: calc(min(140vw, 600px) - 20vw);
+  left: 12.5%;
   transform: translate(-50%, -50%);
   height: 48px;
   width: 48px;
   background-color: white;
   border-radius: 50%;
   border: 1px solid black;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.4);
   opacity: 0;
   transition: opacity 0.3s;
-  display: flex;
-  flex-flow: row nowrap;
+  margin-top: 0px;
 }
 
 #tilt-control.jiggle {
-  animation: 0.5s forwards jiggle ease;
+  animation: 1s forwards jiggle ease-out;
 }
 
 @keyframes jiggle {
   0% {
     transform: translate(-50%, -50%) translateY(0px);
   }
-  25% {
-    transform: translate(-50%, -50%) translateY(20px);
+  15% {
+    transform: translate(-50%, -50%) translateY(-30px);
+  }
+  30% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+  45% {
+    transform: translate(-50%, -50%) translateY(-15px);
+  }
+  60% {
+    transform: translate(-50%, -50%) translateY(0px);
   }
   75% {
-    transform: translate(-50%, -50%) translateY(-20px);
+    transform: translate(-50%, -50%) translateY(-7px);
   }
-  100% {
+  90% {
     transform: translate(-50%, -50%) translateY(0px);
   }
 }
@@ -1884,6 +1930,9 @@ h2.big {
   }
 }
 
+section.footer {
+  border-bottom: 0;
+}
 section.footer .text {
   float: left;
   width: 50vw;
