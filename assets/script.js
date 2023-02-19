@@ -682,7 +682,7 @@ cam.addEventListener('click',function(){
 
 function toggleCam(on){
   if(on){
-
+    document.querySelector('.alert').style.opacity=1;
     document.body.classList.add('facecam');
     cam.classList.add('on') 
     ctrack.reset();

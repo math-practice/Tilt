@@ -128,11 +128,39 @@ button {
   font-size: 18px;
   line-height: 18px;
   padding: 8px 12px 8px 16px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  width: 184px;
+  text-align: left;
 }
 #facecam .alert .dot-dot-dot {
   text-align: left;
   display: inline-block;
+  margin-left: 1px;
   width: 0.9em;
+}
+#facecam .alert span::after {
+  content: "...";
+  display: inline-block;
+  width: 0.9em;
+  animation: 1s linear infinite running dotdotdot;
+}
+@keyframes dotdotdot {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
+  100% {
+    content: "...";
+  }
 }
 #facecam svg {
   top: 0;

@@ -107,6 +107,7 @@ function initFaceCam(){
     drawFrame=requestAnimFrame(drawLoop);
 
     if (ctrack.getCurrentPosition()) {
+      document.querySelector('.alert').style.opacity=0;
 
 
 
@@ -202,6 +203,7 @@ function initFaceCam(){
 
 
     }else{
+      document.querySelector('.alert').style.opacity=1;
       console.log('nothing detected')
     }
   }
