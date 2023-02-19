@@ -13,6 +13,7 @@ ctrack.init();
 
 let drawFrame;
 
+let delay;
 let delayed=false;
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
@@ -107,8 +108,6 @@ function initFaceCam(){
 
   function drawLoop() {
     drawFrame=requestAnimFrame(drawLoop);
-
-    let delay;
 
     if (ctrack.getCurrentPosition()) {
       document.querySelector('.alert').style.opacity=0;

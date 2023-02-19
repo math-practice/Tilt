@@ -634,6 +634,8 @@ function toggleCam(on){
     vid.pause();
     window.cancelAnimationFrame(drawFrame);
     document.querySelector('.alert').style.opacity=0;
+    console.log(delay);
+    clearTimeout(delay);
 
   }
 
