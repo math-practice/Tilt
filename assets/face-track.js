@@ -13,6 +13,7 @@ ctrack.init();
 
 let drawFrame;
 
+let delayed=false;
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
@@ -49,6 +50,7 @@ function initFaceCam(){
   }
 
   function gumSuccess( stream ) {
+    document.querySelector('.alert').style.opacity=1;
     // add camera stream if getUserMedia succeeded
     if ("srcObject" in vid) {
       vid.srcObject = stream;
@@ -106,9 +108,17 @@ function initFaceCam(){
   function drawLoop() {
     drawFrame=requestAnimFrame(drawLoop);
 
+    let delay;
+
     if (ctrack.getCurrentPosition()) {
       document.querySelector('.alert').style.opacity=0;
-
+      
+      console.log(delayed);
+      if(delayed){
+        console.log('clear time out')
+        delayed=false;
+        clearTimeout(delay);
+      } 
 
 
       var maxRotation = 90; //-45 to +45
@@ -183,7 +193,17 @@ function initFaceCam(){
       // --------------------------------------
 
     }else{
-      document.querySelector('.alert').style.opacity=1;
+      if(!delayed){
+        console.log('delaying');
+        delayed=true;
+        
+        delay=setTimeout(function(){
+          delayed=false;
+          document.querySelector('.alert').style.opacity=1;
+        },1000)
+        console.log(delayed)
+      }
+      
     }
   }
 

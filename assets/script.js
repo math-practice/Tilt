@@ -618,7 +618,7 @@ cam.addEventListener('click',function(){
 
 function toggleCam(on){
   if(on){
-    document.querySelector('.alert').style.opacity=1;
+    
     document.body.classList.add('facecam');
     cam.classList.add('on') 
     ctrack.reset();
@@ -633,7 +633,7 @@ function toggleCam(on){
     vid.src="";
     vid.pause();
     window.cancelAnimationFrame(drawFrame);
-
+    document.querySelector('.alert').style.opacity=0;
 
   }
 
