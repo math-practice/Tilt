@@ -176,35 +176,14 @@ function initFaceCam(){
       let x=Math.abs(1-(rawX)/vid_width);
       let y=(rawY)/vid_height;
 
-
-
-
-
-      // svgWrapper.style.transform=`translate(${x*100}vw,${y*facecamHeight}px)`;
-
-
-
-
-      // CONTROL WHOLE PAGE -------------------
-      // pos.x=x;
-      // pos.y=y;
-      // client.x=pos.x*w;
-      // client.y=pos.y*h;
-      // setAllVisible();
-      // --------------------------------------
-
       // CONTROL TOP ONLY ---------------------
       let hrot=(x - 0.5)*90*2;
       let vrot=(y - 0.5)*90*2;
       tiltHero(hrot,vrot,x*w,y*herotext.clientHeight);
       // --------------------------------------
 
-
-
-
     }else{
       document.querySelector('.alert').style.opacity=1;
-      console.log('nothing detected')
     }
   }
 
