@@ -501,7 +501,7 @@ section.scroller {
 
 section.signs .anchor {
   position: absolute;
-  margin-top: -47px;
+  margin-top: 1px;
 }
 section.signs div {
   float: left;
