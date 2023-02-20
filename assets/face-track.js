@@ -13,6 +13,8 @@ ctrack.init();
 
 let drawFrame;
 
+let delay;
+let delayed=false;
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
@@ -49,6 +51,7 @@ function initFaceCam(){
   }
 
   function gumSuccess( stream ) {
+    document.querySelector('.alert').style.opacity=1;
     // add camera stream if getUserMedia succeeded
     if ("srcObject" in vid) {
       vid.srcObject = stream;
@@ -107,7 +110,14 @@ function initFaceCam(){
     drawFrame=requestAnimFrame(drawLoop);
 
     if (ctrack.getCurrentPosition()) {
-
+      document.querySelector('.alert').style.opacity=0;
+      
+      console.log(delayed);
+      if(delayed){
+        console.log('clear time out')
+        delayed=false;
+        clearTimeout(delay);
+      } 
 
 
       var maxRotation = 90; //-45 to +45
@@ -175,32 +185,24 @@ function initFaceCam(){
       let x=Math.abs(1-(rawX)/vid_width);
       let y=(rawY)/vid_height;
 
-
-
-
-
-      // svgWrapper.style.transform=`translate(${x*100}vw,${y*facecamHeight}px)`;
-
-
-
-
-      // CONTROL WHOLE PAGE -------------------
-      // pos.x=x;
-      // pos.y=y;
-      // client.x=pos.x*w;
-      // client.y=pos.y*h;
-      // setAllVisible();
-      // --------------------------------------
-
       // CONTROL TOP ONLY ---------------------
       let hrot=(x - 0.5)*90*2;
       let vrot=(y - 0.5)*90*2;
       tiltHero(hrot,vrot,x*w,y*herotext.clientHeight);
       // --------------------------------------
 
-
-
-
+    }else{
+      if(!delayed){
+        console.log('delaying');
+        delayed=true;
+        
+        delay=setTimeout(function(){
+          delayed=false;
+          document.querySelector('.alert').style.opacity=1;
+        },1000)
+        console.log(delayed)
+      }
+      
     }
   }
 

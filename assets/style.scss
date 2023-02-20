@@ -101,21 +101,52 @@ button{
     font-size: $font_body;
     line-height: $font_body;
     padding: $unit $unit * 1.5 $unit $unit * 2;
+    opacity:0;
+    transition:opacity 0.3s;
+    width:184px;
+    text-align:left;
     
     .dot-dot-dot {
       text-align: left;
       display: inline-block;
+      margin-left:1px;
       width: 0.9em;
+    }
+  }
+
+  .alert span::after{
+    content:'...';
+    display: inline-block;
+    width: 0.9em;
+    animation: 1s linear infinite running dotdotdot;
+  }
+
+  @keyframes dotdotdot{
+    0%{
+      content:'';
+    }
+
+    25%{
+      content:'.';
+    }
+
+    50%{
+      content:'..';
+    }
+
+    75%{
+      content:'...';
+    }
+
+    
+    100%{
+      content:'...';
     }
   }
   
   svg{
-    // width:600px;
     top:0;
     left:0;
-    // height:1200px;
-    // width:1600px;
-
     width:100%;
     opacity:0;
     transition:opacity 0.3s;
@@ -124,10 +155,6 @@ button{
     polyline{
       stroke:var(--stroke-color);
       fill:none;
-      // stroke-dasharray: 0px 8px;
-      // stroke-dashoffset: 2px;
-      // stroke-width: 2.5px;
-      // stroke-linecap: round;
     }
 
     circle{
@@ -154,8 +181,6 @@ button{
 
 
   video,canvas{
-    // width:100%;
-    // transform:translateY(-25%) scaleX(-1);
     transform:translate(-50%,-60%) scaleX(-1);
     position:absolute;
     top:50%;
@@ -319,24 +344,6 @@ nav, section.subnav {
   color: white;
   animation: 1s flashing forwards infinite;
 }
-
-// @keyframes flashing {
-//   0%{
-//     // color: black;
-//     background-color:rgba(255, 0, 0,0.2);
-//   }
-//
-//   50%{
-//     // color:white;
-//     background-color: rgba(255, 0, 0,1);
-//   }
-//
-//   100%{
-//     // color:black;
-//     background-color: rgba(255, 0, 0,0.2);
-//   }
-// }
-
 
 
 section {
@@ -1549,7 +1556,11 @@ section.glyphs-table {
       p {
        margin: $regular / 12 $unit;
        white-space: nowrap;
-       overflow: hidden;
+       
+      }
+
+      p.glyph-name{
+        overflow: hidden;
        text-overflow: ellipsis;
       }
       .glyph {

@@ -218,7 +218,6 @@ document.querySelectorAll('.tester').forEach((tester) => {
 
       current.x+=Math.abs(delta.x)>Math.abs(shift.x)?shift.x:delta.x;
       current.y+=Math.abs(delta.y)>Math.abs(shift.y)?shift.y:delta.y;
-      // console.log(time - animStartTime);
     }else{
       current.x=mousePos.x;
       current.y=mousePos.y;
@@ -232,8 +231,6 @@ document.querySelectorAll('.tester').forEach((tester) => {
 
 
     if((delta.x==0)&&(delta.y==0)&&hovered){
-      // to animate in, add this to conditional
-      // (delta.x==0)&&(delta.y==0)&&
       exactTrack=true;
       tester.classList.add('exact-track');
     }
@@ -305,9 +302,8 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
     letter.innerText=str[i];
     letters.push(letter);
     section.appendChild(letter);
-    // if(isMobile.matches) letterObserver.observe(letter);
   }
-  // console.log(section.querySelector('span'))
+
   section.dataset.scrolldist=section.scrollWidth/2;
 
 
@@ -322,10 +318,7 @@ document.querySelectorAll('.scroller').forEach((section,i) => {
 
     })
 
-    // section.addEventListener('mouseleave',function(){
-    //   setScrollerLetters(undefined,0.5,letters,section);
 
-    // })
   }
 
 });
@@ -359,7 +352,6 @@ function trackElementsInView(){
   let observer = new IntersectionObserver(callback, options);
 
 
-  // let query=document.querySelectorAll('.hero, .sign, .highlight .glyph,.scroller');
   let query=document.querySelectorAll('.hero, .sign, .highlight .glyph');
 
   query.forEach((element) => {
@@ -375,13 +367,11 @@ function trackElementsInView(){
         let hero=entry.target.classList.contains('hero');
 
         let controlRatio=0.1
-        // console.log(controlRatio)
         entry.target.dataset.control=entry.intersectionRatio>=controlRatio?"true":"false";
-        // if(entry.intersectionRatio==1) entry.target.dataset.control="true";
+
 
 
         if(hero&&camMode&&entry.intersectionRatio>=0.9){
-          // console.log('cam on')
           toggleCam(true);
         }else if(hero&&camMode){
           toggleCam(false);
@@ -414,32 +404,6 @@ function trackElementsInView(){
 
 
 function setAllVisible(){
-
-
-  if(isMobile.matches){
-    //this sets the positions of the eye pupils so they point toward the center
-    //we could also make the hrot/vrot of the letters correspond to this angle,
-    //rather than mapping it directly to position, which might make it feel more natural
-    // let delta={
-    //   x:client.x - w/2,
-    //   y:client.y - h/2
-    // }
-    // let dist=Math.hypot(delta.x,delta.y)/hypot*50;
-
-    // let angle=Math.atan2(delta.x,delta.y)+Math.PI/2;
-    // let shift={
-    //   x:Math.cos(angle) * dist + 50,
-    //   y:Math.sin(angle) * dist * -1 + 50
-    // }
-
-    // control.style.setProperty("--pupilx",shift.x+'%');
-    // control.style.setProperty("--pupily",shift.y+'%');
-  }
-
-
-
-
-
   let allVisible=Array.from(document.querySelectorAll('div[data-visible="true"],section[data-visible="true"]'));
   hrot=(pos.x - 0.5)*90;
   vrot=(pos.y - 0.5)*90;
@@ -462,17 +426,7 @@ function initPage(){
   setPageSize();
   trackElementsInView();
 
-  if(isMobile.matches){
-
-    mobileSetUp();
-    
-    // window.requestAnimationFrame(spiralAnim);
-    // mobileSetUp();
-    // ^ now called from within animation frame, when animation finishes
-  }
-
-
-
+  if(isMobile.matches) mobileSetUp();
 
 }
 
@@ -486,12 +440,7 @@ function spiralAnim(time){
 
   let radius=Math.max(70 - prevTime/40,0);
   let angle = prevTime/200 -2;
-  // console.log(angle,radius)
 
-
-  // console.log(radius);
-  // control.style.left='50%';
-  // control.style.top=50+radius+'%';
   let x=50+Math.cos(angle)*radius;
   let y=50+Math.sin(angle)*radius;
 
@@ -501,23 +450,14 @@ function spiralAnim(time){
   client.y=pos.y*h;
   setAllVisible();
 
-
-
   control.style.left=x+'%';
   control.style.top=y+'%';
-
-
-
   if(radius>0){
     window.requestAnimationFrame(spiralAnim);
   }else{
     mobileSetUp();
-
     blink();
-
   }
-
-
 }
 
 function jiggle(){
@@ -526,8 +466,6 @@ function jiggle(){
     control.offsetHeight;
     control.classList.add('jiggle');
   }
-
-  // let randomT=1000+Math.random() * 5000;
   window.setTimeout(jiggle,4000);
 }
 
@@ -592,7 +530,6 @@ herotext.addEventListener('click',function(){
 })
 
 function randomChar(num) {
-  // var glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#$%&/@§©¼½¾¿æ£';
   var glyphs = 'ABCDEFGHJKLMNOPQRSTUVWXYZ023456789#$%&@©¼½¾æ£';
   var arr = glyphs.split("");
   shuffle(arr);
@@ -640,7 +577,6 @@ function tiltHero(hrot,vrot,x,y){
   drawLines(x, y);
 }
 
-// document.querySelector('.hero').addEventListener("mouseleave", updateView.bind({leave:true}), false);
 
 function drawLines(x, y){
   var dot = document.querySelector('.circle_1');
@@ -682,7 +618,7 @@ cam.addEventListener('click',function(){
 
 function toggleCam(on){
   if(on){
-
+    
     document.body.classList.add('facecam');
     cam.classList.add('on') 
     ctrack.reset();
@@ -697,7 +633,9 @@ function toggleCam(on){
     vid.src="";
     vid.pause();
     window.cancelAnimationFrame(drawFrame);
-
+    document.querySelector('.alert').style.opacity=0;
+    console.log(delay);
+    clearTimeout(delay);
 
   }
 
