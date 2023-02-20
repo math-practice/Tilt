@@ -186,8 +186,8 @@ function initFaceCam(){
       let y=(rawY)/vid_height;
 
       // CONTROL TOP ONLY ---------------------
-      let hrot=(x - 0.5)*90*2;
-      let vrot=(y - 0.5)*90*2;
+      let hrot=(x - 0.5)*90*2*-1;
+      let vrot=(y - 0.5)*90*2*-1;
       tiltHero(hrot,vrot,x*w,y*herotext.clientHeight);
       // --------------------------------------
 
