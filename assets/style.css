@@ -261,10 +261,10 @@ i.can-your {
   display: inline-block;
   width: 12em;
   text-align: center;
-  animation: hrot 2.4s infinite;
+  animation: hrot-vrot 2.4s infinite;
 }
 
-@keyframes hrot {
+@keyframes hrot-vrot {
   0% {
     font-variation-settings: "HROT" 0, "VROT" 0;
   }
