@@ -241,6 +241,18 @@ p {
 .warp {
   font-family: tilt-warp;
 }
+i.can-your {
+  display: inline-block;
+  width: 12em;
+  text-align: center;
+  animation: hrot $duration*12 infinite;
+}
+@keyframes hrot {
+  0%   { font-variation-settings: 'HROT' 0,   'VROT' 0;}
+  25%  { font-variation-settings: 'HROT' 40,  'VROT' 20;}
+  75%  { font-variation-settings: 'HROT' -40, 'VROT' -20;}
+  100% { font-variation-settings: 'HROT' 0,   'VROT' 0;}
+}
 
 /* Layouts --------------------------------------------- */
 .small-only {
