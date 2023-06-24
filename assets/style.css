@@ -278,6 +278,25 @@ i.can-your {
     font-variation-settings: "HROT" 0, "VROT" 0;
   }
 }
+figure {
+  border-radius: 8px;
+  overflow: hidden;
+}
+figure img {
+  display: block;
+  width: 100%;
+}
+
+figcaption {
+  padding-top: 8px;
+  font-size: 12px;
+  line-height: 14px;
+}
+figcaption span {
+  display: inline-block;
+  width: 2em;
+}
+
 /* Layouts --------------------------------------------- */
 .small-only {
   display: none;
